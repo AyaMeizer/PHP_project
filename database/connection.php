@@ -74,7 +74,9 @@ try {
         `comment_desc` varchar(255)  NOT NULL,
         `user_id` int(11) NOT NULL,
         `product_id` int(11) NOT NULL,
-        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (user_id) REFERENCES users(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
         FOREIGN KEY (product_id) REFERENCES products(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE 
@@ -88,7 +90,9 @@ try {
         `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
         `product_id` int(11) NOT NULL,
         `checkout_id` int(11) NOT NULL,
-        FOREIGN KEY (product_id) REFERENCES products(id),
+        FOREIGN KEY (product_id) REFERENCES products(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
         FOREIGN KEY (checkout_id) REFERENCES checkout(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE 
