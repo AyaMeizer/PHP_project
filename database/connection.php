@@ -35,7 +35,10 @@ try {
             `date` TIMESTAMP NOT NULL,
             `user_id` int(11) NOT NULL,
             FOREIGN KEY (user_id) REFERENCES users(id)
-             )ENGINE=InnoDB ";
+             ON DELETE CASCADE
+             ON UPDATE CASCADE 
+             )
+             ENGINE=InnoDB ";
              $conn->exec( $create_checkout);
             
 
@@ -58,7 +61,10 @@ try {
         `product_img` varchar(255) NOT NULL,
         `cat_id` int(11) NOT NULL,
         FOREIGN KEY (cat_id) REFERENCES categories(id)
-        )ENGINE=InnoDB ";
+        ON DELETE CASCADE
+        ON UPDATE CASCADE 
+        )
+        ENGINE=InnoDB ";
         $conn->exec( $create_product);
 
 
@@ -70,7 +76,10 @@ try {
         `product_id` int(11) NOT NULL,
         FOREIGN KEY (user_id) REFERENCES users(id),
         FOREIGN KEY (product_id) REFERENCES products(id)
-        )ENGINE=InnoDB ";
+        ON DELETE CASCADE
+        ON UPDATE CASCADE 
+        )
+        ENGINE=InnoDB ";
         $conn->exec( $create_comment);
 
 
@@ -81,6 +90,9 @@ try {
         `checkout_id` int(11) NOT NULL,
         FOREIGN KEY (product_id) REFERENCES products(id),
         FOREIGN KEY (checkout_id) REFERENCES checkout(id)
-        )ENGINE=InnoDB ";
+        ON DELETE CASCADE
+        ON UPDATE CASCADE 
+        )
+        ENGINE=InnoDB ";
         $conn->exec( $create_checkout_product);
              ?>
