@@ -23,7 +23,7 @@ try {
         `phone` int(11) NOT NULL,
         `is_admin` tinyint(1) NOT NULL DEFAULT 0,
         `is_loggedin` tinyint(1) NOT NULL DEFAULT 0
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+      ) ENGINE=InnoDB ";
         $conn->exec( $create_users);
 
 
@@ -35,7 +35,7 @@ try {
             `date` TIMESTAMP NOT NULL,
             `user_id` int(11) NOT NULL,
             FOREIGN KEY (user_id) REFERENCES users(id)
-             )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+             )ENGINE=InnoDB ";
              $conn->exec( $create_checkout);
             
 
@@ -44,7 +44,7 @@ try {
         `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
         `cat_name` varchar(255)  NOT NULL UNIQUE,
         `cat_desc` varchar(255) NOT NULL
-        )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+        )ENGINE=InnoDB ";
         $conn->exec( $create_category);
 
 ////////////PRODUCTS TABLE
@@ -58,7 +58,7 @@ try {
         `product_img` varchar(255) NOT NULL,
         `cat_id` int(11) NOT NULL,
         FOREIGN KEY (cat_id) REFERENCES categories(id)
-        )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+        )ENGINE=InnoDB ";
         $conn->exec( $create_product);
 
 
@@ -70,7 +70,7 @@ try {
         `product_id` int(11) NOT NULL,
         FOREIGN KEY (user_id) REFERENCES users(id),
         FOREIGN KEY (product_id) REFERENCES products(id)
-        )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+        )ENGINE=InnoDB ";
         $conn->exec( $create_comment);
 
 
@@ -81,6 +81,6 @@ try {
         `checkout_id` int(11) NOT NULL,
         FOREIGN KEY (product_id) REFERENCES products(id),
         FOREIGN KEY (checkout_id) REFERENCES checkout(id)
-        )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+        )ENGINE=InnoDB ";
         $conn->exec( $create_checkout_product);
              ?>
