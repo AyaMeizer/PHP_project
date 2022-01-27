@@ -6,7 +6,7 @@ $categories ->execute();
 if(!$categories->fetchAll(PDO::FETCH_ASSOC)){
     echo "hi";
     $data ="INSERT INTO categories (cat_name, cat_desc) 
-    VALUES ('sleeping pillows', 'Medical cushions for sleeping')";
+    VALUES ('sleeping pillows', 'Medical pillow for sleeping')";
     $conn->exec($data);
 
     $data ="INSERT INTO categories (cat_name, cat_desc) 
@@ -14,7 +14,11 @@ if(!$categories->fetchAll(PDO::FETCH_ASSOC)){
     $conn->exec($data);
 
     $data ="INSERT INTO categories (cat_name, cat_desc) 
-    VALUES ('travel / car pillows', 'cushions for cars or travelling issues')";
+    VALUES ('travel / car pillows', 'pillow for cars or travelling issues')";
+    $conn->exec($data);
+
+    $data ="INSERT INTO categories (cat_name, cat_desc) 
+    VALUES ('medical pillow', 'pillow for medical issues')";
     $conn->exec($data);
 }
 
@@ -40,7 +44,7 @@ if(!$products->fetchAll(PDO::FETCH_ASSOC)){
     $conn->exec($data2);
 
     $data2 ="INSERT INTO products (product_name,product_price,product_desc,on_sales,sales_percentage,stock,product_img,cat_id) 
-    VALUES ('relax forever pillow',10,'medical and pillow',1,20,35,'https://www.adairs.com.au/globalassets/catalogue/adairs-kids/pillows/43760_nlow/43760_nlow_zoom_1.jpg',1)";
+    VALUES ('relax forever pillow',10,'medical sleeping pillow',1,20,35,'https://www.adairs.com.au/globalassets/catalogue/adairs-kids/pillows/43760_nlow/43760_nlow_zoom_1.jpg',1)";
     $conn->exec($data2);
 
     $data2 ="INSERT INTO products (product_name,product_price,product_desc,on_sales,sales_percentage,stock,product_img,cat_id) 
@@ -49,6 +53,22 @@ if(!$products->fetchAll(PDO::FETCH_ASSOC)){
 
     $data2 ="INSERT INTO products (product_name,product_price,product_desc,on_sales,sales_percentage,stock,product_img,cat_id) 
     VALUES ('happy night pillow',10,'best gel foam pillow| Enjoy free shipping',1,20,40,'https://m.media-amazon.com/images/I/51yJ7BnUhxL.jpg',1)";
+    $conn->exec($data2);
+
+    $data2 ="INSERT INTO products (product_name,product_price,product_desc,on_sales,sales_percentage,stock,product_img,cat_id) 
+    VALUES ('black cat car pillow',15,'best car cotton pillow| Enjoy free shipping',0,0,50,'https://m.media-amazon.com/images/I/71U6X50rFyL._AC_SY355_.jpg',3)";
+    $conn->exec($data2);
+
+    $data2 ="INSERT INTO products (product_name,product_price,product_desc,on_sales,sales_percentage,stock,product_img,cat_id) 
+    VALUES ('rabbit car pillow',17,'best car cotton pillow| Enjoy free shipping',0,0,50,'https://m.media-amazon.com/images/I/61TRfB1NfpL._AC_SS450_.jpg',3)";
+    $conn->exec($data2);
+
+    $data2 ="INSERT INTO products (product_name,product_price,product_desc,on_sales,sales_percentage,stock,product_img,cat_id) 
+    VALUES ('minimouse car headerset pillow',14,'best car cotton pillow| Enjoy free shipping',1,20,55,'https://cf.shopee.co.th/file/6e3a179178cc3a6731494a0256986cef',3)";
+    $conn->exec($data2);
+
+    $data2 ="INSERT INTO products (product_name,product_price,product_desc,on_sales,sales_percentage,stock,product_img,cat_id) 
+    VALUES ('medical pillow',14,'memory foam cotton pillow| Enjoy free shipping',1,20,55,'https://m.media-amazon.com/images/I/41WTZH3Z4LS._AC_SY780_.jpg',4)";
     $conn->exec($data2);
 
 }
