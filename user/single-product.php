@@ -143,7 +143,7 @@ include "../database/connection.php";
     
         $data = $conn->query($sql);
         $result = $data->fetch(PDO::FETCH_ASSOC);
-    //  echo ($result['product_price']);
+    //  echo ($result);
     
        ?>
             <div class="single_product_img">
@@ -176,7 +176,7 @@ include "../database/connection.php";
                     <p>From <?php echo $result['product_price']  ?>$</p>
                 </div>
               <div class="add_to_cart">
-                  <a href="./addToCart.php" class="btn_3">add to cart</a>
+                  <a href="./addToCart.php?id=<?php  echo $result['id']?>" class="btn_3">add to cart</a>
               </div>
             </div>
           </div>
