@@ -1,7 +1,7 @@
 <?php
 session_start();
-session_unset();
-session_destroy();
+// session_unset();
+// session_destroy();
 include "../database/connection.php";
 
 if (isset($_GET['id'])) {
@@ -9,9 +9,9 @@ if (isset($_GET['id'])) {
     $data = $conn->query($sql);
     $result = $data->fetch(PDO::FETCH_ASSOC);
    
-    $counter=1;
-        $_SESSION['product'][$_GET['id']] = $result ;
-        $_SESSION['product'][$_GET['id']][] = $counter ;
+    $counter;
+        // $_SESSION['product'][$_GET['id']] = $result ;
+        // $_SESSION['product'][$_GET['id']][] = $counter ;
   
     $getId=$_GET['id'];
     echo "<pre >";
@@ -22,11 +22,11 @@ if (isset($_GET['id'])) {
         // echo $_SESSION['product'][$_GET['id']]['id'];
         // echo $_GET['id'];
         if($_SESSION['product'][$_GET['id']]['id']===$_GET['id']){
-            $counter=$_SESSION['product'][$_GET['id']][0]+1;
+            $counter=$_SESSION['product'][$_GET['id']][0]-1;
             $_SESSION['product'][$_GET['id']] = $result ;
             $_SESSION['product'][$_GET['id']][0] = $counter ;
             // if()
-            header("Location:http://localhost/project7/PHP_project/user/single-product.php?id=$getId");
+            header("Location:http://localhost/project7/PHP_project/user/cart.php");
 
             break;
         }
@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
         $counter=1;
         $_SESSION['product'][$_GET['id']] = $result ;
         $_SESSION['product'][$_GET['id']][] = $counter ;
-        header('Location:http://localhost/project7/PHP_project/user/single-product.php?id=$getId');
+        header('Location:http://localhost/project7/PHP_project/user/cart.php');
 
 
         }

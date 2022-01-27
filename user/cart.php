@@ -5,6 +5,7 @@ include "../database/connection.php";
 $itemCart = $_SESSION['product'];
 // echo "<pre >";
 // var_dump($_SESSION['product']);
+// echo $_SESSION['product'][$_GET[4]][0] ;
 
 ?>
 <!doctype html>
@@ -151,13 +152,15 @@ $itemCart = $_SESSION['product'];
                 <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Total</th>
+                <th scope="col">Delete</th>
+
               </tr>
             </thead>
             <tbody>
 
 
               <?php
-
+                $total=0;
                 foreach ($itemCart as $i){
 
               ?>
@@ -165,7 +168,7 @@ $itemCart = $_SESSION['product'];
                   <td>
                     <div class="media">
                       <div class="d-flex">
-                        <img src="<?php echo $i['product_img']; ?>" alt="<?php echo $itemCart[$i]['product_name']; ?>" />
+                        <img src="<?php echo $i['product_img']; ?>" alt="<?php echo $i['product_name']; ?>" />
                       </div>
                       <div class="media-body">
                         <p><?php echo $i['product_name']; ?></p>
@@ -179,19 +182,24 @@ $itemCart = $_SESSION['product'];
                   <td>
                     <div class="product_count">
                       <form method="POST">
-                        <span class="input-number-decrement"> <i class="ti-minus"></i></span>
-                        <input neme="total" class="input-number" type="text" value="1" min="0" max="10">
-                        <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                        <span class="input-number"><a href="./decrement.php?id=<?php  echo $i['id']?>">  <i class="ti-minus"></i></a></span>
+                        <input neme="total" class="input-number" type="text" value="<?php echo $i['0']; ?>" min="0" max="10">
+                        <span class="input-number"><a href="./increment.php?id=<?php  echo $i['id']?>"> <i class="ti-plus"></i></a></span>
                       </form>
                     </div>
                   </td>
                   <td>
                     <h5>
                       <?php
-                        echo $i['product_price'] ;
+                        echo $i['product_price']*  $i['0'];
                         // echo "gfg";
+                       
+                        $total=$total+$i['product_price']*  $i['0'];
                       ?> $
                       </h5>
+                  </td>
+                  <td>
+                    <a href="./delet.php?id=<?php  echo $i['id']?>">delete</a>
                   </td>
                   
                 </tr>
@@ -219,7 +227,7 @@ $itemCart = $_SESSION['product'];
                   <h5>Subtotal</h5>
                 </td>
                 <td>
-                  <h5>$2160.00</h5>
+                  <h5><?php echo $total; ?></h5>
                 </td>
               </tr>
               <tr class="shipping_area">

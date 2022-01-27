@@ -152,13 +152,13 @@ include "../database/connection.php";
         //  echo ($result);
        ?>
             <div class="single_product_img">
-              <img src="<?php echo $result['product_img']?>" alt="#" class="img-fluid" width=15px height=20px>
+              <img src="<?php echo $result['product_img'];?>" alt="#" class="img-fluid" width=15px height=20px>
             </div>
             <div class="single_product_img">
-            <img src="<?php echo $result['product_img']?>" alt="#" class="img-fluid">
+            <img src="<?php echo $result['product_img'];?>" alt="#" class="img-fluid">
             </div>
             <div class="single_product_img">
-            <img src="<?php echo $result['product_img']?>" alt="#" class="img-fluid">
+            <img src="<?php echo $result['product_img'];?>" alt="#" class="img-fluid">
             </div>
           </div>
         </div>
@@ -166,9 +166,9 @@ include "../database/connection.php";
      
         <div class="col-lg-8">
           <div class="single_product_text text-center">
-            <h3><?php echo $result['product_name']?></h3>
+            <h3><?php echo $result['product_name'];?></h3>
             <p>
-            <?php echo $result['product_desc']?>
+            <?php echo $result['product_desc'];?>
             </p>
             <p>
             <?php echo $result['product_price'] ; ?>
@@ -184,7 +184,7 @@ include "../database/connection.php";
                     <p>From <?php echo $result['product_price']  ?>$</p>
                 </div> -->
               <div class="add_to_cart">
-                  <a href="./addToCart.php?id=<?php  echo $result['id']?>" class="btn_3">add to cart</a>
+                  <a href="./addToCart.php?id=<?php  echo $result['id'];?>" class="btn_3">add to cart</a>
               </div>
             </div>
           </div>
