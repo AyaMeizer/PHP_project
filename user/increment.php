@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
             $_SESSION['product'][$_GET['id']] = $result ;
             $_SESSION['product'][$_GET['id']][0] = $counter ;
             // if()
-            header("Location:http://localhost/project7/PHP_project/user/cart.php");
+            // header("Location:http://localhost/project7/PHP_project/user/cart.php");
 
             break;
         }
@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
         $counter=1;
         $_SESSION['product'][$_GET['id']] = $result ;
         $_SESSION['product'][$_GET['id']][] = $counter ;
-        header('Location:http://localhost/project7/PHP_project/user/cart.php');
+        // header('Location:http://localhost/project7/PHP_project/user/cart.php');
 
 
         }
