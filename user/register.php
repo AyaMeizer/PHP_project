@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/register.css">
 </head>
 
 <body>
@@ -147,27 +148,87 @@
                         <div class="login_part_form_iner">
                             <h3>Welcome to our website ! <br>
                                 Please Sign up now</h3>
-                            <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+
+                                       
+   <?php
+
+    if (isset($_POST['register'])) {
+        $email = $_POST['email'];
+        $username = $_POST['name'];
+        $pass = $_POST['password'];
+        $repassword = $_POST['repassword'];
+        $phone = $_POST['phone'];
+        $regex = "/^[^ ]+@[^ ]+\.[a-z]{2,3}$/";
+        $flag = false;
+        if (preg_match($regex, $email) && strlen($pass) >= 8 && $repassword === $pass) {
+            
+                $servername = "localhost";
+                $password = "";
+                $db_user = "root";
+                $db_name = "pillowmart";
+                    try {
+                        $conn = new PDO("mysql:host=$servername;dbname=$db_name", $db_user, $password);
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                $stmt = $conn->prepare("SELECT * FROM `users` WHERE `email`='" . $email . "'");
+                $stmt->execute();
+
+                if ($stmt->rowCount()) {
+                    exit("This email already exists");
+                }
+                $sqlInsert = "INSERT INTO `users` (`email`,`username`,`password`,`phone`, `is_admin`,`is_loggedin`) 
+                VALUES ('$email','$username','$pass', $phone, 0 ,0)";
+
+                $conn->exec($sqlInsert);    
+               echo "<script>window.location.href='login.php'</script>";
+            } catch (PDOException $e) {
+                echo $sql . "<br>" . $e->getMessage();
+            }
+        }
+    } 
+
+    ?>
+
+                            <form class="row contact_form" action="#" method="post" novalidate="novalidate" id="form">
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="name" name="name" value=""
+                                    <input type="text" class="form-control" id="name" name="name" 
                                         placeholder="Username">
+                                        <br>
+                                            <small id="usernameMessage">Message</small>
+                                         <br>
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="email" class="form-control" id="email" name="email" value=""
+                                    <input type="email" class="form-control" id="email" name="email" 
                                         placeholder="Email">
+                                        <br>
+                                          <small id="emailMessage">Message</small>
+                                         <br>
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="password" class="form-control" id="password" name="password" value=""
+                                    <input type="password" class="form-control" id="password" name="password" 
                                         placeholder="Password">
+                                        <br>
+                                             <small id="passwordMessage">Message</small>
+                                      <br>
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="password" class="form-control" id="confPassword" name="confPassword" value=""
+                                    <input type="password" class="form-control" id="confPassword" name="repassword" 
                                         placeholder="Confirm Password">
+                                        <br>
+                                             <small id="repasswordMessage">Message</small>
+                                       <br>
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="number" class="form-control" id="phone" name="phone" 
+                                        placeholder="Phone">
+                                        <br>
+                                             <small id="phoneMessage">Message</small>
+                                       <br>
                                 </div>
                                 <div class="col-md-12 form-group">
-                                    <button type="submit" value="submit" class="btn_3">
+                                    <input type="submit" name="register" value="submit" class="btn_3" id='sub-btn'>
                                         Register
-                                    </button>
+                                    </input>
                                     <a class="lost_pass" href="login.html">you already have account?</a>
                                 </div>
                             </form>
@@ -257,6 +318,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/mail-script.js"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
+    <script src="Register.js"></script>
 </body>
     
 </html>
