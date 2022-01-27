@@ -1,3 +1,6 @@
+<?php
+include "../database/connection.php";
+?>
 <!doctype html>
 <html lang="zxx">
 
@@ -133,23 +136,34 @@
       <div class="row justify-content-center">
         <div class="col-lg-12">
           <div class="product_img_slide owl-carousel">
+
+           <?php 
+          if (isset($_GET['id'])) {
+        $sql = "SELECT * FROM products WHERE id='{$_GET['id']}' ";
+    
+        $data = $conn->query($sql);
+        $result = $data->fetch(PDO::FETCH_ASSOC);
+    //  echo ($result['product_price']);
+    
+       ?>
             <div class="single_product_img">
-              <img src="img/product/single_product.png" alt="#" class="img-fluid">
+              <img src="<?php echo $result['product_img']?>" alt="#" class="img-fluid">
             </div>
             <div class="single_product_img">
-              <img src="img/product/single_product.png" alt="#" class="img-fluid">
+            <img src="<?php echo $result['product_img']?>" alt="#" class="img-fluid">
             </div>
             <div class="single_product_img">
-              <img src="img/product/single_product.png" alt="#" class="img-fluid">
+            <img src="<?php echo $result['product_img']?>" alt="#" class="img-fluid">
             </div>
           </div>
         </div>
+     
+     
         <div class="col-lg-8">
           <div class="single_product_text text-center">
-            <h3>Foam filling cotton slow <br>
-                rebound pillows</h3>
+            <h3><?php echo $result['product_name']?></h3>
             <p>
-                Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources. Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Credibly innovate granular internal or organic sources whereas high standards in web-readiness. Energistically scale future-proof core competencies vis-a-vis impactful experiences. Dramatically synthesize integrated schemas. with optimal networks.
+            <?php echo $result['product_desc']?>
             </p>
             <div class="card_area">
                 <div class="product_count_area">
@@ -159,15 +173,17 @@
                         <input class="product_count_item input-number" type="text" value="1" min="0" max="10">
                         <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
                     </div>
-                    <p>$5</p>
+                    <p>From <?php echo $result['product_price']  ?>$</p>
                 </div>
               <div class="add_to_cart">
-                  <a href="#" class="btn_3">add to cart</a>
+                  <a href="./addToCart.php" class="btn_3">add to cart</a>
               </div>
             </div>
           </div>
         </div>
-      </div>
+ <?php }?>  
+    
+    </div>
     </div>
   </div>
   <!--================End Single Product Area =================-->
