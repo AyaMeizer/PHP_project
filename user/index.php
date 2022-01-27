@@ -1,5 +1,6 @@
 <?php  
 $pdo = require('../database/connection.php');
+require('../database/create_db.php');
 ?>
 
 <!doctype html>

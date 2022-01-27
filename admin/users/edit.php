@@ -1,3 +1,9 @@
+<?php
+ob_start();
+require("../../database/connection.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +48,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
+                        <a class="logo" href="../index.html">
                             <img src="../images/icon/logo.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -58,96 +64,94 @@
                     <ul class="navbar-mobile__list list-unstyled">
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <i class="fas fa-tachometer-alt"></i>Admin Dashboards</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="index.html">Dashboard 1</a>
+                                    <a href="index.php">Users Dashboard</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">Dashboard 2</a>
+                                    <a href="index.html">Products Dashboard</a>
                                 </li>
                                 <li>
-                                    <a href="index3.html">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="index4.html">Dashboard 4</a>
+                                    <a href="index.html">Categories Dashboard</a>
                                 </li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Charts</a>
-                        </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
-                        </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-                        <li>
-                            <a href="calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Calendar</a>
-                        </li>
-                        <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps</a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Pages</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="forget-pass.html">Forget Password</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>UI Elements</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="button.html">Button</a>
-                                </li>
-                                <li>
-                                    <a href="badge.html">Badges</a>
-                                </li>
-                                <li>
-                                    <a href="tab.html">Tabs</a>
-                                </li>
-                                <li>
-                                    <a href="card.html">Cards</a>
-                                </li>
-                                <li>
-                                    <a href="alert.html">Alerts</a>
-                                </li>
-                                <li>
-                                    <a href="progress-bar.html">Progress Bars</a>
-                                </li>
-                                <li>
-                                    <a href="modal.html">Modals</a>
-                                </li>
-                                <li>
-                                    <a href="switch.html">Switchs</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grids</a>
-                                </li>
-                                <li>
-                                    <a href="fontawesome.html">Fontawesome Icon</a>
-                                </li>
-                                <li>
-                                    <a href="typo.html">Typography</a>
-                                </li>
-                            </ul>
-                        </li>
+                    </ul>
+                    </li>
+                    <li>
+                        <a href="chart.html">
+                            <i class="fas fa-chart-bar"></i>Charts</a>
+                    </li>
+                    <li>
+                        <a href="table.html">
+                            <i class="fas fa-table"></i>Tables</a>
+                    </li>
+                    <li>
+                        <a href="form.html">
+                            <i class="far fa-check-square"></i>Forms</a>
+                    </li>
+                    <li>
+                        <a href="calendar.html">
+                            <i class="fas fa-calendar-alt"></i>Calendar</a>
+                    </li>
+                    <li>
+                        <a href="map.html">
+                            <i class="fas fa-map-marker-alt"></i>Maps</a>
+                    </li>
+                    <li class="has-sub">
+                        <a class="js-arrow" href="#">
+                            <i class="fas fa-copy"></i>Pages</a>
+                        <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                            <li>
+                                <a href="login.html">Login</a>
+                            </li>
+                            <li>
+                                <a href="register.html">Register</a>
+                            </li>
+                            <li>
+                                <a href="forget-pass.html">Forget Password</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="has-sub">
+                        <a class="js-arrow" href="#">
+                            <i class="fas fa-desktop"></i>UI Elements</a>
+                        <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                            <li>
+                                <a href="button.html">Button</a>
+                            </li>
+                            <li>
+                                <a href="badge.html">Badges</a>
+                            </li>
+                            <li>
+                                <a href="tab.html">Tabs</a>
+                            </li>
+                            <li>
+                                <a href="card.html">Cards</a>
+                            </li>
+                            <li>
+                                <a href="alert.html">Alerts</a>
+                            </li>
+                            <li>
+                                <a href="progress-bar.html">Progress Bars</a>
+                            </li>
+                            <li>
+                                <a href="modal.html">Modals</a>
+                            </li>
+                            <li>
+                                <a href="switch.html">Switchs</a>
+                            </li>
+                            <li>
+                                <a href="grid.html">Grids</a>
+                            </li>
+                            <li>
+                                <a href="fontawesome.html">Fontawesome Icon</a>
+                            </li>
+                            <li>
+                                <a href="typo.html">Typography</a>
+                            </li>
+                        </ul>
+                    </li>
                     </ul>
                 </div>
             </nav>
@@ -157,7 +161,7 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
+                <a href="../index.php">
                     <img src="../images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
@@ -166,29 +170,33 @@
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                                <i class="fas fa-tachometer-alt"></i>Admin Dashboards</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="index.html">Dashboard 1</a>
+                                    <a href="index.php">Users Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="../products/index.php">Products Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="../category/index.php">Categories Dashboard</a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="active">
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
-                        </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>UI Elements</a>
+                                <i class="fas fa-tachometer-alt"></i>Create Dashboards</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <a href="alert.html">Alerts</a>
-                        </li>
-                        <li>
-                            <a href="modal.html">Modals</a>
+                                <li>
+                                    <a href="create.php">Create Users </a>
+                                </li>
+                                <li>
+                                    <a href="../products/create.php">Create Products</a>
+                                </li>
+                                <li>
+                                    <a href="../category/create.php">Create Categories </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                     </li>
@@ -201,33 +209,75 @@
         <div class="page-container">
 
             <!-- MAIN CONTENT-->
+            <?php
+
+
+            if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                $value = $_GET["id"];
+                $sql = $conn->prepare("SELECT * FROM users WHERE id='$value'");
+                $sql->execute();
+
+                $data = $sql->fetch(PDO::FETCH_ASSOC);
+            }
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $value = $_GET["id"];
+                $username = $_POST['username'];
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                $phone = $_POST['phone'];
+                $is_admin = $_POST['is_admin'];
+                $is_loggedin = $_POST['is_loggedin'];
+                $sql = $conn->prepare("UPDATE users SET username='$username',email='$email',password='$password',phone='$phone',is_admin='$is_admin',is_loggedin='$is_loggedin' WHERE id='$value'");
+                $sql->execute();
+
+                header('location:index.php');
+            }
+            ?>
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="card">
                             <div class="card-header">
-                                <strong>Normal</strong> Form
+                                <strong>Users</strong> Form
                             </div>
                             <div class="card-body card-block">
-                                <form action="" method="post" class="">
+                                <form method="post" class="" action="<?php $_SERVER["PHP_SELF"]; ?>">
+                                    <div class="form-group">
+                                        <label for="nf-email" class=" form-control-label">Username</label>
+                                        <input type="text" id="nf-email" name="username" value="<?php echo $data["username"]; ?>" placeholder="Enter username.." class="form-control" required>
+                                    </div>
                                     <div class="form-group">
                                         <label for="nf-email" class=" form-control-label">Email</label>
-                                        <input type="email" id="nf-email" name="nf-email" placeholder="Enter Email.." class="form-control">
+                                        <input type="email" id="nf-email" name="email" value="<?php echo $data["email"]; ?>" placeholder="Enter Email.." class="form-control" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="nf-password" class=" form-control-label">Password</label>
-                                        <input type="password" id="nf-password" name="nf-password" placeholder="Enter Password.." class="form-control">
+                                        <input type="password" id="nf-password" name="password" value="<?php echo $data["password"]; ?>" placeholder="Enter Password.." class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nf-password" class=" form-control-label">Phone</label>
+                                        <input type="number" id="nf-password" name="phone" value="<?php echo $data["phone"]; ?>" placeholder="Enter Your Phone.." class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nf-password" class=" form-control-label">Is Admin</label>
+                                        <input type="number" id="nf-password" name="is_admin" value="<?php echo $data["is_admin"]; ?>" placeholder="Is admin.." class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nf-password" class=" form-control-label">Is logged in</label>
+                                        <input type="number" id="nf-password" name="is_loggedin" value="<?php echo $data["is_loggedin"]; ?>" placeholder="Is logged in.." class="form-control" required>
+                                    </div>
+                                    <div class="card-footer">
+
+                                        <input type="submit" class="btn btn-info" value="Save" name="edit_submit">
                                     </div>
                                 </form>
+
+
+
+
                             </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-dot-circle-o"></i> Submit
-                                </button>
-                                <button type="reset" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-ban"></i> Reset
-                                </button>
-                            </div>
+
                         </div>
                         <!-- Jquery JS-->
                         <script src="../vendor/jquery-3.2.1.min.js"></script>

@@ -1,3 +1,5 @@
+<?php require("../../database/connection.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +44,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
+                        <a class="logo" href="../index.html">
                             <img src="../images/icon/logo.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -58,19 +60,16 @@
                     <ul class="navbar-mobile__list list-unstyled">
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <i class="fas fa-tachometer-alt"></i>Admin Dashboards</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="index.html">Dashboard 1</a>
+                                    <a href="index.php">Users Dashboard</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">Dashboard 2</a>
+                                    <a href="index.html">Products Dashboard</a>
                                 </li>
                                 <li>
-                                    <a href="index3.html">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="index4.html">Dashboard 4</a>
+                                    <a href="index.html">Categories Dashboard</a>
                                 </li>
                             </ul>
                         </li>
@@ -157,7 +156,7 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
+                <a href="../index.php">
                     <img src="../images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
@@ -166,32 +165,38 @@
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                                <i class="fas fa-tachometer-alt"></i>Admin Dashboards</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="index.html">Dashboard 1</a>
+                                    <a href="index.php">Users Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="../products/index.php">Products Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="../category/index.php">Categories Dashboard</a>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="active">
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
-                        </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>UI Elements</a>
+                                <i class="fas fa-tachometer-alt"></i>Create Dashboards</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                    <a href="alert.html">Alerts</a>
+                                <li>
+                                    <a href="create.php">Create Users </a>
                                 </li>
                                 <li>
-                                    <a href="modal.html">Modals</a>
+                                    <a href="../products/create.php">Create Products</a>
+                                </li>
+                                <li>
+                                    <a href="../category/create.php">Create Categories </a>
                                 </li>
                             </ul>
                         </li>
+
+
+                    </ul>
+                    </li>
                     </ul>
                 </nav>
             </div>
@@ -213,59 +218,74 @@
                                     <div class="table-data__tool-left">
                                     </div>
                                     <div class="table-data__tool-right">
-                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                            <i class="zmdi zmdi-plus"></i>add item</button>
+
+                                        <a href="create.php"><button class="au-btn au-btn-icon au-btn--green au-btn--small"> <i class="zmdi zmdi-plus"></i>Add Users</button></a>
+
                                     </div>
                                 </div>
                                 <div class="table-responsive table-responsive-data2">
                                     <table class="table table-data2">
                                         <thead>
                                             <tr></tr>
-                                                <th>name</th>
-                                                <th>email</th>
-                                                <th>description</th>
-                                                <th>date</th>
-                                                <th>status</th>
-                                                <th>price</th>
-                                                <th></th>
+                                            <th>ID</th>
+                                            <th>Username</th>
+                                            <th>Password</th>
+                                            <th>Phone</th>
+                                            <th>is_admin</th>
+                                            <th>is_loggedin</th>
+                                            <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="tr-shadow">
-                                                <td>Lori Lynch</td>
-                                                <td>
-                                                    <span class="block-email">lori@example.com</span>
-                                                </td>
-                                                <td class="desc">Samsung S8 Black</td>
-                                                <td>2018-09-27 02:12</td>
-                                                <td>
-                                                    <span class="status--process">Processed</span>
-                                                </td>
-                                                <td>$679.00</td>
-                                                <td>
-                                                    <div class="table-data-feature">
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                            <i class="zmdi zmdi-edit"></i>
-                                                        </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                            <i class="zmdi zmdi-delete"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="spacer"></tr>
-                                            
+                                            <?php
+                                            $data = $conn->prepare("SELECT * FROM  users");
+                                            $data->execute();
+
+                                            ?>
+                                            <?php
+                                            foreach ($data as $item) {
+                                            ?>
+                                                <tr class="table-row">
+                                                    <td><?php echo $item["id"]; ?></td>
+                                                    <td><?php echo $item["username"]; ?></td>
+                                                    <td><?php echo $item["email"]; ?></td>
+                                                    <td><?php echo $item["password"]; ?></td>
+                                                    <td><?php echo $item["phone"]; ?></td>
+                                                    <td><?php echo $item["is_admin"]; ?></td>
+                                                    <td><?php echo $item["is_loggedin"]; ?></td>
+                                                    <td>
+                                                        <div class="table-data-feature">
+                                                            <a href='delete.php?id=<?= $item["id"] ?>'>
+                                                                <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                    <i class="zmdi zmdi-delete"></i>
+                                                                </button>
+                                                            </a>
+                                                            <a href='edit.php?id=<?= $item["id"] ?>'> <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                                    <i class="zmdi zmdi-edit"></i>
+                                                                </button></a>
+                                                        </div>
+
+
+                                                    </td>
+                                                </tr>
+                                                <tr class="spacer"></tr>
+                                            <?php
+                                            }
+
+                                            ?>
+
+
                                         </tbody>
                                     </table>
                                 </div>
                                 <!-- END DATA TABLE -->
                             </div>
                         </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
     </div>
 

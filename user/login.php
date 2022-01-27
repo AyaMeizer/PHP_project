@@ -1,19 +1,6 @@
 <?php
 // session_start();
-try {
-    $sereverName = "localhost";
-    $dbName = "pillowmart";
-    $dbusername = "root";
-    $dbpassword = "";
-    $conn = new PDO("mysql:host=$sereverName;dbname=$dbName", $dbusername, $dbpassword);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    var_dump($conn);
-    // echo "connection successfully!<br>";
-  } catch (PDOException $e) {
-    echo "<br>" . $e->getMessage();
-  }
-
-
+require("../database/connection.php");
 ?>
 <!doctype html>
 <html lang="zxx">
@@ -112,15 +99,6 @@ try {
                         </div>
                     </nav>
                 </div>
-            </div>
-        </div>
-        <div class="search_input" id="search_input_box">
-            <div class="container ">
-                <form class="d-flex justify-content-between search-inner">
-                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                    <button type="submit" class="btn"></button>
-                    <span class="ti-close" id="close_search" title="Close Search"></span>
-                </form>
             </div>
         </div>
     </header>
