@@ -220,7 +220,7 @@
                                 <div class="table-responsive table-responsive-data2">
                                     <table class="table table-data2">
                                         <thead>
-                                            <tr>
+                                            <tr></tr>
                                                 <th>name</th>
                                                 <th>email</th>
                                                 <th>description</th>
