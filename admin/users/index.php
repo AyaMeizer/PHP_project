@@ -43,7 +43,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
+                            <img src="../images/icon/logo.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -185,13 +185,13 @@
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-desktop"></i>UI Elements</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <a href="alert.html">Alerts</a>
+                                    <a href="alert.html">Alerts</a>
+                                </li>
+                                <li>
+                                    <a href="modal.html">Modals</a>
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="modal.html">Modals</a>
-                        </li>
-                    </ul>
-                    </li>
                     </ul>
                 </nav>
             </div>
