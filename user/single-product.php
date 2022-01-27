@@ -27,6 +27,13 @@ include "../database/connection.php";
     <link rel="stylesheet" href="css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+    .img-fluid{
+    width:80em !important;
+    height:50em;
+    align-items: center;
+    }
+    </style>
 </head>
 
 <body>
@@ -36,7 +43,7 @@ include "../database/connection.php";
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a>
+                        <a class="navbar-brand" href="index.php"> <img src="img/logo.png" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +53,7 @@ include "../database/connection.php";
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.html">Home</a>
+                                    <a class="nav-link" href="index.php">Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="about.html">about</a>
@@ -57,8 +64,8 @@ include "../database/connection.php";
                                         product
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="product_list.html"> product list</a>
-                                        <a class="dropdown-item" href="single-product.html">product details</a>
+                                        <a class="dropdown-item" href="product_list.php"> product list</a>
+                                        <a class="dropdown-item" href="single-product.php">product details</a>
                                         
                                     </div>
                                 </li>
@@ -68,12 +75,12 @@ include "../database/connection.php";
                                         pages
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="login.html"> 
+                                        <a class="dropdown-item" href="login.php"> 
                                             login
                                             
                                         </a>
                                         <a class="dropdown-item" href="checkout.html">product checkout</a>
-                                        <a class="dropdown-item" href="cart.html">shopping cart</a>
+                                        <a class="dropdown-item" href="cart.php">shopping cart</a>
                                         <a class="dropdown-item" href="confirmation.html">confirmation</a>
                                         <a class="dropdown-item" href="elements.html">elements</a>
                                     </div>
@@ -97,7 +104,7 @@ include "../database/connection.php";
                         </div>
                         <div class="hearer_icon d-flex align-items-center">
                             <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <a href="cart.html">
+                            <a href="cart.php">
                                 <i class="flaticon-shopping-cart-black-shape"></i>
                             </a>
                         </div>
@@ -140,14 +147,12 @@ include "../database/connection.php";
            <?php 
           if (isset($_GET['id'])) {
         $sql = "SELECT * FROM products WHERE id='{$_GET['id']}' ";
-    
         $data = $conn->query($sql);
         $result = $data->fetch(PDO::FETCH_ASSOC);
-    //  echo ($result);
-    
+        //  echo ($result);
        ?>
             <div class="single_product_img">
-              <img src="<?php echo $result['product_img']?>" alt="#" class="img-fluid">
+              <img src="<?php echo $result['product_img']?>" alt="#" class="img-fluid" width=15px height=20px>
             </div>
             <div class="single_product_img">
             <img src="<?php echo $result['product_img']?>" alt="#" class="img-fluid">
@@ -165,8 +170,11 @@ include "../database/connection.php";
             <p>
             <?php echo $result['product_desc']?>
             </p>
+            <p>
+            <?php echo $result['product_price'] ; ?>
+            </p>
             <div class="card_area">
-                <div class="product_count_area">
+                <!-- <div class="product_count_area">
                     <p>Quantity</p>
                     <div class="product_count d-inline-block">
                         <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
@@ -174,7 +182,7 @@ include "../database/connection.php";
                         <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
                     </div>
                     <p>From <?php echo $result['product_price']  ?>$</p>
-                </div>
+                </div> -->
               <div class="add_to_cart">
                   <a href="./addToCart.php?id=<?php  echo $result['id']?>" class="btn_3">add to cart</a>
               </div>
@@ -214,12 +222,12 @@ include "../database/connection.php";
                     <div class="col-lg-8">
                         <div class="footer_menu">
                             <div class="footer_logo">
-                                <a href="index.html"><img src="img/logo.png" alt="#"></a>
+                                <a href="index.php"><img src="img/logo.png" alt="#"></a>
                             </div>
                             <div class="footer_menu_item">
-                                <a href="index.html">Home</a>
+                                <a href="index.php">Home</a>
                                 <a href="about.html">About</a>
-                                <a href="product_list.html">Products</a>
+                                <a href="product_list.php">Products</a>
                                 <a href="#">Pages</a>
                                 <a href="blog.html">Blog</a>
                                 <a href="contact.html">Contact</a>
@@ -244,7 +252,7 @@ include "../database/connection.php";
                     <div class="col-lg-12">
                         <div class="copyright_text">
                             <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P>
                             <div class="copyright_link">
                                 <a href="#">Turms & Conditions</a>

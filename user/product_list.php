@@ -37,7 +37,7 @@ include "../database/connection.php";
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a>
+                        <a class="navbar-brand" href="index.php"> <img src="img/logo.png" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="menu_icon"><i class="fas fa-bars"></i></span>
                         </button>
@@ -45,7 +45,7 @@ include "../database/connection.php";
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.html">Home</a>
+                                    <a class="nav-link" href="index.php">Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="about.html">about</a>
@@ -55,8 +55,8 @@ include "../database/connection.php";
                                         product
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="product_list.html"> product list</a>
-                                        <a class="dropdown-item" href="single-product.html">product details</a>
+                                        <a class="dropdown-item" href="product_list.php"> product list</a>
+                                        <a class="dropdown-item" href="single-product.php">product details</a>
 
                                     </div>
                                 </li>
@@ -65,12 +65,12 @@ include "../database/connection.php";
                                         pages
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="login.html">
+                                        <a class="dropdown-item" href="login.php">
                                             login
 
                                         </a>
                                         <a class="dropdown-item" href="checkout.html">product checkout</a>
-                                        <a class="dropdown-item" href="cart.html">shopping cart</a>
+                                        <a class="dropdown-item" href="cart.php">shopping cart</a>
                                         <a class="dropdown-item" href="confirmation.html">confirmation</a>
                                         <a class="dropdown-item" href="elements.html">elements</a>
                                     </div>
@@ -93,7 +93,7 @@ include "../database/connection.php";
                         </div>
                         <div class="hearer_icon d-flex align-items-center">
                             <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <a href="cart.html">
+                            <a href="cart.php">
                                 <i class="flaticon-shopping-cart-black-shape"></i>
                             </a>
                         </div>
@@ -134,58 +134,63 @@ include "../database/connection.php";
                 <div class="col-md-4">
                     <div class="product_sidebar">
                         <div class="single_sedebar">
-                            <form action="#">
+                            <!-- <form action="#">
                                 <input type="text" name="#" placeholder="Search keyword">
                                 <i class="ti-search"></i>
-                            </form>
+                            </form> -->
                         </div>
                         <div class="single_sedebar">
                             <div class="select_option">
                                 <div class="select_option_list">Category <i class="right fas fa-caret-down"></i> </div>
                                 <div class="select_option_dropdown">
-                                    <p><a href="#">Category 1</a></p>
-                                    <p><a href="#">Category 2</a></p>
-                                    <p><a href="#">Category 3</a></p>
-                                    <p><a href="#">Category 4</a></p>
+                                    <?php
+                                    $data = $conn->prepare("SELECT * FROM categories  ");
+                                    $data->execute();
+                                    echo "<p><a href='product_list.php'> All </a></p>";
+
+                                    foreach ($data as $result) {
+                                        echo "<p><a href='product_list.php?id=$result[id]'>$result[cat_name] </a></p>";
+                                    }
+                                    ?>
+                                    <!-- ttttttt -->
                                 </div>
                             </div>
                         </div>
-                        <div class="single_sedebar">
-                            <div class="select_option">
-                                <div class="select_option_list">Type <i class="right fas fa-caret-down"></i> </div>
-                                <div class="select_option_dropdown">
-                                    <p><a href="#">Type 1</a></p>
-                                    <p><a href="#">Type 2</a></p>
-                                    <p><a href="#">Type 3</a></p>
-                                    <p><a href="#">Type 4</a></p>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="product_list">
                         <div class="row">
                             <?php
-                            $sql = "SELECT * FROM products ";
-                            $data = $conn->query($sql);
-                            $results = $data->fetchAll(PDO::FETCH_ASSOC);
-                            // var_dump($results);
-                            foreach ($results as $result) {
+                            if (isset($_GET['id'])) {
+                                $data1 = $conn->prepare("SELECT * FROM products  WHERE cat_id= $_GET[id] ");
+                                $data1->execute();
+
+                            } else {
+                                $data1 = $conn->prepare("SELECT * from products");
+                                $data1->execute();
+
+                            }
+
+
+                            foreach ($data1 as $result) {
 
 
                             ?>
                                 <div class="col-lg-6 col-sm-6">
                                     <div class="single_product_item">
                                         <img src="<?php echo $result['product_img'] ?>" alt="<?php echo $result['product_name'] ?>" class="img-fluid">
-                                        <h3> <a href="single-product.php?id=<?php  echo $result['id']?>"><?php echo $result['product_name'] ?></a> </h3>
+                                        <h3> <a href="single-product.php?id=<?php echo $result['id'] ?>"><?php echo $result['product_name'] ?></a> </h3>
                                         <p>From <?php echo $result['product_price']  ?>$</p>
+                                        
                                     </div>
                                 </div>
                             <?php
 
                             }
                             ?>
+
 
                         </div>
                         <div class="load_more_btn text-center">
@@ -306,12 +311,12 @@ include "../database/connection.php";
                     <div class="col-lg-8">
                         <div class="footer_menu">
                             <div class="footer_logo">
-                                <a href="index.html"><img src="img/logo.png" alt="#"></a>
+                                <a href="index.php"><img src="img/logo.png" alt="#"></a>
                             </div>
                             <div class="footer_menu_item">
-                                <a href="index.html">Home</a>
+                                <a href="index.php">Home</a>
                                 <a href="about.html">About</a>
-                                <a href="product_list.html">Products</a>
+                                <a href="product_list.php">Products</a>
                                 <a href="#">Pages</a>
                                 <a href="blog.html">Blog</a>
                                 <a href="contact.html">Contact</a>

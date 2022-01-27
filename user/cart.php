@@ -3,6 +3,8 @@ session_start();
 include "../database/connection.php";
 
 $itemCart = $_SESSION['product'];
+// echo "<pre >";
+// var_dump($_SESSION['product']);
 
 ?>
 <!doctype html>
@@ -30,6 +32,7 @@ $itemCart = $_SESSION['product'];
   <link rel="stylesheet" href="css/nice-select.css">
   <!-- style CSS -->
   <link rel="stylesheet" href="css/style.css">
+  
 </head>
 
 <body>
@@ -39,7 +42,7 @@ $itemCart = $_SESSION['product'];
       <div class="row align-items-center justify-content-center">
         <div class="col-lg-12">
           <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a>
+            <a class="navbar-brand" href="index.php"> <img src="img/logo.png" alt="logo"> </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="menu_icon"><i class="fas fa-bars"></i></span>
             </button>
@@ -47,7 +50,7 @@ $itemCart = $_SESSION['product'];
             <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="index.html">Home</a>
+                  <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="about.html">about</a>
@@ -57,8 +60,8 @@ $itemCart = $_SESSION['product'];
                     product
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                    <a class="dropdown-item" href="product_list.html"> product list</a>
-                    <a class="dropdown-item" href="single-product.html">product details</a>
+                    <a class="dropdown-item" href="product_list.php"> product list</a>
+                    <a class="dropdown-item" href="single-product.php">product details</a>
 
                   </div>
                 </li>
@@ -67,12 +70,12 @@ $itemCart = $_SESSION['product'];
                     pages
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                    <a class="dropdown-item" href="login.html">
+                    <a class="dropdown-item" href="login.php">
                       login
 
                     </a>
                     <a class="dropdown-item" href="checkout.html">product checkout</a>
-                    <a class="dropdown-item" href="cart.html">shopping cart</a>
+                    <a class="dropdown-item" href="cart.php">shopping cart</a>
                     <a class="dropdown-item" href="confirmation.html">confirmation</a>
                     <a class="dropdown-item" href="elements.html">elements</a>
                   </div>
@@ -155,22 +158,22 @@ $itemCart = $_SESSION['product'];
 
               <?php
 
-              for ($i = 0; $i < count($itemCart); $i++) {
+                foreach ($itemCart as $i){
 
               ?>
                 <tr>
                   <td>
                     <div class="media">
                       <div class="d-flex">
-                        <img src="<?php echo $itemCart[$i]['product_img']; ?>" alt="<?php echo $itemCart[$i]['product_name']; ?>" />
+                        <img src="<?php echo $i['product_img']; ?>" alt="<?php echo $itemCart[$i]['product_name']; ?>" />
                       </div>
                       <div class="media-body">
-                        <p><?php echo $itemCart[$i]['product_name']; ?></p>
+                        <p><?php echo $i['product_name']; ?></p>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <h5><?php echo $itemCart[$i]['product_price']; ?> $</h5>
+                    <h5><?php echo $i['product_price']; ?> $</h5>
                   </td>
 
                   <td>
@@ -183,14 +186,14 @@ $itemCart = $_SESSION['product'];
                     </div>
                   </td>
                   <td>
-                    <h5><?php
-                      
-                        echo $itemCart[$i]['product_price'];
-
-
-
-                        ?> $</h5>
+                    <h5>
+                      <?php
+                        echo $i['product_price'] ;
+                        // echo "gfg";
+                      ?> $
+                      </h5>
                   </td>
+                  
                 </tr>
 
 
@@ -225,6 +228,7 @@ $itemCart = $_SESSION['product'];
                 <td>
                   <h5>Shipping</h5>
                 </td>
+                
                 <td>
                   <div class="shipping_box">
                     <ul class="list">
@@ -267,7 +271,7 @@ $itemCart = $_SESSION['product'];
             </tbody>
           </table>
           <div class="checkout_btn_inner float-right">
-            <a class="btn_1" href="#">Continue Shopping</a>
+            <a class="btn_1" href="product_list.php">Continue Shopping</a>
             <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
           </div>
         </div>
@@ -282,12 +286,12 @@ $itemCart = $_SESSION['product'];
           <div class="col-lg-8">
             <div class="footer_menu">
               <div class="footer_logo">
-                <a href="index.html"><img src="img/logo.png" alt="#"></a>
+                <a href="index.php"><img src="img/logo.png" alt="#"></a>
               </div>
               <div class="footer_menu_item">
-                <a href="index.html">Home</a>
+                <a href="index.php">Home</a>
                 <a href="about.html">About</a>
-                <a href="product_list.html">Products</a>
+                <a href="product_list.php">Products</a>
                 <a href="#">Pages</a>
                 <a href="blog.html">Blog</a>
                 <a href="contact.html">Contact</a>
