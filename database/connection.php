@@ -57,6 +57,7 @@ try {
         `product_price` int(11) NOT NULL,
         `product_desc` varchar(255) NOT NULL,
         `on_sales` tinyint(1) NOT NULL DEFAULT 0,
+        `sales_percentage` int(11) NOT NULL,
         `stock` int(11) NOT NULL,
         `product_img` varchar(255) NOT NULL,
         `cat_id` int(11) NOT NULL,
@@ -88,6 +89,7 @@ try {
 ///////////checkout_products TABLE
         $create_checkout_product= "CREATE TABLE IF NOT EXISTS `checkout_products` (
         `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        `quantity` int(11) NOT NULL,
         `product_id` int(11) NOT NULL,
         `checkout_id` int(11) NOT NULL,
         FOREIGN KEY (product_id) REFERENCES products(id)
@@ -99,4 +101,3 @@ try {
         )
         ENGINE=InnoDB ";
         $conn->exec( $create_checkout_product);
-             ?>
