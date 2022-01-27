@@ -228,7 +228,7 @@ require("../../database/connection.php");
                 // use exec() because no results are returned
                 $conn->exec($sql);
                 echo "New record created successfully";
-                header('location: http://localhost/PHP/project7php/PHP_project/admin/users/');
+                header('location:index.php');
             }
 
 

@@ -231,7 +231,7 @@ require("../../database/connection.php");
                 $sql = $conn->prepare("UPDATE users SET username='$username',email='$email',password='$password',phone='$phone',is_admin='$is_admin',is_loggedin='$is_loggedin' WHERE id='$value'");
                 $sql->execute();
 
-                header('location: http://localhost/PHP/project7php/PHP_project/admin/users/');
+                header('location:index.php');
             }
             ?>
             <div class="main-content">

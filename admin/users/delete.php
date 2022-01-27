@@ -16,6 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $sql = "DELETE FROM users WHERE id=$value";
     $conn->exec($sql);
     echo "Record deleted successfully";
-    header('location: http://localhost/PHP/project7php/PHP_project/admin/users/');
+    header('location:index.php');
 }
 ?>
