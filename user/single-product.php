@@ -59,7 +59,7 @@ include "../database/connection.php";
                                     <a class="nav-link" href="about.html">about</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
+                                    <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_1"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         product
                                     </a>
@@ -70,7 +70,7 @@ include "../database/connection.php";
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
+                                    <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_3"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         pages
                                     </a>
@@ -79,26 +79,26 @@ include "../database/connection.php";
                                             login
                                             
                                         </a>
-                                        <a class="dropdown-item" href="checkout.html">product checkout</a>
+                                        <a class="dropdown-item" href="checkout.php">product checkout</a>
                                         <a class="dropdown-item" href="cart.php">shopping cart</a>
-                                        <a class="dropdown-item" href="confirmation.html">confirmation</a>
-                                        <a class="dropdown-item" href="elements.html">elements</a>
+                                        <a class="dropdown-item" href="confirmation.php">confirmation</a>
+                                        <a class="dropdown-item" href="elements.php">elements</a>
                                     </div>
                                 </li>
                                 
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"
+                                    <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_2"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         blog
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="blog.html"> blog</a>
-                                        <a class="dropdown-item" href="single-blog.html">Single blog</a>
+                                        <a class="dropdown-item" href="blog.php"> blog</a>
+                                        <a class="dropdown-item" href="single-blog.php">Single blog</a>
                                     </div>
                                 </li>
                                 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Contact</a>
+                                    <a class="nav-link" href="contact.php">Contact</a>
                                 </li>
                             </ul>
                         </div>
@@ -245,8 +245,8 @@ include "../database/connection.php";
                                 <a href="about.html">About</a>
                                 <a href="product_list.php">Products</a>
                                 <a href="#">Pages</a>
-                                <a href="blog.html">Blog</a>
-                                <a href="contact.html">Contact</a>
+                                <a href="blog.php">Blog</a>
+                                <a href="contact.php">Contact</a>
                             </div>
                         </div>
                     </div>
