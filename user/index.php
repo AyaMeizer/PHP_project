@@ -1,4 +1,4 @@
-<?php  
+<?php
 $pdo = require('../database/connection.php');
 require('../database/create_db.php');
 ?>
@@ -39,9 +39,7 @@ require('../database/create_db.php');
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
                         <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="menu_icon"><i class="fas fa-bars"></i></span>
                         </button>
 
@@ -54,25 +52,23 @@ require('../database/create_db.php');
                                     <a class="nav-link" href="about.html">about</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         product
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
                                         <a class="dropdown-item" href="product_list.html"> product list</a>
                                         <a class="dropdown-item" href="single-product.html">product details</a>
-                                        
+
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         pages
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="login.html"> 
+                                        <a class="dropdown-item" href="login.html">
                                             login
-                                            
+
                                         </a>
                                         <a class="dropdown-item" href="checkout.html">product checkout</a>
                                         <a class="dropdown-item" href="cart.html">shopping cart</a>
@@ -80,10 +76,9 @@ require('../database/create_db.php');
                                         <a class="dropdown-item" href="elements.html">elements</a>
                                     </div>
                                 </li>
-                                
+
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         blog
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
@@ -91,7 +86,7 @@ require('../database/create_db.php');
                                         <a class="dropdown-item" href="single-blog.html">Single blog</a>
                                     </div>
                                 </li>
-                                
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="contact.html">Contact</a>
                                 </li>
@@ -128,7 +123,7 @@ require('../database/create_db.php');
                         <div class="banner_text_iner">
                             <h1>Best quality
                                 pillow</h1>
-                            <p>Seamlessly empower fully researched 
+                            <p>Seamlessly empower fully researched
                                 growth strategies and interoperable internal</p>
                             <a href="product_list.html" class="btn_1">shop now</a>
                         </div>
@@ -148,25 +143,42 @@ require('../database/create_db.php');
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
+                    <?php
+
+
+
+                    ?>
                     <div class="single_product_iner">
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
+                                    <?php
+                                    $data2 = $conn->prepare("SELECT * FROM products WHERE product_name= 'Printed face cushion' ");
+                                    $data2->execute();
+
+
+                                    echo "<img src=<?php echo $data2[product_img] ?>' alt='<?php echo $data2[product_name] ?> class='img-fluid'>";
+                                    ?>
+                                    <!-- need edit -->
                                     <img src="img/single_product_1.png" class="img-fluid" alt="#">
                                     <img src="img/product_overlay.png" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>
+
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>Started from $10</h5>
-                                    <h2> <a href="single-product.html">Printed memory foam 
-                                        brief modern throw 
-                                        pillow case</a> </h2>
+
+                                    <h2> <a href="single-product.html">Printed memory foam
+                                            brief modern throw
+                                            pillow case</a> </h2>
                                     <a href="product_list.html" class="btn_3">Explore Now</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <?php
+                    ?>
                     <div class="single_product_iner">
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
@@ -178,9 +190,9 @@ require('../database/create_db.php');
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>Started from $10</h5>
-                                    <h2> <a href="single-product.html">Printed memory foam 
-                                        brief modern throw 
-                                        pillow case</a> </h2>
+                                    <h2> <a href="single-product.html">Printed memory foam
+                                            brief modern throw
+                                            pillow case</a> </h2>
                                     <a href="product_list.html" class="btn_3">Explore Now</a>
                                 </div>
                             </div>
@@ -197,8 +209,8 @@ require('../database/create_db.php');
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>Started from $10</h5>
-                                    <h2> <a href="single-product.html">Printed memory foam 
-                                            brief modern throw 
+                                    <h2> <a href="single-product.html">Printed memory foam
+                                            brief modern throw
                                             pillow case</a> </h2>
                                     <a href="product_list.html" class="btn_3">Explore Now</a>
                                 </div>
@@ -223,52 +235,35 @@ require('../database/create_db.php');
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <div class="single_product_item_thumb">
-                            <img src="img/tranding_item/tranding_item_1.png" alt="#" class="img-fluid">
+                <?php
+                if (isset($_GET['id'])) {
+                    $data1 = $conn->prepare("SELECT * FROM products  WHERE cat_id= $_GET[id] ");
+                    $data1->execute();
+                } else {
+                    $data1 = $conn->prepare("SELECT * from products");
+                    $data1->execute();
+                }
+
+                foreach ($data1 as $result) {
+
+
+                ?>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="single_product_item">
+                            <div class="single_product_item_thumb">
+                                <img src="<?php echo $result['product_img'] ?>" alt="<?php echo $result['product_name'] ?>" class="img-fluid">
+
+                            </div>
+                            <h3> <a href="single-product.php?id=<?php echo $result['id'] ?>"><?php echo $result['product_name'] ?></a> </h3>
+                            <p>From <?php echo $result['product_price']  ?>$</p>
                         </div>
-                        <h3> <a href="single-product.html">Cervical pillow for airplane
-                        car office nap pillow</a> </h3>
-                        <p>From $5</p>
                     </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <img src="img/tranding_item/tranding_item_2.png" alt="#" class="img-fluid">
-                        <h3> <a href="single-product.html">Foam filling cotton slow rebound pillows</a> </h3>
-                        <p>From $5</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <img src="img/tranding_item/tranding_item_3.png" alt="#" class="img-fluid">
-                        <h3> <a href="single-product.html">Memory foam filling cotton Slow rebound pillows</a> </h3>
-                        <p>From $5</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <img src="img/tranding_item/tranding_item_4.png" alt="#" class="img-fluid">
-                        <h3> <a href="single-product.html">Cervical pillow for airplane
-                        car office nap pillow</a> </h3>
-                        <p>From $5</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <img src="img/tranding_item/tranding_item_5.png" alt="#" class="img-fluid">
-                        <h3> <a href="single-product.html">Foam filling cotton slow rebound pillows</a> </h3>
-                        <p>From $5</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single_product_item">
-                        <img src="img/tranding_item/tranding_item_6.png" alt="#" class="img-fluid">
-                        <h3> <a href="single-product.html">Memory foam filling cotton Slow rebound pillows</a> </h3>
-                        <p>From $5</p>
-                    </div>
-                </div>
+                <?php
+
+                }
+                ?>
+
+
             </div>
         </div>
     </section>
@@ -316,8 +311,8 @@ require('../database/create_db.php');
                 <div class="col-lg-6">
                     <div class="feature_part_tittle">
                         <h3>Credibly innovate granular
-                        internal or organic sources
-                        whereas standards.</h3>
+                            internal or organic sources
+                            whereas standards.</h3>
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -406,15 +401,19 @@ require('../database/create_db.php');
                 </div>
             </div>
         </div>
-        
+
         <div class="copyright_part">
             <div class="container">
                 <div class="row ">
                     <div class="col-lg-12">
                         <div class="copyright_text">
-                            <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P>
+                            <P>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;<script>
+                                    document.write(new Date().getFullYear());
+                                </script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </P>
                             <div class="copyright_link">
                                 <a href="#">Turms & Conditions</a>
                                 <a href="#">FAQ</a>
