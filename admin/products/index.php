@@ -168,10 +168,10 @@
                                 <i class="fas fa-tachometer-alt"></i>Admin Dashboards</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="index.php">Users Dashboard</a>
+                                    <a href="../users/index.php">Users Dashboard</a>
                                 </li>
                                 <li>
-                                    <a href="../products/index.php">Products Dashboard</a>
+                                    <a href="index.php">Products Dashboard</a>
                                 </li>
                                 <li>
                                     <a href="../category/index.php">Categories Dashboard</a>
@@ -254,8 +254,11 @@
                                                     <td><?php echo $item["product_name"]; ?></td>
                                                     <td><?php echo $item["product_price"]; ?></td>
                                                     <td><?php echo $item["product_desc"]; ?></td>
-                                                    <td><?php echo $item["on_sales"]; ?></td>
-                                                    <td><?php echo $item["sales_percentage"]; ?></td>
+                                                    <td><?php
+                                                    if($item["on_sales"]==0){echo 'No';} 
+                                                    if($item["on_sales"]==1){echo "Yes";} 
+                                                     ?></td>
+                                                    <td><?php echo $item["sales_percentage"]."%"; ?></td>
                                                     <td><?php echo $item["stock"]; ?></td>
                                                     <td><img src=<?php echo $item["product_img"]; ?> /></td>
                                                     <td><?php echo $item["cat_id"]; ?></td>

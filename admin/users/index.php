@@ -232,7 +232,7 @@
                                             <th>Email</th>
                                             <th>Password</th>
                                             <th>Phone</th>
-                                            <th>is_admin</th>
+                                            <th>Role</th>
 
                                             <th></th>
                                             </tr>
@@ -252,7 +252,10 @@
                                                     <td><?php echo $item["email"]; ?></td>
                                                     <td><?php echo $item["password"]; ?></td>
                                                     <td><?php echo $item["phone"]; ?></td>
-                                                    <td><?php echo $item["is_admin"]; ?></td>
+                                                    <td><?php 
+                                                    if($item["is_admin"]==0){echo 'User';} 
+                                                    if($item["is_admin"]==1){echo "Admin";} 
+                                                    ?></td>
 
                                                     <td>
                                                         <div class="table-data-feature">

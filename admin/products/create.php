@@ -175,10 +175,10 @@ require("../../database/connection.php");
                                 <i class="fas fa-tachometer-alt"></i>Admin Dashboards</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="index.php">Users Dashboard</a>
+                                    <a href="../users/index.php">Users Dashboard</a>
                                 </li>
                                 <li>
-                                    <a href="../products/index.php">Products Dashboard</a>
+                                    <a href="index.php">Products Dashboard</a>
                                 </li>
                                 <li>
                                     <a href="../category/index.php">Categories Dashboard</a>
@@ -235,7 +235,14 @@ require("../../database/connection.php");
                                     </div>
                                     <div class="form-group">
                                         <label for="nf-password" class=" form-control-label">One Sale</label>
-                                        <input type="number" id="nf-password" name="on_sales" class="form-control" required>
+                                        <select name="on_sales" class="form-control " required>
+                                            <?php
+                                            echo
+                                            "<option value=0> No</option> </br>
+                                            <option  value=1> Yes</option> </br>";
+                                            ?>
+                                        </select>
+                                        <!-- <input type="number" id="nf-password" name="on_sales" class="form-control" required> -->
                                     </div>
                                     <div class="form-group">
                                         <label for="nf-password" class=" form-control-label">Sale Percentage</label>
