@@ -173,9 +173,9 @@ require("../database/connection.php");
 
                                 if ($data->rowCount() === 1 && $result['is_admin'] == 1) {
 
-                                    header('location:/projectSeven_PHP/PHP_project/admin/');
+                                    header('location:../admin/');
                                 } else if ($data->rowCount() === 1 && $result['is_admin'] !== 1) {
-                                    header('location:/projectSeven_PHP/PHP_project/user/');
+                                    header('location:index.php');
                                 } else {
                                     echo "<script>alert('Invalid Login')</script>";
                                     echo "<p>";
