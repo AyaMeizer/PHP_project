@@ -1,27 +1,13 @@
 <?php
-
 session_start();
 ob_start();
-// include './coupon.php';
-// dess();
 require("../database/connection.php");
-// $_SESSION['product']=[];
-
 if ($_SESSION['product'] != []) {
   $itemCart = $_SESSION['product'];
 } else {
   $itemCart = null;
 }
 
-
-// if(!$_SESSION['product']){
-//   $itemCart = $_SESSION['product'];
-// }else{
-//   $itemCart=0;
-//   $total=0;
-//   $finleTotal=0;
-
-// }
 ?>
 
 
@@ -239,7 +225,7 @@ if ($_SESSION['product'] != []) {
                   <a href="#">Discount
                     <span><?php
                           $finleTotal = $total;
-                          $per = 0;
+                          $per= 0;
                           if ($_SERVER["REQUEST_METHOD"] == "GET") {
                             // $total=0;
                             // echo $total;
@@ -255,7 +241,9 @@ if ($_SESSION['product'] != []) {
                                   $itemCart = $_SESSION['product'];
                                   $des = 0.2;
                                   if ($valueCoupon == $coupon) {
-                                    $per = $total * $des;
+                                    $per= $total * $des;
+                                    $_SESSION['dicount']=[];
+                          $_SESSION['dicount'][]=$per;
                                     // echo $per;
                                     $finleTotal = $total - $per;
                                   }
@@ -263,6 +251,7 @@ if ($_SESSION['product'] != []) {
                               }
                             }
                           }
+                          
                           echo $per; ?>$</span>
                   </a>
                 </li>
@@ -292,10 +281,7 @@ if ($_SESSION['product'] != []) {
                 <label for="f-option4">I’ve read and accept the </label>
                 <a href="#">terms & conditions*</a>
               </div>
-              <!-- <form method="GET">
-             
-            </form> -->
-              <!-- <a class="btn_3" href="#">Checkout</a> -->
+           
             </div>
           </div>
         </div>
@@ -303,31 +289,30 @@ if ($_SESSION['product'] != []) {
     </div>
   </section>
   <?php
+ 
+var_dump($_SESSION['dicount']);
+echo $_SESSION['dicount'][0];
+// echo $x[0];
+// $y=$x[0];
+if (isset($_POST['checkout'])) {
+  
+  $userId = $_SESSION['loggedUser'][1];
+  $address = $_POST['address'];
+  
+  // echo $per;
+  if ($finleTotal !== 0) {
+      $y=$_SESSION['dicount'][0];
 
-
-  // var_dump($_SESSION['loggedUser']);
-  // echo "khvkhvkhvkvkvkk";
-  // echo $_SESSION['loggedUser'][1];
-  if (isset($_POST['checkout'])) {
-
-    $userId = $_SESSION['loggedUser'][1];
-    $address = $_POST['address'];
-
-    if ($finleTotal !== 0) {
-
-      $sql = "INSERT INTO `checkout` (`total_price`,`address`,`user_id`) VALUES ('$finleTotal','$address',$userId)";
+      $sql = "INSERT INTO `checkout` (`total_price`,`address`,`user_id`,`coupon_discount`) VALUES ('$finleTotal','$address',$userId,$y
+      )";
       $conn->exec($sql);
       header("Location:checkout.php");
       // unset($_SESSION['product']);
-      $_SESSION['product']=[];
+      $_SESSION['product'] = [];
+    
     }
   }
-
-
   ?>
-
-
-
 
   <!--================End Checkout Area =================-->
 
