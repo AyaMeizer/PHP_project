@@ -3,10 +3,10 @@ session_start();
 include "../database/connection.php";
 
 $itemCart = $_SESSION['product'];
-// echo "<pre >";
-// var_dump($_SESSION['product']);
+echo "<pre >";
+// print_r($_SESSION['product']);
 // echo $_SESSION['product'][$_GET[4]][0] ;
-
+print_r($_SESSION['loggedUser']);
 ?>
 <!doctype html>
 <html lang="zxx">

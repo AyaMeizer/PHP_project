@@ -166,18 +166,19 @@ require("../database/connection.php");
 
                                 $email = $_POST['email'];
                                 $password = $_POST['password'];
-                                $login = "SELECT username,email,is_admin FROM users WHERE email='$email' AND password='$password'";
+                                $login = "SELECT username,email,is_admin,id FROM users WHERE email='$email' AND password='$password'";
                                 $data = $conn->query($login);
                                 $conn->exec($login);
                                 $result = $data->fetch(PDO::FETCH_ASSOC);
                                 $_SESSION['loggedUser']=[];
                                 if ($data->rowCount() === 1 && $result['is_admin'] == 1) {
                                     $_SESSION['loggedUser'][]=$email;
+                                    $_SESSION['loggedUser'][]=$result['id'];
                                     header('location:../admin/');
                                 } else if ($data->rowCount() === 1 && $result['is_admin'] !== 1) {
                                    
                                     $_SESSION['loggedUser'][]=$email;
-                                   
+                                    $_SESSION['loggedUser'][]=$result['id'];
                                     header('location:index.php');
                                 } else {
                                     echo "<script>alert('Invalid Login')</script>";
