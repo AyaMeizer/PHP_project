@@ -103,15 +103,7 @@
                 </div>
             </div>
         </div>
-        <div class="search_input" id="search_input_box">
-            <div class="container ">
-                <form class="d-flex justify-content-between search-inner">
-                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                    <button type="submit" class="btn"></button>
-                    <span class="ti-close" id="close_search" title="Close Search"></span>
-                </form>
-            </div>
-        </div>
+        
     </header>
     <!-- Header part end-->
 
@@ -174,7 +166,7 @@
                 $stmt->execute();
 
                 if ($stmt->rowCount()) {
-                    exit("This email already exists");
+                    echo("This email already exists");
                 }
                 $sqlInsert = "INSERT INTO `users` (`email`,`username`,`password`,`phone`, `is_admin`,`is_loggedin`) 
                 VALUES ('$email','$username','$pass', $phone, 0 ,0)";
@@ -182,14 +174,13 @@
                 $conn->exec($sqlInsert);    
                echo "<script>window.location.href='login.php'</script>";
             } catch (PDOException $e) {
-                echo $sql . "<br>" . $e->getMessage();
             }
         }
     } 
 
     ?>
 
-                            <form class="row contact_form" action="#" method="post" novalidate="novalidate" id="form">
+                            <form class="row contact_form"  method="post" novalidate="novalidate" id="form">
                                 <div class="col-md-12 form-group p_star">
                                     <input type="text" class="form-control" id="name" name="name" 
                                         placeholder="Username">

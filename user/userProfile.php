@@ -1,3 +1,10 @@
+<!-- <?php 
+include "../database/connection.php" ;
+$edit = "SELECT * FROM users";
+$data = $conn->query($edit);
+ $result = $data->fetch(PDO::FETCH_ASSOC);
+?>
+
 <!doctype html>
 <html lang="zxx">
 
@@ -113,15 +120,7 @@
                 </div>
             </div>
         </div>
-        <div class="search_input" id="search_input_box">
-            <div class="container ">
-                <form class="d-flex justify-content-between search-inner">
-                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                    <button type="submit" class="btn"></button>
-                    <span class="ti-close" id="close_search" title="Close Search"></span>
-                </form>
-            </div>
-        </div>
+    
     </header>
     <!-- Header part end-->
 
@@ -147,47 +146,15 @@
 
         </div>
 
-        <?php
-                                            if (isset($_POST['update'])) {
-                                                $user_id = $_GET['id'];
-                                                $username = $_POST['username'];
-                                                $email = $_POST['email'];
-                                                $password = $_POST['password'];
-
-                                                $phone = $_POST['phone'];
-                                                try {
-                                                    $sql = "UPDATE users SET username='$username', email='$email', password='$password' ,phone='$phone' WHERE id=1";
-                                                    $stmtsql = $conn->prepare($sql);
-                                                    $stmtsql->execute();
-                                                    echo "<script> window.location.href='admin.php'</script>";
-                                                } catch (PDOException $e) {
-                                                    echo $sql . "<br>" . $e->getMessage();
-                                                }
-                                            }
-                                            ?>
+    
+                                      
                                             
 
         <div class="col-lg-8" style='margin-left: 280px;
              display: flex;
              align-items: center;
              flex-direction: column'>
-             <?php
-                                        // $user = $_GET['id'];
-                                       
-$servername = "localhost";
-$password = "";
-$db_user = "root";
-$db_name = "pillowmart";
-
-  $conn = new PDO("mysql:host=$servername;dbname=$db_name", $db_user, $password);
-  // set the PDO error mode to exception
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                        $user = 1;
-                                        $stmt = $conn->prepare("SELECT * from `users` WHERE id=$user");
-                                        $stmt->execute();
-                                        $result = $stmt->fetchAll();
-                                        foreach ($result as $value) {?>    
-          <form class="form-contact contact_form" method="post" id="contactForm">
+          <form class="form-contact contact_form" action="<?php echo $_SERVER["PHP_SELF"]?>" method="POST" id="contactForm">
             <div class="row">
               <div class="col-12">
                 <div class="form-group">
@@ -195,29 +162,42 @@ $db_name = "pillowmart";
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <input class="form-control" name="username" id="name" type="text" value='<?php echo $value['username']?>' placeholder='Name'>
+                  <input class="form-control" name="username" id="name" type="text" value="<?php  echo $result['username'] ?>" placeholder='Name'>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <input class="form-control" name="email" id="" type="text" placeholder='Email' value='<?php echo $value['email']?>' readonly></div>
+                  <input class="form-control" name="email" id="" type="text" placeholder='Email' value="<?php echo $result['email'] ?>" readonly></div>
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <input class="form-control" name="password" id="" type="text" value='<?php echo $value['password']?>' placeholder='Password'>
+                  <input class="form-control" name="password" id="" type="text" value="<?php echo $result['password'] ?>" placeholder='Password'>
                 </div>
             
                 <div class="form-group">
-                  <input class="form-control" name="phone" id="" type="number" value='<?php echo $value['phone']?>'
-                 placeholder='  Phone'>
+                  <input class="form-control" name="phone" id="" type="number" value="<?php echo $result['phone'] ?>" placeholder='Phone'>
                 </div>
               </div>
             </div>
             <div class="form-group mt-3">
-              <input type='submit' class="btn_3 button-contactForm" name='update'>
+              <input type="submit" class="btn_3 button-contactForm" name="update">
             </div>
-          </form> 
-          <?php } ?>
+          </form>
+          
+          <?php 
+                      
+
+          if($_SERVER['REQUEST_METHOD']=="POST"){
+              $userName = $_POST['username'];
+              $password = $_POST['password'];
+              $phone = $_POST['phone'];
+              $sql = "UPDATE users SET username='$userName', password='$password', phone='$phone'";
+              $conn->exec($sql);   
+              echo "<script>window.location.href='http://localhost/PHP-project/PHP_project/user/userProfile.php'</script>";
+          }
+      
+          ?>
+          
         </div>
         <div class="col-lg-4">
           
@@ -278,8 +258,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </footer>
     <!--::footer_part end::-->
 
-    <!-- jquery plugins here-->
-    <script src="js/jquery-1.12.1.min.js"></script>
+   <!-- jquery plugins here-->
+   <script src="js/jquery-1.12.1.min.js"></script>
     <!-- popper js -->
     <script src="js/popper.min.js"></script>
     <!-- bootstrap js -->
@@ -299,11 +279,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/waypoints.min.js"></script>
     <script src="js/contact.js"></script>
     <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/jquery.form.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
+    <!-- <script src="js/jquery.form.js"></script> -->
+    <script src="js/jquery.validate.min.js"></script> 
     <script src="js/mail-script.js"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
 </body>
 
-</html>
+</html> -->
