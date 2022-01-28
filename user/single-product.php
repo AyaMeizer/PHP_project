@@ -154,12 +154,12 @@ include "../database/connection.php";
             <div class="single_product_img">
               <img src="<?php echo $result['product_img'];?>" alt="#" class="img-fluid" width=15px height=20px>
             </div>
-            <div class="single_product_img">
+            <!-- <div class="single_product_img">
             <img src="<?php echo $result['product_img'];?>" alt="#" class="img-fluid">
             </div>
             <div class="single_product_img">
             <img src="<?php echo $result['product_img'];?>" alt="#" class="img-fluid">
-            </div>
+            </div> -->
           </div>
         </div>
      
@@ -171,7 +171,23 @@ include "../database/connection.php";
             <?php echo $result['product_desc'];?>
             </p>
             <p>
-            <?php echo $result['product_price'] ; ?>
+            <?php
+
+                                            if($result['on_sales']==0 ){
+                                                // echo "<del>";
+                                                 echo $result['product_price'];
+                                                //  echo "</del>";
+
+                                                // echo $result['product_price'];
+                                            }else if($result['on_sales']==1) {
+                                                
+                                                echo "<del>";
+                                                 echo $result['product_price'];
+                                                 echo "</del><br>";
+                                                echo (1-($result['sales_percentage'])/100) *$result['product_price'] ;
+                                                
+                                            }
+                                         ?>
             </p>
             <div class="card_area">
                 <!-- <div class="product_count_area">

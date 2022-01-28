@@ -75,7 +75,7 @@ $itemCart = $_SESSION['product'];
                       login
 
                     </a>
-                    <a class="dropdown-item" href="checkout.html">product checkout</a>
+                    <a class="dropdown-item" href="checkout.php">product checkout</a>
                     <a class="dropdown-item" href="cart.php">shopping cart</a>
                     <a class="dropdown-item" href="confirmation.html">confirmation</a>
                     <a class="dropdown-item" href="elements.html">elements</a>
@@ -176,9 +176,15 @@ $itemCart = $_SESSION['product'];
                     </div>
                   </td>
                   <td>
-                    <h5><?php echo $i['product_price']; ?> $</h5>
+                    <h5><?php
+                        if($i['on_sales']==0 ){
+                          $pri=$i['product_price'];  
+                         echo $pri;    
+                        }else if($i['on_sales']==1) {
+                          $pri=(1-($i['sales_percentage'])/100)*$i['product_price'];
+                        echo $pri;
+                        }?>$</h5>
                   </td>
-
                   <td>
                     <div class="product_count">
                       <form method="POST">
@@ -191,10 +197,10 @@ $itemCart = $_SESSION['product'];
                   <td>
                     <h5>
                       <?php
-                        echo $i['product_price']*  $i['0'];
+                        echo $pri*  $i['0'];
                         // echo "gfg";
                        
-                        $total=$total+$i['product_price']*  $i['0'];
+                        $total=$total+$pri*  $i['0'];
                       ?> $
                       </h5>
                   </td>
@@ -207,7 +213,7 @@ $itemCart = $_SESSION['product'];
 
               <?php } ?>
 
-
+<!-- 
               <tr class="bottom_button">
                 <td>
                   <a class="btn_1" href="#">Update Cart</a>
@@ -219,7 +225,7 @@ $itemCart = $_SESSION['product'];
                     <a class="btn_1" href="#">Close Coupon</a>
                   </div>
                 </td>
-              </tr>
+              </tr> -->
               <tr>
                 <td></td>
                 <td></td>
@@ -230,10 +236,10 @@ $itemCart = $_SESSION['product'];
                   <h5><?php echo $total; ?></h5>
                 </td>
               </tr>
-              <tr class="shipping_area">
+              <!-- <tr class="shipping_area">
                 <td></td>
-                <td></td>
-                <td>
+                <td></td> -->
+                <!-- <td>
                   <h5>Shipping</h5>
                 </td>
                 
@@ -274,13 +280,13 @@ $itemCart = $_SESSION['product'];
                     <input class="post_code" type="text" placeholder="Postcode/Zipcode" />
                     <a class="btn_1" href="#">Update Details</a>
                   </div>
-                </td>
-              </tr>
+                </td> -->
+              <!-- </tr> -->
             </tbody>
           </table>
           <div class="checkout_btn_inner float-right">
             <a class="btn_1" href="product_list.php">Continue Shopping</a>
-            <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
+            <a class="btn_1 checkout_btn_1" href="checkout.php">Proceed to checkout</a>
           </div>
         </div>
       </div>

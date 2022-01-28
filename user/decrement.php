@@ -17,11 +17,9 @@ if (isset($_GET['id'])) {
     echo "<pre >";
     var_dump($_SESSION['product']);
   
-    // echo($_SESSION['product'][$_GET['id']]['id']);
-    for ($i=0; $i<count($_SESSION['product']);$i++ ){
-        // echo $_SESSION['product'][$_GET['id']]['id'];
-        // echo $_GET['id'];
-        if($_SESSION['product'][$_GET['id']]['id']===$_GET['id']){
+    for ($i=0; $i< count($_SESSION['product']);$i++ ){
+ 
+        if($_SESSION['product'][$_GET['id']]['id']===$_GET['id'] && $_SESSION['product'][$_GET['id']][0]>1){
             $counter=$_SESSION['product'][$_GET['id']][0]-1;
             $_SESSION['product'][$_GET['id']] = $result ;
             $_SESSION['product'][$_GET['id']][0] = $counter ;
@@ -30,18 +28,15 @@ if (isset($_GET['id'])) {
 
             break;
         }
-        else if(count($_SESSION['product'])-1 ==$i){
-        $counter=1;
-        $_SESSION['product'][$_GET['id']] = $result ;
-        $_SESSION['product'][$_GET['id']][] = $counter ;
-        header('Location:http://localhost/project7/PHP_project/user/cart.php');
-
+        else {
+            unset($_SESSION['product'][$_GET['id']]);
+            header("Location:http://localhost/project7/PHP_project/user/cart.php");
 
         }
+   
 
     }
     
-    // echo $counter;
     
 
     

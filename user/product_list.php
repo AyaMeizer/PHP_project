@@ -182,7 +182,23 @@ include "../database/connection.php";
                                     <div class="single_product_item">
                                         <img src="<?php echo $result['product_img'] ?>" alt="<?php echo $result['product_name'] ?>" class="img-fluid">
                                         <h3> <a href="single-product.php?id=<?php echo $result['id'] ?>"><?php echo $result['product_name'] ?></a> </h3>
-                                        <p>From <?php echo $result['product_price']  ?>$</p>
+                                        <p><?php
+
+                                            if($result['on_sales']==0 ){
+                                                // echo "<del>";
+                                                 echo $result['product_price'];
+                                                //  echo "</del>";
+
+                                                // echo $result['product_price'];
+                                            }else if($result['on_sales']==1) {
+                                                
+                                                echo "<del>";
+                                                 echo $result['product_price'];
+                                                 echo "</del><br>";
+                                                echo (1-($result['sales_percentage'])/100) *$result['product_price'] ;
+                                                
+                                            }
+                                         ?>$</p>
                                         
                                     </div>
                                 </div>
