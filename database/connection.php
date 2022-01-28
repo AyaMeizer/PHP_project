@@ -69,19 +69,16 @@ $conn->exec($create_product);
 
 
 ////////////COMMENTS TABLE
-$create_comment = "CREATE TABLE IF NOT EXISTS `comments` (
-        `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-        `comment_desc` varchar(255)  NOT NULL,
-        `user_id` int(11) NOT NULL,
-        `product_id` int(11) NOT NULL,
-        FOREIGN KEY (user_id) REFERENCES users(id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
+$create_comment = "CREATE TABLE IF NOT EXISTS comments (
+        id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        comment_desc varchar(255)  NOT NULL,
+        comment_username varchar(255) NOT NULL,
+        product_id int(11) NOT NULL,
         FOREIGN KEY (product_id) REFERENCES products(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE 
         )
-        ENGINE=InnoDB ";
+        ENGINE=InnoDB";
 $conn->exec($create_comment);
 
 
