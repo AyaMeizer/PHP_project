@@ -1,5 +1,6 @@
 <?php
-// session_start();
+session_start();
+ob_start();
 require("../database/connection.php");
 ?>
 <!doctype html>
@@ -137,26 +138,28 @@ require("../database/connection.php");
                         <div class="login_part_form_iner">
                             <h3>Welcome Back ! <br>
                                 Please Sign in now</h3>
-                            <form class="row contact_form" method="POST" novalidate="novalidate">
+                            <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>" class="row contact_form" novalidate="novalidate">
                                 <div class="col-md-12 form-group p_star">
                                     <input type="email" class="form-control" id="email" name="email" value="" placeholder="Email">
                                 </div>
+                                <p id="emailMessage"></p>
                                 <div class="col-md-12 form-group p_star">
                                     <input type="password" class="form-control" id="password" name="password" value="" placeholder="Password">
                                 </div>
+                                <p id="passwordMessage"></p>
                                 <div class="col-md-12 form-group">
                                     <div class="creat_account d-flex align-items-center">
                                         <input type="checkbox" id="f-option" name="selector">
                                         <label for="f-option">Remember me</label>
                                     </div>
-                                    <button type="submit" value="submit" class="btn_3">
+                                    <button id="sub-btn" type="submit" value="submit" class="btn_3">
                                         log in
                                     </button>
                                     <a class="lost_pass" href="#">forget password?</a>
                                 </div>
                             </form>
                             <?php
-                            if (isset($_POST['email']) && isset($_POST['password'])) {
+                            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email']) && isset($_POST['password'])) {
                                 if (strlen($_POST['email']) < 6 || strlen($_POST['password']) < 8)
                                     exit();
 
@@ -167,19 +170,18 @@ require("../database/connection.php");
                                 $data = $conn->query($login);
                                 $conn->exec($login);
                                 $result = $data->fetch(PDO::FETCH_ASSOC);
-                            
-                                if ($data->rowCount() === 1 && $result['is_admin'] == 1) {
-                                 
-                                  
-                                    echo "Admin";
 
-                                    // echo "<script>window.location.href='./Admin Dashboard/index.html'</script>";
+                                if ($data->rowCount() === 1 && $result['is_admin'] == 1) {
+
+                                    header('location:/projectSeven_PHP/PHP_project/admin/');
                                 } else if ($data->rowCount() === 1 && $result['is_admin'] !== 1) {
-                                
-                                    echo "User";
-                                    // echo "<script>window.location.href='./User.php'</script>";
-                                } else
+                                    header('location:/projectSeven_PHP/PHP_project/user/');
+                                } else {
                                     echo "<script>alert('Invalid Login')</script>";
+                                    echo "<p>";
+                                    echo "You do not have an account, or the password or email is incorrect.";
+                                    echo "</p>";
+                                }
                             }
                             ?>
                         </div>
@@ -272,6 +274,7 @@ require("../database/connection.php");
     <script src="js/mail-script.js"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
+    <script src="login.js"></script>
 </body>
 
 </html>
