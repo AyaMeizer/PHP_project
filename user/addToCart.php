@@ -10,8 +10,8 @@ if (isset($_GET['id'])) {
     $result = $data->fetch(PDO::FETCH_ASSOC);
    
     // $counter=1;
-        // $_SESSION['product'][$_GET['id']] = $result ;
-        // $_SESSION['product'][$_GET['id']][] = $counter ;
+    //     $_SESSION['product'][$_GET['id']] = $result ;
+    //     $_SESSION['product'][$_GET['id']][] = $counter ;
   
     $getId=$_GET['id'];
     echo "<pre >";
@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
             $_SESSION['product'][$_GET['id']] = $result ;
             $_SESSION['product'][$_GET['id']][0] = $counter ;
             // if()
-            // header("Location:http://localhost/project7/PHP_project/user/single-product.php?id=$getId");
+            header("Location:http://localhost/project7/PHP_project/user/single-product.php?id=$getId");
 
             break;
         }
@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
         $counter=1;
         $_SESSION['product'][$_GET['id']] = $result ;
         $_SESSION['product'][$_GET['id']][0] = $counter ;
-        // header('Location:http://localhost/project7/PHP_project/user/single-product.php?id=$getId');
+        header('Location:http://localhost/project7/PHP_project/user/single-product.php?id=$getId');
 
 
         }
