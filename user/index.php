@@ -153,47 +153,53 @@ require('../database/create_db.php');
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
                                     <?php
-                                    $data2 = $conn->prepare("SELECT * FROM products WHERE product_name= 'Printed face cushion' ");
+                                    $data2 = $conn->prepare("SELECT * FROM products WHERE id=2");
                                     $data2->execute();
+                                    $pd =  $data2->fetch(PDO::FETCH_ASSOC);
 
-
-                                    echo "<img src=<?php echo $data2[product_img] ?>' alt='<?php echo $data2[product_name] ?> class='img-fluid'>";
                                     ?>
                                     <!-- need edit -->
-                                    <img src="img/single_product_1.png" class="img-fluid" alt="#">
+                                    <img src="<?php echo $pd['product_img']; ?> " class="img-fluid" alt="#">
+
                                     <img src="img/product_overlay.png" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>
 
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
-                                    <h5>Started from $10</h5>
+                                    <h5> Started from $<?php echo $pd['product_price']; ?> </h5>
 
-                                    <h2> <a href="single-product.php">Printed memory foam
-                                            brief modern throw
-                                            pillow case</a> </h2>
-                                    <a href="product_list.php" class="btn_3">Explore Now</a>
+                                    <h2> <a href="single-product.php?id=<?php echo $pd['id'] ?>">Quotation printed
+                                            on the face
+                                            of cushion
+                                        </a> </h2>
+                                    <a href="single-product.php?id=<?php echo $pd['id'] ?>" class="btn_3">Explore Now</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <?php
-                    ?>
+
                     <div class="single_product_iner">
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
-                                    <img src="img/single_product_2.png" class="img-fluid" alt="#">
+                                    <?php
+                                    $data2 = $conn->prepare("SELECT * FROM products WHERE id=1");
+                                    $data2->execute();
+                                    $pd =  $data2->fetch(PDO::FETCH_ASSOC);
+
+                                    ?>
+                                    <img src="<?php echo $pd['product_img']; ?> " class="img-fluid" alt="#">
                                     <img src="img/product_overlay.png" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
-                                    <h5>Started from $10</h5>
-                                    <h2> <a href="single-product.php">Printed memory foam
-                                            brief modern throw
-                                            pillow case</a> </h2>
-                                    <a href="product_list.php" class="btn_3">Explore Now</a>
+                                    <h5>Started from $<?php echo $pd['product_price']; ?> </h5>
+                                    <h2> <a href="single-product.php?id=<?php echo $pd['id'] ?>">Hand-made silk
+                                            embroidered cushion
+                                        </a> </h2>
+                                    <a href="single-product.php?id=<?php echo $pd['id'] ?>" class="btn_3">Explore Now</a>
                                 </div>
                             </div>
                         </div>
@@ -202,22 +208,28 @@ require('../database/create_db.php');
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
-                                    <img src="img/single_product_3.png" class="img-fluid" alt="#">
+                                    <?php
+                                    $data2 = $conn->prepare("SELECT * FROM products WHERE id=7");
+                                    $data2->execute();
+                                    $pd =  $data2->fetch(PDO::FETCH_ASSOC);
+
+                                    ?>
+                                    <img src="<?php echo $pd['product_img']; ?> " class="img-fluid" alt="<?php echo $pd['product_img']; ?>">
                                     <img src="img/product_overlay.png" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
-                                    <h5>Started from $10</h5>
-                                    <h2> <a href="single-product.php">Printed memory foam
-                                            brief modern throw
-                                            pillow case</a> </h2>
-                                    <a href="product_list.php" class="btn_3">Explore Now</a>
+                                    <h5>Started from $<?php echo $pd['product_price']; ?></h5>
+                                    <h2> <a href="single-product.php?id=<?php echo $pd['id'] ?>">Wool special design on
+                                            cushion</a> </h2>
+                                    <a href="single-product.php?id=<?php echo $pd['id'] ?>" class="btn_3">Explore Now</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> <?php
+                        ?>
             </div>
         </div>
     </section>
