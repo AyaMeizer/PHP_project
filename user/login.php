@@ -170,11 +170,14 @@ require("../database/connection.php");
                                 $data = $conn->query($login);
                                 $conn->exec($login);
                                 $result = $data->fetch(PDO::FETCH_ASSOC);
-
+                                $_SESSION['loggedUser']=[];
                                 if ($data->rowCount() === 1 && $result['is_admin'] == 1) {
-
+                                    $_SESSION['loggedUser'][]=$email;
                                     header('location:../admin/');
                                 } else if ($data->rowCount() === 1 && $result['is_admin'] !== 1) {
+                                   
+                                    $_SESSION['loggedUser'][]=$email;
+                                   
                                     header('location:index.php');
                                 } else {
                                     echo "<script>alert('Invalid Login')</script>";
