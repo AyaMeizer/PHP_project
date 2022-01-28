@@ -31,7 +31,7 @@ $create_checkout = "CREATE TABLE IF NOT EXISTS `checkout` (
             `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
             `total_price` int(11) NOT NULL,
             `address` varchar(255) NOT NULL,
-            `date` TIMESTAMP NOT NULL,
+            `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             `user_id` int(11) NOT NULL,
             FOREIGN KEY (user_id) REFERENCES users(id)
              ON DELETE CASCADE
