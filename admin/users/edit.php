@@ -227,8 +227,8 @@ require("../../database/connection.php");
                 $password = $_POST['password'];
                 $phone = $_POST['phone'];
                 $is_admin = $_POST['is_admin'];
-                $is_loggedin = $_POST['is_loggedin'];
-                $sql = $conn->prepare("UPDATE users SET username='$username',email='$email',password='$password',phone='$phone',is_admin='$is_admin',is_loggedin='$is_loggedin' WHERE id='$value'");
+
+                $sql = $conn->prepare("UPDATE users SET username='$username',email='$email',password='$password',phone='$phone',is_admin='$is_admin' WHERE id='$value'");
                 $sql->execute();
 
                 header('location:index.php');
@@ -260,13 +260,20 @@ require("../../database/connection.php");
                                         <input type="number" id="nf-password" name="phone" value="<?php echo $data["phone"]; ?>" placeholder="Enter Your Phone.." class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="nf-password" class=" form-control-label">Is Admin</label>
-                                        <input type="number" id="nf-password" name="is_admin" value="<?php echo $data["is_admin"]; ?>" placeholder="Is admin.." class="form-control" required>
+                                        <label for="nf-password" class=" form-control-label">Role</label>
+                                        <select class="form-control " name="is_admin" required>
+                                            <!-- <option selected>categories</option> -->
+                                            <?php
+
+
+                                            echo "<option  value=0> User</option> </br>
+                                                <option  value=1> Admin</option> </br>";
+
+                                            ?>
+                                        </select>
+
                                     </div>
-                                    <div class="form-group">
-                                        <label for="nf-password" class=" form-control-label">Is logged in</label>
-                                        <input type="number" id="nf-password" name="is_loggedin" value="<?php echo $data["is_loggedin"]; ?>" placeholder="Is logged in.." class="form-control" required>
-                                    </div>
+
                                     <div class="card-footer">
 
                                         <input type="submit" class="btn btn-info" value="Save" name="edit_submit">

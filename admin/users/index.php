@@ -229,10 +229,11 @@
                                             <tr></tr>
                                             <th>ID</th>
                                             <th>Username</th>
+                                            <th>Email</th>
                                             <th>Password</th>
                                             <th>Phone</th>
                                             <th>is_admin</th>
-                                            <th>is_loggedin</th>
+
                                             <th></th>
                                             </tr>
                                         </thead>
@@ -252,7 +253,7 @@
                                                     <td><?php echo $item["password"]; ?></td>
                                                     <td><?php echo $item["phone"]; ?></td>
                                                     <td><?php echo $item["is_admin"]; ?></td>
-                                                    <td><?php echo $item["is_loggedin"]; ?></td>
+
                                                     <td>
                                                         <div class="table-data-feature">
                                                             <a href='delete.php?id=<?= $item["id"] ?>'>
