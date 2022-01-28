@@ -68,7 +68,10 @@ if(!$products->fetchAll(PDO::FETCH_ASSOC)){
     $conn->exec($data2);
 
     $data2 ="INSERT INTO products (product_name,product_price,product_desc,on_sales,sales_percentage,stock,product_img,cat_id) 
-    VALUES ('medical pillow',14,'memory foam cotton pillow| Enjoy free shipping',1,20,55,'https://m.media-amazon.com/images/I/41WTZH3Z4LS._AC_SY780_.jpg',4)";
+    VALUES ('medical pillow',14,'memory foam cotton pillow| Enjoy free shipping',1,20,55,'https://www.dynamictechnomedicals.com/wp-content/uploads/2017/04/Relxzon-Related.jpg',4)";
     $conn->exec($data2);
 
+    $data2 ="INSERT INTO products (product_name,product_price,product_desc,on_sales,sales_percentage,stock,product_img,cat_id) 
+    VALUES ('medical pillow',14,'memory foam cotton pillow| Enjoy free shipping',1,20,55,'https://20fd661yccar325znz1e9bdl-wpengine.netdna-ssl.com/wp-content/uploads/2020/11/coisum-cervical-memory-foam-neck-pillow-neck-pillow.jpg',4)";
+    $conn->exec($data2);
 }
