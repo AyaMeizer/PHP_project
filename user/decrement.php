@@ -24,14 +24,12 @@ if (isset($_GET['id'])) {
             $_SESSION['product'][$_GET['id']] = $result ;
             $_SESSION['product'][$_GET['id']][0] = $counter ;
             // if()
-            header("Location:http://localhost/project7/PHP_project/user/cart.php");
-
+            header("Location:cart.php");
             break;
         }
         else {
             unset($_SESSION['product'][$_GET['id']]);
-            header("Location:http://localhost/project7/PHP_project/user/cart.php");
-
+            header("Location:cart.php");
         }
    
 
