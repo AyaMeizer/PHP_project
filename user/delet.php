@@ -1,9 +1,6 @@
 <?php
 session_start();
 
-
-
-
 if (isset($_GET['id'])) {
     foreach ($_SESSION['product'] as $index => $value) {
         // echo $index;
