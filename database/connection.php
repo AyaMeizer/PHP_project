@@ -29,7 +29,7 @@ $conn->exec($create_users);
 /////////CHECKOUT TABLE
 $create_checkout = "CREATE TABLE IF NOT EXISTS `checkout` (
             `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-            `total_price` int(11) NOT NULL,
+            `total_price` DECIMAL(11,2) NOT NULL,
             `address` varchar(255) NOT NULL,
             `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             `user_id` int(11) NOT NULL,
