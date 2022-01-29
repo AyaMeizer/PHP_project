@@ -40,7 +40,7 @@ if (!$products->fetchAll(PDO::FETCH_ASSOC)) {
     $conn->exec($data2);
 
     $data2 = "INSERT INTO products (product_name,product_price,product_desc,on_sales,sales_percentage,stock,product_img,cat_id) 
-    VALUES ('Colorful hand-made cushion',8,'wool special design on cushion',1,10,25,'https://target.scene7.com/is/image/Target/GUEST_b71fd21f-7e43-43ad-bff2-d13bcfde064d',2)";
+    VALUES ('Hand-made cushion',8,'wool special design on cushion',1,10,25,'https://target.scene7.com/is/image/Target/GUEST_b71fd21f-7e43-43ad-bff2-d13bcfde064d',2)";
     $conn->exec($data2);
 
     $data2 = "INSERT INTO products (product_name,product_price,product_desc,on_sales,sales_percentage,stock,product_img,cat_id) 
@@ -64,7 +64,7 @@ if (!$products->fetchAll(PDO::FETCH_ASSOC)) {
     $conn->exec($data2);
 
     $data2 = "INSERT INTO products (product_name,product_price,product_desc,on_sales,sales_percentage,stock,product_img,cat_id) 
-    VALUES ('minimouse car headerset pillow',14,'best car cotton pillow| Enjoy free shipping',1,20,55,'https://cf.shopee.co.th/file/6e3a179178cc3a6731494a0256986cef',3)";
+    VALUES ('minimouse car pillow',14,'best car cotton pillow| Enjoy free shipping',1,20,55,'https://cf.shopee.co.th/file/6e3a179178cc3a6731494a0256986cef',3)";
     $conn->exec($data2);
 
     $data2 = "INSERT INTO products (product_name,product_price,product_desc,on_sales,sales_percentage,stock,product_img,cat_id) 
