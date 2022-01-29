@@ -168,8 +168,8 @@
                 if ($stmt->rowCount()) {
                     echo("This email already exists");
                 }
-                $sqlInsert = "INSERT INTO `users` (`email`,`username`,`password`,`phone`, `is_admin`,`is_loggedin`) 
-                VALUES ('$email','$username','$pass', $phone, 0 ,0)";
+                $sqlInsert = "INSERT INTO `users` (`email`,`username`,`password`,`phone`, `is_admin`) 
+                VALUES ('$email','$username','$pass', $phone, 0)";
 
                 $conn->exec($sqlInsert);    
                echo "<script>window.location.href='login.php'</script>";
