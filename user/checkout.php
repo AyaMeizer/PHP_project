@@ -289,11 +289,9 @@ if ($_SESSION['product'] != []) {
     </div>
   </section>
   <?php
- 
-var_dump($_SESSION['dicount']);
-echo $_SESSION['dicount'][0];
-// echo $x[0];
-// $y=$x[0];
+
+print_r($_SESSION['dicount']);
+
 if (isset($_POST['checkout'])) {
   
   $userId = $_SESSION['loggedUser'][1];
@@ -303,13 +301,13 @@ if (isset($_POST['checkout'])) {
   if ($finleTotal !== 0) {
       $y=$_SESSION['dicount'][0];
 
-      $sql = "INSERT INTO `checkout` (`total_price`,`address`,`user_id`,`coupon_discount`) VALUES ('$finleTotal','$address',$userId,$y
-      )";
+      $sql = "INSERT INTO `checkout` (`total_price`,`address`,`user_id`,`coupon_discount`) VALUES ('$finleTotal','$address',$userId,$y)";
       $conn->exec($sql);
       header("Location:checkout.php");
       // unset($_SESSION['product']);
       $_SESSION['product'] = [];
-    
+      unset($_SESSION['dicount']);
+
     }
   }
   ?>

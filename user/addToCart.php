@@ -43,6 +43,8 @@ if(!$_SESSION['product']){
             $counter = 0;
             $_SESSION['product'][$_GET['id']] = $result;
             $_SESSION['product'][$_GET['id']][0] = $counter;
+            unset($_SESSION['dicount']);
+
             header("Location:single-product.php?id=$getId");
         }
     }
