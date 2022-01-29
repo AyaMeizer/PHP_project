@@ -149,7 +149,7 @@ if ($_SESSION['product'] != []) {
         <div class="row">
           <div class="col-lg-8">
             <h3>Billing Details</h3>
-            <form class="row contact_form" action="#" method="POST" novalidate="novalidate">
+            <form class="row contact_form"  method="POST" novalidate="novalidate">
               <div class="col-md-6 form-group p_star">
                 <input type="text" class="form-control" id="first" name="name" required/>
                 <span class="placeholder" data-placeholder="First name"></span>
