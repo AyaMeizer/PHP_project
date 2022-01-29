@@ -151,25 +151,25 @@ if ($_SESSION['product'] != []) {
             <h3>Billing Details</h3>
             <form class="row contact_form" action="#" method="POST" novalidate="novalidate">
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="first" name="name" />
+                <input type="text" class="form-control" id="first" name="name" required/>
                 <span class="placeholder" data-placeholder="First name"></span>
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="last" name="name" />
+                <input type="text" class="form-control" id="last" name="name" required/>
                 <span class="placeholder" data-placeholder="Last name"></span>
               </div>
 
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="number" name="number" />
+                <input type="text" class="form-control" id="number" name="number" required/>
                 <span class="placeholder" data-placeholder="Phone number"></span>
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="email" name="compemailany" />
+                <input type="text" class="form-control" id="email" name="compemailany" required/>
                 <span class="placeholder" data-placeholder="Email Address"></span>
               </div>
 
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="add1" name="address" />
+                <input type="text" class="form-control" id="add1" name="address" required />
                 <span class="placeholder" data-placeholder="Address"></span>
               </div>
 
@@ -299,7 +299,13 @@ if (isset($_POST['checkout'])) {
   
   // echo $per;
   if ($finleTotal !== 0) {
+
+    if($_SESSION['dicount']){
+
       $y=$_SESSION['dicount'][0];
+    }else{
+      $y=0;
+    }
 
       $sql = "INSERT INTO `checkout` (`total_price`,`address`,`user_id`,`coupon_discount`) VALUES ('$finleTotal','$address',$userId,$y)";
       $conn->exec($sql);
@@ -370,32 +376,7 @@ if (isset($_POST['checkout'])) {
   </footer>
   <!--::footer_part end::-->
 
-  <!-- jquery plugins here-->
-  <script src="js/jquery-1.12.1.min.js"></script>
-  <!-- popper js -->
-  <script src="js/popper.min.js"></script>
-  <!-- bootstrap js -->
-  <script src="js/bootstrap.min.js"></script>
-  <!-- easing js -->
-  <script src="js/jquery.magnific-popup.js"></script>
-  <!-- swiper js -->
-  <script src="js/swiper.min.js"></script>
-  <!-- swiper js -->
-  <script src="js/mixitup.min.js"></script>
-  <!-- particles js -->
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.nice-select.min.js"></script>
-  <!-- slick js -->
-  <script src="js/slick.min.js"></script>
-  <script src="js/jquery.counterup.min.js"></script>
-  <script src="js/waypoints.min.js"></script>
-  <script src="js/contact.js"></script>
-  <script src="js/jquery.ajaxchimp.min.js"></script>
-  <script src="js/jquery.form.js"></script>
-  <script src="js/jquery.validate.min.js"></script>
-  <script src="js/mail-script.js"></script>
-  <!-- custom js -->
-  <script src="js/custom.js"></script>
+
 </body>
 
 </html>
