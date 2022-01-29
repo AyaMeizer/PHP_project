@@ -2,6 +2,10 @@
 session_start();
 ob_start();
 require("../database/connection.php");
+
+
+
+var_dump($_SESSION['loggedUser']);
 ?>
 <!doctype html>
 <html lang="zxx">
@@ -179,6 +183,7 @@ require("../database/connection.php");
 
                                     $_SESSION['loggedUser'][] = $email;
                                     $_SESSION['loggedUser'][] = $result['id'];
+                                    $_SESSION['loggedUser'][] = $result['username'];
                                     header('location:index.php');
                                 } else {
                                     echo "<script>alert('Invalid Login')</script>";
