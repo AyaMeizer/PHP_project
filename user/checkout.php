@@ -7,7 +7,8 @@ if ($_SESSION['product'] != []) {
 } else {
   $itemCart = null;
 }
-
+// echo "<pre>";
+// var_dump($_SESSION['product']);
 ?>
 
 
@@ -267,8 +268,8 @@ if ($_SESSION['product'] != []) {
                                   $des = 0.2;
                                   if ($valueCoupon == $coupon) {
                                     $per = $total * $des;
-                                    $_SESSION['dicount'] = [];
-                                    $_SESSION['dicount'][] = $per;
+                                    $_SESSION['discount'] = [];
+                                    $_SESSION['discount'][] = $per;
                                     // echo $per;
                                     $finleTotal = $total - $per;
                                   }
@@ -315,7 +316,7 @@ if ($_SESSION['product'] != []) {
   </section>
   <?php
 
-  // print_r($_SESSION['dicount']);
+  // print_r($_SESSION['discount']);
   // unset($_SESSION['loggedUser']);
   // $_SESSION['loggedUser'] = [];  // 
   if (isset($_POST['checkout'])) {
@@ -329,22 +330,41 @@ if ($_SESSION['product'] != []) {
       // echo $per;
       if ($finleTotal !== 0) {
 
-        if ($_SESSION['dicount']) {
-
-          $y = $_SESSION['dicount'][0];
+        if ($_SESSION['discount'] != []) {
+          $y = $_SESSION['discount'][0];
         } else {
           $y = 0;
         }
 
-        $sql = "INSERT INTO `checkout` (`total_price`,`address`,`user_id`,`coupon_discount`) VALUES ('$finleTotal','$address',$userId,$y)";
+        $sql = "INSERT INTO `checkout` (`total_price`,`address`,`user_id`,`coupon_discount`) VALUES ('$finleTotal','$address',$userId,0)";
         $conn->exec($sql);
-        header("Location:checkout.php");
         // unset($_SESSION['product']);
-        $_SESSION['product'] = [];
-        unset($_SESSION['dicount']);
+        $_SESSION['discount'] = [];
       }
     }
+    // echo" <pre>";var_dump($product['id']);
+    $i=0;
+    foreach ($_SESSION['product'] as $product) {
+      $userId = $_SESSION['loggedUser'][1];
+      $data = $conn->prepare("SELECT * from checkout WHERE id = $product[id]");
+      $data->execute();
+      $data2 = $conn->prepare("SELECT id from checkout WHERE user_id = $userId");
+      $result = $data->fetchAll();
+      $data2->execute();
+      $result2 = $data2->fetchAll();
+      $x=$result2[$i]['id'];
+      $i+=1;
+      $sql2 = "INSERT INTO `checkout_products` (`quantity`,`product_id`,`checkout_id`) VALUES ($product[0],$product[id],$x)";
+      $conn->exec($sql2);
+      // echo "<pre>";
+      // var_dump($result2);
+      
+    }
+    $_SESSION['product'] = [];
+    header("Location:checkout.php");
   }
+
+
   ?>
 
   <!--================End Checkout Area =================-->
