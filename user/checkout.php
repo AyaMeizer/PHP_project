@@ -116,20 +116,20 @@ if ($_SESSION['product'] != []) {
               </ul>
             </div>
             <div class="hearer_icon d-flex align-items-center">
-           
 
-            <a href="cart.php">
-              <button class="button" >
-                <span class="icon">
-                  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'>
-                    <path d='M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z' />
-                  </svg>
-                </span>
-                <span>Your Cart</span>
-                <span class="badge"><?php echo count($_SESSION['product']) ?></span>
-              </button>
 
-            </a>
+              <a href="cart.php">
+                <button class="button">
+                  <span class="icon">
+                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'>
+                      <path d='M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z' />
+                    </svg>
+                  </span>
+                  <span>Your Cart</span>
+                  <span class="badge"><?php echo count($_SESSION['product']) ?></span>
+                </button>
+
+              </a>
             </div>
           </nav>
         </div>
@@ -316,28 +316,33 @@ if ($_SESSION['product'] != []) {
   <?php
 
   // print_r($_SESSION['dicount']);
-
+  // unset($_SESSION['loggedUser']);
+  // $_SESSION['loggedUser'] = [];  // 
   if (isset($_POST['checkout'])) {
+    if ($_SESSION['loggedUser'] == []) {
 
-    $userId = $_SESSION['loggedUser'][1];
-    $address = $_POST['address'];
+      echo "<script>alert('Please Login')</script>";
+    } else {
+      $userId = $_SESSION['loggedUser'][1];
+      $address = $_POST['address'];
 
-    // echo $per;
-    if ($finleTotal !== 0) {
+      // echo $per;
+      if ($finleTotal !== 0) {
 
-      if ($_SESSION['dicount']) {
+        if ($_SESSION['dicount']) {
 
-        $y = $_SESSION['dicount'][0];
-      } else {
-        $y = 0;
+          $y = $_SESSION['dicount'][0];
+        } else {
+          $y = 0;
+        }
+
+        $sql = "INSERT INTO `checkout` (`total_price`,`address`,`user_id`,`coupon_discount`) VALUES ('$finleTotal','$address',$userId,$y)";
+        $conn->exec($sql);
+        header("Location:checkout.php");
+        // unset($_SESSION['product']);
+        $_SESSION['product'] = [];
+        unset($_SESSION['dicount']);
       }
-
-      $sql = "INSERT INTO `checkout` (`total_price`,`address`,`user_id`,`coupon_discount`) VALUES ('$finleTotal','$address',$userId,$y)";
-      $conn->exec($sql);
-      header("Location:checkout.php");
-      // unset($_SESSION['product']);
-      $_SESSION['product'] = [];
-      unset($_SESSION['dicount']);
     }
   }
   ?>
