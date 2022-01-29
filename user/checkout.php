@@ -37,7 +37,22 @@ if ($_SESSION['product'] != []) {
   <link rel="stylesheet" href="css/slick.css">
   <!-- style CSS -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="cart.css">
 </head>
+<style>
+  #cart-icon i {
+    font-size: 70px !important;
+    color: #000;
+  }
+
+  #cart-icon span {
+    position: absolute;
+    top: 13px;
+    right: 3px;
+    font-size: 18px;
+    color: red;
+  }
+</style>
 
 <body>
   <!--::header part start::-->
@@ -101,10 +116,20 @@ if ($_SESSION['product'] != []) {
               </ul>
             </div>
             <div class="hearer_icon d-flex align-items-center">
-              <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-              <a href="cart.php">
-                <i class="flaticon-shopping-cart-black-shape"></i>
-              </a>
+           
+
+            <a href="cart.php">
+              <button class="button" >
+                <span class="icon">
+                  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'>
+                    <path d='M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z' />
+                  </svg>
+                </span>
+                <span>Your Cart</span>
+                <span class="badge"><?php echo count($_SESSION['product']) ?></span>
+              </button>
+
+            </a>
             </div>
           </nav>
         </div>
@@ -149,28 +174,28 @@ if ($_SESSION['product'] != []) {
         <div class="row">
           <div class="col-lg-8">
             <h3>Billing Details</h3>
-            <form class="row contact_form"  method="POST" novalidate="novalidate">
+            <form class="row contact_form" method="POST">
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="first" name="name" required/>
-                <span class="placeholder" data-placeholder="First name"></span>
+                <input type="text" class="form-control" id="first" name="name" placeholder="First name" required />
+
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="last" name="name" required/>
-                <span class="placeholder" data-placeholder="Last name"></span>
+                <input type="text" class="form-control" id="last" name="name" placeholder="Last name" required />
+
               </div>
 
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="number" name="number" required/>
-                <span class="placeholder" data-placeholder="Phone number"></span>
+                <input type="text" class="form-control" id="number" name="number" placeholder="Phone number" required />
+
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="email" name="compemailany" required/>
-                <span class="placeholder" data-placeholder="Email Address"></span>
+                <input type="text" class="form-control" id="email" name="compemailany" placeholder="Email Address" required />
+
               </div>
 
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="add1" name="address" required />
-                <span class="placeholder" data-placeholder="Address"></span>
+                <input type="text" class="form-control" id="add1" name="address" placeholder="Address" required />
+
               </div>
 
               <div class="col-md-12 form-group">
@@ -225,7 +250,7 @@ if ($_SESSION['product'] != []) {
                   <a href="#">Discount
                     <span><?php
                           $finleTotal = $total;
-                          $per= 0;
+                          $per = 0;
                           if ($_SERVER["REQUEST_METHOD"] == "GET") {
                             // $total=0;
                             // echo $total;
@@ -241,9 +266,9 @@ if ($_SESSION['product'] != []) {
                                   $itemCart = $_SESSION['product'];
                                   $des = 0.2;
                                   if ($valueCoupon == $coupon) {
-                                    $per= $total * $des;
-                                    $_SESSION['dicount']=[];
-                          $_SESSION['dicount'][]=$per;
+                                    $per = $total * $des;
+                                    $_SESSION['dicount'] = [];
+                                    $_SESSION['dicount'][] = $per;
                                     // echo $per;
                                     $finleTotal = $total - $per;
                                   }
@@ -251,7 +276,7 @@ if ($_SESSION['product'] != []) {
                               }
                             }
                           }
-                          
+
                           echo $per; ?>$</span>
                   </a>
                 </li>
@@ -281,7 +306,7 @@ if ($_SESSION['product'] != []) {
                 <label for="f-option4">I’ve read and accept the </label>
                 <a href="#">terms & conditions*</a>
               </div>
-           
+
             </div>
           </div>
         </div>
@@ -290,22 +315,22 @@ if ($_SESSION['product'] != []) {
   </section>
   <?php
 
-print_r($_SESSION['dicount']);
+  // print_r($_SESSION['dicount']);
 
-if (isset($_POST['checkout'])) {
-  
-  $userId = $_SESSION['loggedUser'][1];
-  $address = $_POST['address'];
-  
-  // echo $per;
-  if ($finleTotal !== 0) {
+  if (isset($_POST['checkout'])) {
 
-    if($_SESSION['dicount']){
+    $userId = $_SESSION['loggedUser'][1];
+    $address = $_POST['address'];
 
-      $y=$_SESSION['dicount'][0];
-    }else{
-      $y=0;
-    }
+    // echo $per;
+    if ($finleTotal !== 0) {
+
+      if ($_SESSION['dicount']) {
+
+        $y = $_SESSION['dicount'][0];
+      } else {
+        $y = 0;
+      }
 
       $sql = "INSERT INTO `checkout` (`total_price`,`address`,`user_id`,`coupon_discount`) VALUES ('$finleTotal','$address',$userId,$y)";
       $conn->exec($sql);
@@ -313,7 +338,6 @@ if (isset($_POST['checkout'])) {
       // unset($_SESSION['product']);
       $_SESSION['product'] = [];
       unset($_SESSION['dicount']);
-
     }
   }
   ?>

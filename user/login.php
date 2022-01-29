@@ -138,7 +138,7 @@ require("../database/connection.php");
                         <div class="login_part_form_iner">
                             <h3>Welcome Back ! <br>
                                 Please Sign in now</h3>
-                            <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>" class="row contact_form" novalidate="novalidate">
+                            <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>" class="row contact_form">
                                 <div class="col-md-12 form-group p_star">
                                     <input type="email" class="form-control" id="email" name="email" value="" placeholder="Email">
                                 </div>
@@ -170,15 +170,15 @@ require("../database/connection.php");
                                 $data = $conn->query($login);
                                 $conn->exec($login);
                                 $result = $data->fetch(PDO::FETCH_ASSOC);
-                                $_SESSION['loggedUser']=[];
+                                $_SESSION['loggedUser'] = [];
                                 if ($data->rowCount() === 1 && $result['is_admin'] == 1) {
-                                    $_SESSION['loggedUser'][]=$email;
-                                    $_SESSION['loggedUser'][]=$result['id'];
+                                    $_SESSION['loggedUser'][] = $email;
+                                    $_SESSION['loggedUser'][] = $result['id'];
                                     header('location:../admin/');
                                 } else if ($data->rowCount() === 1 && $result['is_admin'] !== 1) {
-                                   
-                                    $_SESSION['loggedUser'][]=$email;
-                                    $_SESSION['loggedUser'][]=$result['id'];
+
+                                    $_SESSION['loggedUser'][] = $email;
+                                    $_SESSION['loggedUser'][] = $result['id'];
                                     header('location:index.php');
                                 } else {
                                     echo "<script>alert('Invalid Login')</script>";
