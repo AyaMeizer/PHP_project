@@ -1,8 +1,8 @@
 <?php
-session_start();
+// session_start();
 include "../database/connection.php";
+echo ($_SESSION['loggedUser'][1]);
 ?>
-
 <!doctype html>
 <html lang="zxx">
 
@@ -30,76 +30,107 @@ include "../database/connection.php";
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<style>
+    .comment {
+        width: 50%;
+        margin: 0 auto;
+    }
+</style>
 
 <body>
-    <div class="comments-area">
-        <!-- <h4>05 Comments</h4> -->
-       
-        <div class="comment-list">
-            <div class="single-comment justify-content-between d-flex">
-                <div class="user justify-content-between d-flex">
-                    
-                    <div class="desc">
-                        <p class="comment">
-                            <?php
-                             $data=$conn->prepare("SELECT comments.comment_desc,comments.user_id,
+    <div class="comment">
+        <div class="comment-form">
+            <h4>Leave a Comment</h4>
+            <form class="form-contact comment_form" id="commentForm" method="POST">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <textarea class="form-control w-100" name="message" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="form-group mt-3">
+                    <input type="submit" name="submit" value="Send Comment" class="btn_3 button-contactForm" />
+
+                </div>
+            </form>
+            <?php
+            // if ($_SESSION['product'] == []) {
+            if (isset($_POST['submit'])) {
+                $message = $_POST['message'];
+                $idproduct = $_GET['id'];
+                $iduser = $_SESSION['loggedUser'][1];
+                $data = "INSERT INTO `comments` ( `comment_desc`, `user_id`, `product_id`) VALUES ('$message',$iduser,$idproduct)";
+                $conn->exec($data);
+            }
+            //  else {
+            // echo '<script type="text/javascript">alert("is not loggin")</script>';
+            // }
+            // }
+
+
+            ?>
+        </div>
+
+
+
+        <div >
+            <!-- <h4>05 Comments</h4> -->
+
+            <div >
+                <div >
+                    <div>
+
+                        <div>
+                            <p class=>
+                                <?php
+
+                                $id = $_GET['id'];
+
+                                $data = $conn->prepare("SELECT comments.comment_desc,comments.user_id,
                              comments.product_id,products.id
-                             from comments Inner Join products on products.id = comments.user_id 
-                             WHERE comments.product_id=1");
-                         // $_GET[id]
-                             $data->execute();
-                             $result = $data->fetch(PDO::FETCH_ASSOC);
-                                     foreach($data as $element){?>
-                                         <div class="review_item">
-                                           <div class="media"> 
-                                          <div class='media-body'>
-                                           <h4><?php echo $element['user_id'] ;?></h4>
-                                        </div>
-                                       </div>
-                                             <p><?php echo $element['comment_desc'] ;?></p>
-                                             <?php   } ?>
-                         
-                                             <?php
-                                               if($_SERVER["REQUEST_METHOD"]=="POST"){
-                                               if(isset($_SESSION['loggedUser'] )){
-                                               $message=$_POST['message'];
-                                               $idproduct=$_GET['id'];
-                                               $iduser=$_SESSION['loggedUser']['id'];
-                                               $data="INSERT INTO comments(user_id,comments,product_id) 
-                                                VALUE ('$iduser','$message' ,'$idproduct')";
-                                                $stmt = $pdo->prepare($data);
-                                                $stmt->execute();
-                                                }
-                                                else{
-                                                   echo '<script type="text/javascript">alert("is not loggin")</script>';
-                                                }
-                                                }
-                            ?>
-                        </p>
-                       
+                             from comments Inner Join products on products.id = comments.product_id
+                             WHERE comments.product_id=$id");
+                                // $_GET[id]
+                                $data->execute();
+                                $result = $data->fetch(PDO::FETCH_ASSOC);
+
+
+                                // *********************
+                                $idUser = $_SESSION['loggedUser'][2];
+                                $user = "SELECT username,id FROM users WHERE id=$idUser";
+// var_dump($user);
+                                // ************************
+                                foreach ($data as $element) {
+
+
+                                ?>
+                            <div class="review_item">
+                                <div class="media">
+                                    <div class='media-body'>
+                                        <h4><?php echo $idUser; ?></h4>
+                                    </div>
+                                </div>
+                                <p><?php echo $element['comment_desc']; ?></p>
+
+
+
+                            <?php   } ?>
+
+
+                            </p>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="comment-form">
-        <h4>Leave a Comment</h4>
-        <form class="form-contact comment_form" action="#" id="commentForm" method="GET" >
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <textarea class="form-control w-100" name="message" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
-                    </div>
-                </div>
-                
-            
-            </div>
-            <div class="form-group mt-3">
-                <a href="single-product.php?id=$getId" class="btn_3 button-contactForm">Send Comment</a>
-            </div>
-        </form>
-    </div>
-    < <!--::footer_part end::-->
+
+
+        <!--::footer_part end::-->
 
         <!-- jquery plugins here-->
         <script src="js/jquery-1.12.1.min.js"></script>

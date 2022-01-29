@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../database/connection.php";
 ?>
 <!doctype html>
@@ -28,11 +29,11 @@ include "../database/connection.php";
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
     <style>
-    .img-fluid{
-    width:80em !important;
-    height:50em;
-    align-items: center;
-    }
+        .img-fluid {
+            width: 80em !important;
+            height: 50em;
+            align-items: center;
+        }
     </style>
 </head>
 
@@ -44,9 +45,7 @@ include "../database/connection.php";
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
                         <a class="navbar-brand" href="index.php"> <img src="img/logo.png" alt="logo"> </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="menu_icon"><i class="fas fa-bars"></i></span>
                         </button>
 
@@ -59,25 +58,23 @@ include "../database/connection.php";
                                     <a class="nav-link" href="about.html">about</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_1"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         product
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
                                         <a class="dropdown-item" href="product_list.php"> product list</a>
                                         <a class="dropdown-item" href="single-product.php">product details</a>
-                                        
+
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_3"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         pages
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="login.php"> 
+                                        <a class="dropdown-item" href="login.php">
                                             login
-                                            
+
                                         </a>
                                         <a class="dropdown-item" href="checkout.php">product checkout</a>
                                         <a class="dropdown-item" href="cart.php">shopping cart</a>
@@ -85,10 +82,9 @@ include "../database/connection.php";
                                         <a class="dropdown-item" href="elements.php">elements</a>
                                     </div>
                                 </li>
-                                
+
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_2"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         blog
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
@@ -96,7 +92,7 @@ include "../database/connection.php";
                                         <a class="dropdown-item" href="single-blog.php">Single blog</a>
                                     </div>
                                 </li>
-                                
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="contact.php">Contact</a>
                                 </li>
@@ -137,60 +133,59 @@ include "../database/connection.php";
     </section>
     <!-- breadcrumb part end-->
 
-  <!--================Single Product Area =================-->
-  <div class="product_image_area">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-12">
-          <div class="product_img_slide owl-carousel">
+    <!--================Single Product Area =================-->
+    <div class="product_image_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="product_img_slide owl-carousel">
 
-           <?php 
-          if (isset($_GET['id'])) {
-        $sql = "SELECT * FROM products WHERE id='{$_GET['id']}' ";
-        $data = $conn->query($sql);
-        $result = $data->fetch(PDO::FETCH_ASSOC);
-        //  echo ($result);
-       ?>
-            <div class="single_product_img">
-              <img src="<?php echo $result['product_img'];?>" alt="#" class="img-fluid" width=15px height=20px>
+                        <?php
+                        if (isset($_GET['id'])) {
+                            $sql = "SELECT * FROM products WHERE id='{$_GET['id']}' ";
+                            $data = $conn->query($sql);
+                            $result = $data->fetch(PDO::FETCH_ASSOC);
+                            //  echo ($result);
+                        ?>
+                            <div class="single_product_img">
+                                <img src="<?php echo $result['product_img']; ?>" alt="#" class="img-fluid" width=15px height=20px>
+                            </div>
+                            <!-- <div class="single_product_img">
+            <img src="<?php echo $result['product_img']; ?>" alt="#" class="img-fluid">
             </div>
-            <!-- <div class="single_product_img">
-            <img src="<?php echo $result['product_img'];?>" alt="#" class="img-fluid">
-            </div>
             <div class="single_product_img">
-            <img src="<?php echo $result['product_img'];?>" alt="#" class="img-fluid">
+            <img src="<?php echo $result['product_img']; ?>" alt="#" class="img-fluid">
             </div> -->
-          </div>
-        </div>
-     
-     
-        <div class="col-lg-8">
-          <div class="single_product_text text-center">
-            <h3><?php echo $result['product_name'];?></h3>
-            <p>
-            <?php echo $result['product_desc'];?>
-            </p>
-            <p>
-            <?php
+                    </div>
+                </div>
 
-                                            if($result['on_sales']==0 ){
-                                                // echo "<del>";
-                                                 echo $result['product_price'];
-                                                //  echo "</del>";
 
-                                                // echo $result['product_price'];
-                                            }else if($result['on_sales']==1) {
-                                                
-                                                echo "<del>";
-                                                 echo $result['product_price'];
-                                                 echo "</del><br>";
-                                                echo (1-($result['sales_percentage'])/100) *$result['product_price'] ;
-                                                
-                                            }
-                                         ?>
-            </p>
-            <div class="card_area">
-                <!-- <div class="product_count_area">
+                <div class="col-lg-8">
+                    <div class="single_product_text text-center">
+                        <h3><?php echo $result['product_name']; ?></h3>
+                        <p>
+                            <?php echo $result['product_desc']; ?>
+                        </p>
+                        <p>
+                            <?php
+
+                            if ($result['on_sales'] == 0) {
+                                // echo "<del>";
+                                echo $result['product_price'];
+                                //  echo "</del>";
+
+                                // echo $result['product_price'];
+                            } else if ($result['on_sales'] == 1) {
+
+                                echo "<del>";
+                                echo $result['product_price'];
+                                echo "</del><br>";
+                                echo (1 - ($result['sales_percentage']) / 100) * $result['product_price'];
+                            }
+                            ?>
+                        </p>
+                        <div class="card_area">
+                            <!-- <div class="product_count_area">
                     <p>Quantity</p>
                     <div class="product_count d-inline-block">
                         <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
@@ -199,77 +194,60 @@ include "../database/connection.php";
                     </div>
                     <p>From <?php echo $result['product_price']  ?>$</p>
                 </div> -->
-              <div class="add_to_cart">
-                  <a href="./addToCart.php?id=<?php  echo $result['id'];?>" class="btn_3">add to cart</a>
-              </div>
-            </div>
-          </div>
-        </div>
- <?php }?>  
-    
-    </div>
-    </div>
-  </div>
-  <!--================End Single Product Area =================-->
-   <!-- subscribe part here -->
-   <section class="subscribe_part section_padding">
-      <div class="container">
-          <div class="row justify-content-center">
-              <div class="col-lg-8">
-                  <div class="subscribe_part_content">
-                      <h2>Get promotions & updates!</h2>
-                      <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources credibly innovate granular internal .</p>
-                      <div class="subscribe_form">
-                          <input type="email" placeholder="Enter your mail">
-                          <a href="#" class="btn_1">Subscribe</a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
-  <!-- subscribe part end -->
-
-  <!--::footer_part start::-->
-  <footer class="footer_part">
-        <div class="footer_iner">
-            <div class="container">
-                <div class="row justify-content-between align-items-center">
-                    <div class="col-lg-8">
-                        <div class="footer_menu">
-                            <div class="footer_logo">
-                                <a href="index.php"><img src="img/logo.png" alt="#"></a>
+                            <div class="add_to_cart">
+                                <a href="./addToCart.php?id=<?php echo $result['id']; ?>" class="btn_3">add to cart</a>
                             </div>
-                            <div class="footer_menu_item">
-                                <a href="index.php">Home</a>
-                                <a href="about.html">About</a>
-                                <a href="product_list.php">Products</a>
-                                <a href="#">Pages</a>
-                                <a href="blog.php">Blog</a>
-                                <a href="contact.php">Contact</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="social_icon">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
+            <?php } ?>
+
             </div>
         </div>
-        
+    </div>
+    <!--================End Single Product Area =================-->
+    <!-- subscribe part here -->
+
+    <?php
+
+    // include "commnt.php";
+    ?>
+
+    <!-- subscribe part end -->
+
+    <!--::footer_part start::-->
+
+
+    <div>
+        <div>
+            <div>
+
+
+                <?php
+
+                include "commnt.php";
+                ?>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer_part">
+
         <div class="copyright_part">
             <div class="container">
                 <div class="row ">
                     <div class="col-lg-12">
                         <div class="copyright_text">
-                            <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P>
+                            <P>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;<script>
+                                    document.write(new Date().getFullYear());
+                                </script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </P>
                             <div class="copyright_link">
                                 <a href="#">Turms & Conditions</a>
                                 <a href="#">FAQ</a>
