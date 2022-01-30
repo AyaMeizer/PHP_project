@@ -1,3 +1,7 @@
+
+
+
+
 <?php
 session_start();
 ob_start();
@@ -23,8 +27,8 @@ if(!$_SESSION['product']){
 
 
     $getId = $_GET['id'];
-    echo "<pre >";
-    var_dump($_SESSION['product']);
+    // echo "<pre >";
+    // var_dump($_SESSION['product']);
 
     // echo($_SESSION['product'][$_GET['id']]['id']);
     for ($i = 0; $i <= count($_SESSION['product']); $i++) {
@@ -36,7 +40,7 @@ if(!$_SESSION['product']){
             $_SESSION['product'][$_GET['id']][0] = $counter;
             unset($_SESSION['dicount']);
             // if()
-            header("Location:single-product.php?id=$getId");
+            header("Location:product_list.php");
 
             break;
         } else if (count($_SESSION['product']) - 1 == $i) {
@@ -45,7 +49,9 @@ if(!$_SESSION['product']){
             $_SESSION['product'][$_GET['id']][0] = $counter;
             unset($_SESSION['dicount']);
 
-            header("Location:single-product.php?id=$getId");
+            header("Location:product_list.php");
+        }else{
+            // $_SESSION['product']=[]; 
         }
     }
 

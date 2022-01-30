@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../database/connection.php";
 ?>
 
@@ -48,7 +49,7 @@ include "../database/connection.php";
                                     <a class="nav-link" href="index.php">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.html">about</a>
+                                    <a class="nav-link" href="about.php">about</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,7 +57,7 @@ include "../database/connection.php";
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
                                         <a class="dropdown-item" href="product_list.php"> product list</a>
-                                        <a class="dropdown-item" href="single-product.php">product details</a>
+                                        <a class="dropdown-item" href="single-product.php?id=1">product details</a>
 
                                     </div>
                                 </li>
@@ -91,17 +92,21 @@ include "../database/connection.php";
                                 </li>
                             </ul>
                         </div>
-                        <div class="hearer_icon d-flex align-items-center">
+                        <!-- <div class="hearer_icon d-flex align-items-center">
                             <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
                             <a href="cart.php">
                                 <i class="flaticon-shopping-cart-black-shape"></i>
                             </a>
-                        </div>
+                        </div> -->
+                         <!-- Cart Icon -->
+                         <?php
+                        require 'cartIcon.php';
+                        ?>
                     </nav>
                 </div>
             </div>
         </div>
-        <div class="search_input" id="search_input_box">
+        <!-- <div class="search_input" id="search_input_box">
             <div class="container ">
                 <form class="d-flex justify-content-between search-inner">
                     <input type="text" class="form-control" id="search_input" placeholder="Search Here">
@@ -109,7 +114,7 @@ include "../database/connection.php";
                     <span class="ti-close" id="close_search" title="Close Search"></span>
                 </form>
             </div>
-        </div>
+        </div> -->
     </header>
     <!-- Header part end-->
 
@@ -193,13 +198,20 @@ include "../database/connection.php";
                                             }else if($result['on_sales']==1) {
                                                 
                                                 echo "<del>";
-                                                 echo $result['product_price'];
-                                                 echo "</del><br>";
+                                                 echo $result['product_price'] . ".0 $";
+                                                 echo "</del>";
+                                                 echo "&nbsp;&nbsp;&nbsp;";
                                                 echo (1-($result['sales_percentage'])/100) *$result['product_price'] ;
                                                 
                                             }
-                                         ?>$</p>
-                                        
+                                         ?> $</p>
+                                      
+
+                                      <div class="add_to_cart">
+                                <a href="./addToCart.php?id=<?php echo $result['id']; ?>" class="btn_3">add to cart</a>
+                                <a href="./single-product.php?id=<?php echo $result['id']; ?>" class="btn_3">DETAILS</a>
+
+                            </div>
                                     </div>
                                 </div>
                             <?php
@@ -331,7 +343,7 @@ include "../database/connection.php";
                             </div>
                             <div class="footer_menu_item">
                                 <a href="index.php">Home</a>
-                                <a href="about.html">About</a>
+                                <a href="about.php">About</a>
                                 <a href="product_list.php">Products</a>
                                 <a href="#">Pages</a>
                                 <a href="blog.php">Blog</a>

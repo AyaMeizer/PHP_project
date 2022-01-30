@@ -1,7 +1,7 @@
 <?php
 // session_start();
 include "../database/connection.php";
-echo ($_SESSION['loggedUser'][1]);
+// echo ($_SESSION['loggedUser'][1]);
 ?>
 <!doctype html>
 <html lang="zxx">
@@ -76,11 +76,11 @@ echo ($_SESSION['loggedUser'][1]);
 
 
 
-        <div >
+        <div>
             <!-- <h4>05 Comments</h4> -->
 
-            <div >
-                <div >
+            <div>
+                <div>
                     <div>
 
                         <div>
@@ -90,19 +90,16 @@ echo ($_SESSION['loggedUser'][1]);
                                 $id = $_GET['id'];
 
                                 $data = $conn->prepare("SELECT comments.comment_desc,comments.user_id,
-                             comments.product_id,products.id
-                             from comments Inner Join products on products.id = comments.product_id
-                             WHERE comments.product_id=$id");
-                                // $_GET[id]
+                                comments.product_id,products.id,users.username,users.id
+                                from comments  Join products on products.id = comments.product_id join users on users.id=comments.user_id
+                                WHERE comments.product_id=$id");
+
+
                                 $data->execute();
                                 $result = $data->fetch(PDO::FETCH_ASSOC);
 
 
-                                // *********************
-                                $idUser = $_SESSION['loggedUser'][2];
-                                $user = "SELECT username,id FROM users WHERE id=$idUser";
-// var_dump($user);
-                                // ************************
+
                                 foreach ($data as $element) {
 
 
@@ -110,54 +107,55 @@ echo ($_SESSION['loggedUser'][1]);
                             <div class="review_item">
                                 <div class="media">
                                     <div class='media-body'>
-                                        <h4><?php echo $idUser; ?></h4>
+                                        <h4><?php echo $element['username'] ?></h4>
                                     </div>
                                 </div>
                                 <p><?php echo $element['comment_desc']; ?></p>
 
 
-
-                            <?php   } ?>
-
-
-                            </p>
-
                             </div>
+                        <?php   } ?>
+
+
+                        </p>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
 
 
-        <!--::footer_part end::-->
+    <!--::footer_part end::-->
 
-        <!-- jquery plugins here-->
-        <script src="js/jquery-1.12.1.min.js"></script>
-        <!-- popper js -->
-        <script src="js/popper.min.js"></script>
-        <!-- bootstrap js -->
-        <script src="js/bootstrap.min.js"></script>
-        <!-- easing js -->
-        <script src="js/jquery.magnific-popup.js"></script>
-        <!-- swiper js -->
-        <script src="js/swiper.min.js"></script>
-        <!-- swiper js -->
-        <script src="js/mixitup.min.js"></script>
-        <!-- particles js -->
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/jquery.nice-select.min.js"></script>
-        <!-- slick js -->
-        <script src="js/slick.min.js"></script>
-        <script src="js/jquery.counterup.min.js"></script>
-        <script src="js/waypoints.min.js"></script>
-        <script src="js/contact.js"></script>
-        <script src="js/jquery.ajaxchimp.min.js"></script>
-        <script src="js/jquery.form.js"></script>
-        <script src="js/jquery.validate.min.js"></script>
-        <script src="js/mail-script.js"></script>
-        <!-- custom js -->
-        <script src="js/custom.js"></script>
+    <!-- jquery plugins here-->
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <!-- popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- easing js -->
+    <script src="js/jquery.magnific-popup.js"></script>
+    <!-- swiper js -->
+    <script src="js/swiper.min.js"></script>
+    <!-- swiper js -->
+    <script src="js/mixitup.min.js"></script>
+    <!-- particles js -->
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <!-- slick js -->
+    <script src="js/slick.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/mail-script.js"></script>
+    <!-- custom js -->
+    <script src="js/custom.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,10 @@
+<?php
+
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}
+?>
 <!doctype html>
 <html lang="zxx">
 
@@ -55,7 +62,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
                                         <a class="dropdown-item" href="product_list.php"> product list</a>
-                                        <a class="dropdown-item" href="single-product.php">product details</a>
+                                        <a class="dropdown-item" href="single-product.php?id=1">product details</a>
                                         
                                     </div>
                                 </li>
@@ -92,25 +99,15 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="hearer_icon d-flex align-items-center">
-                            <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <a href="cart.php">
-                                <i class="flaticon-shopping-cart-black-shape"></i>
-                            </a>
-                        </div>
+                        <?php
+                       
+                       require 'cartIcon.php';
+                       ?>
                     </nav>
                 </div>
             </div>
         </div>
-        <div class="search_input" id="search_input_box">
-            <div class="container ">
-                <form class="d-flex justify-content-between search-inner">
-                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                    <button type="submit" class="btn"></button>
-                    <span class="ti-close" id="close_search" title="Close Search"></span>
-                </form>
-            </div>
-        </div>
+    
     </header>
     <!-- Header part end-->
 

@@ -1,61 +1,61 @@
 .button {
-    cursor: pointer;
-    font: inherit;
-    border: none;
-    background-color: #B08EAD;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 25px;
-    font-weight: bold;
+    cursor: pointer  !important;
+    font: inherit !important;
+    border: none !important;
+    background-color: #B08EAD !important;
+    color: white !important;
+    padding: 0.75rem 1.5rem !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    border-radius: 25px !important;
+    font-weight: bold !important;
   }
   
   .button:hover,
   .button:active {
-    background-color: #2c0d00;
+    background-color: #2c0d00 !important;
   }
   
   .icon {
-    width: 1.35rem;
-    height: 1.35rem;
-    margin-right: 0.5rem;
+    width: 1.35rem !important;
+    height: 1.35rem !important;
+    margin-right: 0.5rem !important;
   }
   
   .badge {
-    font-size: 1.2em;
-    background-color: #B08EAD;
-    padding: 0.25rem 1rem;
-    border-radius: 25px;
-    margin-left: 1rem;
-    font-weight: bold;
+    font-size: 1.2em !important;
+    background-color: #B08EAD !important;
+    padding: 0.25rem 1rem !important;
+    border-radius: 25px !important;
+    margin-left: 1rem !important;
+    font-weight: bold !important;
   }
   
   .button:hover .badge,
   .button:active .badge {
-    background-color: #B08EAD;
+    background-color: #B08EAD !important;
   }
   
   .bump {
-    animation: bump 300ms ease-out;
+    animation: bump 300ms ease-out !important;
   }
   
   @keyframes bump {
     0% {
-      transform: scale(1);
+      transform: scale(1) !important;
     }
     10% {
-      transform: scale(0.9);
+      transform: scale(0.9) !important;
     }
     30% {
-      transform: scale(1.1);
+      transform: scale(1.1) !important;
     }
     50% {
-      transform: scale(1.15);
+      transform: scale(1.15) !important;
     }
     100% {
-      transform: scale(1);
+      transform: scale(1) !important;
     }
   }
   
