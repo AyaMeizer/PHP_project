@@ -1,5 +1,5 @@
-<?php require("../../database/connection.php"); ?>
-<?php require("../../database/create_db.php"); ?>
+
+<?php require('../../database/create_db.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 

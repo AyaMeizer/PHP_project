@@ -1,4 +1,5 @@
-<?php require("../../database/connection.php"); ?>
+<?php require('../../database/create_db.php');
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,6 +71,9 @@
                                 </li>
                                 <li>
                                     <a href="index.html">Categories Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="../orders/index.php">Orders Dashboard</a>
                                 </li>
                             </ul>
                         </li>

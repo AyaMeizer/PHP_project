@@ -1,5 +1,6 @@
 <?php
 
+require('../database/create_db.php');
 
 if (!isset($_SESSION)) {
     session_start();

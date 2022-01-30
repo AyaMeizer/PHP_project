@@ -1,7 +1,9 @@
 <?php
 session_start();
 ob_start();
-require("../database/connection.php");
+
+require('../database/create_db.php');
+
 if ($_SESSION['product'] != []) {
   $itemCart = $_SESSION['product'];
 } else {

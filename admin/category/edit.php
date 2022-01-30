@@ -1,6 +1,6 @@
 <?php
 ob_start();
-require("../../database/connection.php");
+require('../../database/create_db.php');
 
 ?>
 
@@ -180,6 +180,9 @@ require("../../database/connection.php");
                                 </li>
                                 <li>
                                     <a href="index.php">Categories Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="../orders/index.php">Orders Dashboard</a>
                                 </li>
                             </ul>
                         </li>

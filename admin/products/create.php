@@ -1,6 +1,6 @@
 <?php
 ob_start();
-require("../../database/connection.php");
+require('../../database/create_db.php');
 
 ?>
 

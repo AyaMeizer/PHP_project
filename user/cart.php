@@ -2,7 +2,8 @@
 if (!isset($_SESSION)) {
   session_start();
 }
-include "../database/connection.php";
+require('../database/create_db.php');
+
 
 $itemCart = $_SESSION['product'];
 // echo "<pre >";

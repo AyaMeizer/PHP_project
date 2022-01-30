@@ -7,7 +7,9 @@ session_start();
 ob_start();
 // session_unset();
 // session_destroy();
-include "../database/connection.php";
+
+require('../database/create_db.php');
+
 
 if (isset($_GET['id'])) {
     $sql = "SELECT * FROM products WHERE id='{$_GET['id']}' ";
