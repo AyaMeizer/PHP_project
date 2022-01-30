@@ -330,7 +330,7 @@ if ($_SESSION['product'] != []) {
           $y = 0;
         }
 
-        $sql = "INSERT INTO `checkout` (`total_price`,`address`,`user_id`,`coupon_discount`) VALUES ('$finleTotal','$address',$userId,0)";
+        $sql = "INSERT INTO `checkout` (`total_price`,`address`,`user_id`,`coupon_discount`) VALUES ('$finleTotal','$address',$userId,$y)";
         $conn->exec($sql);
         // unset($_SESSION['product']);
         $_SESSION['discount'] = [];
