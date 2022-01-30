@@ -1,10 +1,8 @@
-<!-- <?php 
-include "../database/connection.php" ;
-$edit = "SELECT * FROM users";
-$data = $conn->query($edit);
- $result = $data->fetch(PDO::FETCH_ASSOC);
-?>
-
+<?php
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} ?>
 <!doctype html>
 <html lang="zxx">
 
@@ -53,7 +51,7 @@ $data = $conn->query($edit);
                                     <a class="nav-link" href="index.php">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.html">about</a>
+                                    <a class="nav-link" href="about.php">about</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_1"
@@ -62,7 +60,7 @@ $data = $conn->query($edit);
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
                                         <a class="dropdown-item" href="product_list.php"> product list</a>
-                                        <a class="dropdown-item" href="single-product.php?id=1">product details</a>
+                                        <a class="dropdown-item" href="single-product.php?id=5">product details</a>
                                         
                                     </div>
                                 </li>
@@ -99,28 +97,18 @@ $data = $conn->query($edit);
                                 </li>
                             </ul>
                         </div>
-                        <div class="hearer_icon d-flex align-items-center">
-                            <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <a href="cart.php">
-                                <i class="flaticon-shopping-cart-black-shape"></i>
-                            </a>
-                            <!-- <div class="dropdown cart">
-                                <a class="dropdown-toggle" href="cart" id="navbarDropdown3" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="flaticon-shopping-cart-black-shape"></i>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <div class="single_product">
-    
-                                    </div>
-                                </div>
-                            </div> -->
-                        </div>
+                       
+                        <?php
+                       
+                       require 'cartIcon.php';
+                       ?>
+
+
                     </nav>
                 </div>
             </div>
         </div>
-    
+     
     </header>
     <!-- Header part end-->
 
@@ -130,7 +118,7 @@ $data = $conn->query($edit);
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
-                        <h2>Your Profile</h2>
+                        <h2>confirmation</h2>
                     </div>
                 </div>
             </div>
@@ -138,76 +126,126 @@ $data = $conn->query($edit);
     </section>
     <!-- breadcrumb part end-->
 
-  
-
-
+  <!--================ confirmation part start =================-->
+  <section class="confirmation_part section_padding">
+    <div class="container">
       <div class="row">
-        <div class="col-12">
-
+        <div class="col-lg-12">
+          <div class="confirmation_tittle">
+            <span>Thank you. Your order has been received.</span>
+          </div>
         </div>
-
-    
-                                      
-                                            
-
-        <div class="col-lg-8" style='margin-left: 280px;
-             display: flex;
-             align-items: center;
-             flex-direction: column'>
-          <form class="form-contact contact_form" action="<?php echo $_SERVER["PHP_SELF"]?>" method="POST" id="contactForm">
-            <div class="row">
-              <div class="col-12">
-                <div class="form-group">
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <input class="form-control" name="username" id="name" type="text" value="<?php  echo $result['username'] ?>" placeholder='Name'>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <input class="form-control" name="email" id="" type="text" placeholder='Email' value="<?php echo $result['email'] ?>" readonly></div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                  <input class="form-control" name="password" id="" type="text" value="<?php echo $result['password'] ?>" placeholder='Password'>
-                </div>
-            
-                <div class="form-group">
-                  <input class="form-control" name="phone" id="" type="number" value="<?php echo $result['phone'] ?>" placeholder='Phone'>
-                </div>
-              </div>
-            </div>
-            <div class="form-group mt-3">
-              <input type="submit" class="btn_3 button-contactForm" name="update">
-            </div>
-          </form>
-          
-          <?php 
-                      
-
-          if($_SERVER['REQUEST_METHOD']=="POST"){
-              $userName = $_POST['username'];
-              $password = $_POST['password'];
-              $phone = $_POST['phone'];
-              $sql = "UPDATE users SET username='$userName', password='$password', phone='$phone'";
-              $conn->exec($sql);   
-              echo "<script>window.location.href='http://localhost/PHP-project/PHP_project/user/userProfile.php'</script>";
-          }
-      
-          ?>
-          
+        <div class="col-lg-6 col-lx-4">
+          <div class="single_confirmation_details">
+            <h4>order info</h4>
+            <ul>
+              <li>
+                <p>order number</p><span>: 60235</span>
+              </li>
+              <li>
+                <p>data</p><span>: Oct 03, 2017</span>
+              </li>
+              <li>
+                <p>total</p><span>: USD 2210</span>
+              </li>
+              <li>
+                <p>mayment methord</p><span>: Check payments</span>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="col-lg-4">
-          
+        <div class="col-lg-6 col-lx-4">
+          <div class="single_confirmation_details">
+            <h4>Billing Address</h4>
+            <ul>
+              <li>
+                <p>Street</p><span>: 56/8</span>
+              </li>
+              <li>
+                <p>city</p><span>: Los Angeles</span>
+              </li>
+              <li>
+                <p>country</p><span>: United States</span>
+              </li>
+              <li>
+                <p>postcode</p><span>: 36952</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-6 col-lx-4">
+          <div class="single_confirmation_details">
+            <h4>shipping Address</h4>
+            <ul>
+              <li>
+                <p>Street</p><span>: 56/8</span>
+              </li>
+              <li>
+                <p>city</p><span>: Los Angeles</span>
+              </li>
+              <li>
+                <p>country</p><span>: United States</span>
+              </li>
+              <li>
+                <p>postcode</p><span>: 36952</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="order_details_iner">
+            <h3>Order Details</h3>
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col" colspan="2">Product</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th colspan="2"><span>Pixelstore fresh Blackberry</span></th>
+                  <th>x02</th>
+                  <th> <span>$720.00</span></th>
+                </tr>
+                <tr>
+                  <th colspan="2"><span>Pixelstore fresh Blackberry</span></th>
+                  <th>x02</th>
+                  <th> <span>$720.00</span></th>
+                </tr>
+                <tr>
+                  <th colspan="2"><span>Pixelstore fresh Blackberry</span></th>
+                  <th>x02</th>
+                  <th> <span>$720.00</span></th>
+                </tr>
+                <tr>
+                  <th colspan="3">Subtotal</th>
+                  <th> <span>$2160.00</span></th>
+                </tr>
+                <tr>
+                  <th colspan="3">shipping</th>
+                  <th><span>flat rate: $50.00</span></th>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th scope="col" colspan="3">Quantity</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-  <!-- ================ contact section end ================= -->
+  <!--================ confirmation part end =================-->
 
-  <!--::footer_part start::-->
-  <footer class="footer_part">
+    <!--::footer_part start::-->
+    <footer class="footer_part">
         <div class="footer_iner section_bg">
             <div class="container">
                 <div class="row justify-content-between align-items-center">
@@ -258,8 +296,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </footer>
     <!--::footer_part end::-->
 
-   <!-- jquery plugins here-->
-   <script src="js/jquery-1.12.1.min.js"></script>
+    <!-- jquery plugins here-->
+    <script src="js/jquery-1.12.1.min.js"></script>
     <!-- popper js -->
     <script src="js/popper.min.js"></script>
     <!-- bootstrap js -->
@@ -279,11 +317,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/waypoints.min.js"></script>
     <script src="js/contact.js"></script>
     <script src="js/jquery.ajaxchimp.min.js"></script>
-    <!-- <script src="js/jquery.form.js"></script> -->
-    <script src="js/jquery.validate.min.js"></script> 
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
     <script src="js/mail-script.js"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
 </body>
 
-</html> -->
+</html>

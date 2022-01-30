@@ -1,3 +1,8 @@
+<?php
+session_start();
+// session_unset();
+// session_destroy();
+?>
 <!doctype html>
 <html lang="zxx">
 
@@ -47,7 +52,7 @@
                                     <a class="nav-link" href="index.php">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.html">about</a>
+                                    <a class="nav-link" href="about.php">about</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_1"
@@ -56,7 +61,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
                                         <a class="dropdown-item" href="product_list.php"> product list</a>
-                                        <a class="dropdown-item" href="single-product.php">product details</a>
+                                        <a class="dropdown-item" href="single-product.php?id=1">product details</a>
                                         
                                     </div>
                                 </li>
@@ -93,12 +98,10 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="hearer_icon d-flex align-items-center">
-                            <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <a href="cart.php">
-                                <i class="flaticon-shopping-cart-black-shape"></i>
-                            </a>
-                        </div>
+                    <!-- Cart Icon -->
+                        <?php
+                        // require 'cartIcon.php';
+                        ?>
                     </nav>
                 </div>
             </div>
@@ -243,7 +246,7 @@
                             </div>
                             <div class="footer_menu_item">
                                 <a href="index.php">Home</a>
-                                <a href="about.html">About</a>
+                                <a href="about.php">About</a>
                                 <a href="product_list.php">Products</a>
                                 <a href="#">Pages</a>
                                 <a href="blog.php">Blog</a>

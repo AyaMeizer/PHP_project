@@ -5,7 +5,7 @@ require("../database/connection.php");
 
 
 
-var_dump($_SESSION['loggedUser']);
+// var_dump($_SESSION['loggedUser']);
 ?>
 <!doctype html>
 <html lang="zxx">
@@ -61,7 +61,7 @@ var_dump($_SESSION['loggedUser']);
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
                                         <a class="dropdown-item" href="product_list.php"> product list</a>
-                                        <a class="dropdown-item" href="single-product.php">product details</a>
+                                        <a class="dropdown-item" href="single-product.php?id=1">product details</a>
 
                                     </div>
                                 </li>
@@ -96,12 +96,12 @@ var_dump($_SESSION['loggedUser']);
                                 </li>
                             </ul>
                         </div>
-                        <div class="hearer_icon d-flex align-items-center">
+                        <!-- <div class="hearer_icon d-flex align-items-center">
                             <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
                             <a href="cart.php">
                                 <i class="flaticon-shopping-cart-black-shape"></i>
                             </a>
-                        </div>
+                        </div> -->
                     </nav>
                 </div>
             </div>

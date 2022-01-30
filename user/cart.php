@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+  session_start();
+}
 include "../database/connection.php";
 
 $itemCart = $_SESSION['product'];
@@ -33,7 +35,7 @@ $itemCart = $_SESSION['product'];
   <link rel="stylesheet" href="css/nice-select.css">
   <!-- style CSS -->
   <link rel="stylesheet" href="css/style.css">
-  
+
 </head>
 
 <body>
@@ -54,7 +56,7 @@ $itemCart = $_SESSION['product'];
                   <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="about.html">about</a>
+                  <a class="nav-link" href="about.php">about</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,7 +64,7 @@ $itemCart = $_SESSION['product'];
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
                     <a class="dropdown-item" href="product_list.php"> product list</a>
-                    <a class="dropdown-item" href="single-product.php">product details</a>
+                    <a class="dropdown-item" href="single-product.php?id=3">product details</a>
 
                   </div>
                 </li>
@@ -97,32 +99,21 @@ $itemCart = $_SESSION['product'];
                 </li>
               </ul>
             </div>
-            <div class="hearer_icon d-flex align-items-center">
-              <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-              <div class="dropdown cart">
-                <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="flaticon-shopping-cart-black-shape"></i>
-                </a>
-                <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <div class="single_product">
-    
-                                    </div>
-                                </div> -->
-              </div>
-            </div>
+
+
+            <?php
+
+            require 'cartIcon.php';
+            ?>
+
+
+
+
           </nav>
         </div>
       </div>
     </div>
-    <div class="search_input" id="search_input_box">
-      <div class="container ">
-        <form class="d-flex justify-content-between search-inner">
-          <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-          <button type="submit" class="btn"></button>
-          <span class="ti-close" id="close_search" title="Close Search"></span>
-        </form>
-      </div>
-    </div>
+
   </header>
   <!-- Header part end-->
 
@@ -160,8 +151,8 @@ $itemCart = $_SESSION['product'];
 
 
               <?php
-                $total=0;
-                foreach ($itemCart as $i){
+              $total = 0;
+              foreach ($itemCart as $i) {
 
               ?>
                 <tr>
@@ -177,43 +168,50 @@ $itemCart = $_SESSION['product'];
                   </td>
                   <td>
                     <h5><?php
-                        if($i['on_sales']==0 ){
-                          $pri=$i['product_price'];  
-                         echo $pri;    
-                        }else if($i['on_sales']==1) {
-                          $pri=(1-($i['sales_percentage'])/100)*$i['product_price'];
-                        echo $pri;
-                        }?>$</h5>
+                        if ($i['on_sales'] == 0) {
+                          $pri = $i['product_price'];
+                          echo $pri;
+                        } else if ($i['on_sales'] == 1) {
+                          $pri = (1 - ($i['sales_percentage']) / 100) * $i['product_price'];
+                          echo $pri;
+                        } ?>$</h5>
                   </td>
                   <td>
                     <div class="product_count">
                       <form method="POST">
-                        <span class="input-number"><a href="./decrement.php?id=<?php  echo $i['id']?>">  <i class="ti-minus"></i></a></span>
-                        <input neme="total" class="input-number" type="text" value="<?php echo $i['0']; ?>" min="0" max="10">
-                        <span class="input-number"><a href="./increment.php?id=<?php  echo $i['id']?>"> <i class="ti-plus"></i></a></span>
+                        <span class="input-number"><a href="./decrement.php?id=<?php echo $i['id'] ?>"> <i class="ti-minus"></i></a></span>
+                        <input style="width: 70px;" neme="total" class="input-number" type="text" value="<?php echo $i['0']; ?>" min="0" max="10">
+                        <span class="input-number"><a href="./increment.php?id=<?php echo $i['id'] ?>"> <i class="ti-plus"></i></a></span>
                       </form>
                     </div>
                   </td>
                   <td>
                     <h5>
                       <?php
-                        echo $pri*  $i['0'];
-                        // echo "gfg";
-                       
-                        $total=$total+$pri*  $i['0'];
+                      echo $pri *  $i['0'];
+                      // echo "gfg";
+
+                      $total = $total + $pri *  $i['0'];
                       ?> $
-                      </h5>
+                    </h5>
                   </td>
                   <td>
-                    <a href="./delet.php?id=<?php  echo $i['id']?>">delete</a>
+                    <a href="./delet.php?id=<?php echo $i['id'] ?>"><button style="height: 40px;
+width: 100px;
+background-color: #9e474794;
+color: white;
+border: none;
+border-radius: 7px;
+font-size: 1.05rem;
+cursor: pointer;">Delete</button></a>
                   </td>
-                  
+
                 </tr>
 
 
               <?php } ?>
 
-<!-- 
+              <!-- 
               <tr class="bottom_button">
                 <td>
                   <a class="btn_1" href="#">Update Cart</a>
@@ -233,13 +231,13 @@ $itemCart = $_SESSION['product'];
                   <h5>Subtotal</h5>
                 </td>
                 <td>
-                  <h5><?php echo $total; ?></h5>
+                  <h5><?php echo $total; ?> $ </h5>
                 </td>
               </tr>
               <!-- <tr class="shipping_area">
                 <td></td>
                 <td></td> -->
-                <!-- <td>
+              <!-- <td>
                   <h5>Shipping</h5>
                 </td>
                 
@@ -304,7 +302,7 @@ $itemCart = $_SESSION['product'];
               </div>
               <div class="footer_menu_item">
                 <a href="index.php">Home</a>
-                <a href="about.html">About</a>
+                <a href="about.php">About</a>
                 <a href="product_list.php">Products</a>
                 <a href="#">Pages</a>
                 <a href="blog.php">Blog</a>

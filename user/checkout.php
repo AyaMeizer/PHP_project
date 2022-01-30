@@ -73,7 +73,7 @@ if ($_SESSION['product'] != []) {
                   <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="about.html">about</a>
+                  <a class="nav-link" href="about.php">about</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -81,7 +81,7 @@ if ($_SESSION['product'] != []) {
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
                     <a class="dropdown-item" href="product_list.php"> product list</a>
-                    <a class="dropdown-item" href="single-product.php">product details</a>
+                    <a class="dropdown-item" href="single-product.php?id=4">product details</a>
 
                   </div>
                 </li>
@@ -116,22 +116,16 @@ if ($_SESSION['product'] != []) {
                 </li>
               </ul>
             </div>
-            <div class="hearer_icon d-flex align-items-center">
+        
+
+  <!-- Cart Icon -->
+  <?php
+                       
+                       require 'cartIcon.php';
+                       ?>
 
 
-              <a href="cart.php">
-                <button class="button">
-                  <span class="icon">
-                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'>
-                      <path d='M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z' />
-                    </svg>
-                  </span>
-                  <span>Your Cart</span>
-                  <span class="badge"><?php echo count($_SESSION['product']) ?></span>
-                </button>
 
-              </a>
-            </div>
           </nav>
         </div>
       </div>
@@ -381,7 +375,7 @@ if ($_SESSION['product'] != []) {
               </div>
               <div class="footer_menu_item">
                 <a href="index.php">Home</a>
-                <a href="about.html">About</a>
+                <a href="about.php">About</a>
                 <a href="product_list.php">Products</a>
                 <a href="#">Pages</a>
                 <a href="blog.php">Blog</a>
