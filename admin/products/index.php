@@ -1,5 +1,5 @@
 <?php require("../../database/connection.php"); ?>
-
+<?php require("../../database/create_db.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -283,7 +283,9 @@
 
                                             ?>
 
-
+                                            <form method='post' action='index.php'>
+                                                <input type="submit" name="reset" value="Reset">
+                                            </form>
                                         </tbody>
                                     </table>
                                 </div>
@@ -294,6 +296,13 @@
                 </div>
             </div>
         </div>
+                                            <?php
+                                            if(isset($_POST['reset'])){
+                                                $sql = $conn->prepare("DROP TABLE products");                                                ;
+                                                $conn->exec($sql);
+                                            }
+                                            
+                                            ?>
     </div>
 
     </div>
