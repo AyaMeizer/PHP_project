@@ -5,7 +5,7 @@ if(!isset($_SESSION))
 { 
     session_start(); 
 } 
-$pdo = require('../database/connection.php');
+// $pdo = require('../database/connection.php');
 require('../database/create_db.php');
 ?>
 

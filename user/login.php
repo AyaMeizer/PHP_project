@@ -1,7 +1,8 @@
 <?php
 session_start();
 ob_start();
-require("../database/connection.php");
+require('../database/create_db.php');
+
 
 
 

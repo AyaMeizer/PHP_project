@@ -1,6 +1,8 @@
 <?php
 session_start();
-include "../database/connection.php";
+
+require('../database/create_db.php');
+
 ?>
 <!doctype html>
 <html lang="zxx">

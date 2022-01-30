@@ -1,5 +1,7 @@
 <?php
 session_start();
+require('../database/create_db.php');
+
 // session_unset();
 // session_destroy();
 ?>

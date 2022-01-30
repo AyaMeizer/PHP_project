@@ -1,5 +1,7 @@
 <!-- <?php
-        include "../database/connection.php";
+     
+require('../database/create_db.php');
+
         $edit = "SELECT * FROM users";
         $data = $conn->query($edit);
         $result = $data->fetch(PDO::FETCH_ASSOC);

@@ -1,5 +1,7 @@
 <?php
 session_start();
+require('../database/create_db.php');
+
 // echo "<pre >";
     // var_dump($_SESSION['product']);
 if (isset($_GET['id'])) {

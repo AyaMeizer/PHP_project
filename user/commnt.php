@@ -1,6 +1,7 @@
 <?php
 // session_start();
-include "../database/connection.php";
+require('../database/create_db.php');
+
 // echo ($_SESSION['loggedUser'][1]);
 ?>
 <!doctype html>
