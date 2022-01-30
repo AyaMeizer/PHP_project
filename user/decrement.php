@@ -14,8 +14,8 @@ if (isset($_GET['id'])) {
         // $_SESSION['product'][$_GET['id']][] = $counter ;
   
     $getId=$_GET['id'];
-    echo "<pre >";
-    var_dump($_SESSION['product']);
+    // echo "<pre >";
+    // var_dump($_SESSION['product']);
   
     for ($i=0; $i< count($_SESSION['product']);$i++ ){
  
