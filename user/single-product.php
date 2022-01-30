@@ -80,8 +80,7 @@ require('../database/create_db.php');
                                         </a>
                                         <a class="dropdown-item" href="checkout.php">product checkout</a>
                                         <a class="dropdown-item" href="cart.php">shopping cart</a>
-                                        <a class="dropdown-item" href="confirmation.php">confirmation</a>
-                                        <a class="dropdown-item" href="elements.php">elements</a>
+                                   
                                     </div>
                                 </li>
 
@@ -95,9 +94,6 @@ require('../database/create_db.php');
                                     </div>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.php">Contact</a>
-                                </li>
                             </ul>
                         </div>
                      
@@ -152,25 +148,26 @@ require('../database/create_db.php');
                     <div class="single_product_text text-center">
                         <h3><?php echo $result['product_name']; ?></h3>
                         <p>
-                            <?php echo $result['product_desc']; ?>
+                            <?php echo $result['product_desc']; ?> 
                         </p>
                         <p>
                             <?php
 
                             if ($result['on_sales'] == 0) {
-                                // echo "<del>";
-                                echo $result['product_price'];
-                                //  echo "</del>";
+                                echo "<h3>" ;
+                                echo $result['product_price']  ;
+                                 echo" $ ". "</h3>" ;
 
                                 // echo $result['product_price'];
                             } else if ($result['on_sales'] == 1) {
-
-                                echo "<del>";
-                                echo $result['product_price'];
-                                echo "</del><br>";
-                                echo (1 - ($result['sales_percentage']) / 100) * $result['product_price'];
+                                echo "<h3>";
+                                echo "  Sale From  "."<del>";
+                                echo $result['product_price'] ;
+                                echo " $" ."</del>" ." to " ;
+                                echo (1 - ($result['sales_percentage']) / 100) * $result['product_price'] . " $";
+                                echo "</h3>";
                             }
-                            ?>
+                            ?> 
                         </p>
                         <div class="card_area">
                             <!-- <div class="product_count_area">
@@ -180,7 +177,7 @@ require('../database/create_db.php');
                         <input class="product_count_item input-number" type="text" value="1" min="0" max="10">
                         <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
                     </div>
-                    <p>From <?php echo $result['product_price']  ?>$</p>
+                    <p>From <?php echo $result['product_price']  ?>$ </p>
                 </div> -->
                             <div class="add_to_cart">
                                 <a href="./addToCart.php?id=<?php echo $result['id']; ?>" class="btn_3">add to cart</a>

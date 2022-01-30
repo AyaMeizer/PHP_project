@@ -98,8 +98,7 @@ if ($_SESSION['product'] != []) {
                     </a>
                     <a class="dropdown-item" href="checkout.php">product checkout</a>
                     <a class="dropdown-item" href="cart.php">shopping cart</a>
-                    <a class="dropdown-item" href="confirmation.php">confirmation</a>
-                    <a class="dropdown-item" href="elements.php">elements</a>
+               
                   </div>
                 </li>
 
@@ -113,9 +112,6 @@ if ($_SESSION['product'] != []) {
                   </div>
                 </li>
 
-                <li class="nav-item">
-                  <a class="nav-link" href="contact.php">Contact</a>
-                </li>
               </ul>
             </div>
         
@@ -336,6 +332,7 @@ if ($_SESSION['product'] != []) {
         $conn->exec($sql);
         // unset($_SESSION['product']);
         $_SESSION['discount'] = [];
+        echo "<script>alert('Payment Completed , Thank You')</script>";
       }
     }
     // echo" <pre>";var_dump($product['id']);

@@ -74,8 +74,7 @@ require('../database/create_db.php');
                                         </a>
                                         <a class="dropdown-item" href="checkout.php">product checkout</a>
                                         <a class="dropdown-item" href="cart.php">shopping cart</a>
-                                        <a class="dropdown-item" href="confirmation.php">confirmation</a>
-                                        <a class="dropdown-item" href="elements.php">elements</a>
+                                     
                                     </div>
                                 </li>
 
@@ -89,9 +88,6 @@ require('../database/create_db.php');
                                     </div>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.php">Contact</a>
-                                </li>
                             </ul>
                         </div>
                         <!-- <div class="hearer_icon d-flex align-items-center">
@@ -223,9 +219,7 @@ require('../database/create_db.php');
 
 
                         </div>
-                        <div class="load_more_btn text-center">
-                            <a href="#" class="btn_3">Load More</a>
-                        </div>
+                       
                     </div>
                 </div>
             </div>

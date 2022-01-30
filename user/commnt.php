@@ -1,8 +1,11 @@
 <?php
-// session_start();
 require('../database/create_db.php');
 
-// echo ($_SESSION['loggedUser'][1]);
+if (!isset($_SESSION)) {
+    session_start();
+}
+ob_start();
+
 ?>
 <!doctype html>
 <html lang="zxx">
@@ -42,69 +45,64 @@ require('../database/create_db.php');
     <div class="comment">
         <div class="comment-form">
             <h4>Leave a Comment</h4>
-            <form class="form-contact comment_form" id="commentForm" method="POST">
+            <form action="addComment.php" class="form-contact comment_form" id="commentForm" method="POST">
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <textarea class="form-control w-100" name="message" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
+                            <textarea class="form-control w-100" name="message" id="comment" cols="30" rows="9" placeholder="Write Comment" required></textarea>
                         </div>
                     </div>
 
 
                 </div>
+                <input name="commmenttt" type="hidden" value="<?php echo $_GET['id'] ?>" />
+
+
+
                 <div class="form-group mt-3">
-                    <input type="submit" name="submit" value="Send Comment" class="btn_3 button-contactForm" />
+                    <input type="submit" name="submitq" value="Send Comment" class="btn_3 button-contactForm" />
 
                 </div>
+
             </form>
-            <?php
-            // if ($_SESSION['product'] == []) {
-            if (isset($_POST['submit'])) {
-                $message = $_POST['message'];
-                $idproduct = $_GET['id'];
-                $iduser = $_SESSION['loggedUser'][1];
-                $data = "INSERT INTO `comments` ( `comment_desc`, `user_id`, `product_id`) VALUES ('$message',$iduser,$idproduct)";
-                $conn->exec($data);
-            }
-            //  else {
-            // echo '<script type="text/javascript">alert("is not loggin")</script>';
-            // }
-            // }
 
-
-            ?>
         </div>
 
 
 
+    </div>
+    <!-- <h4>05 Comments</h4> -->
+
+    <div class="comment">
         <div>
-            <!-- <h4>05 Comments</h4> -->
-
             <div>
+
                 <div>
-                    <div>
 
-                        <div>
-                            <p class=>
-                                <?php
+                    <?php
+                    if (isset($_GET['id'])) {
 
-                                $id = $_GET['id'];
 
-                                $data = $conn->prepare("SELECT comments.comment_desc,comments.user_id,
+                        $id = $_GET['id'];
+
+                        $data = $conn->prepare("SELECT comments.comment_desc,comments.user_id,
                                 comments.product_id,products.id,users.username,users.id
                                 from comments  Join products on products.id = comments.product_id join users on users.id=comments.user_id
                                 WHERE comments.product_id=$id");
 
 
-                                $data->execute();
-                                $result = $data->fetch(PDO::FETCH_ASSOC);
+                        $data->execute();
+                        $result = $data->fetchAll(PDO::FETCH_ASSOC);
+                    }
 
+                    ?>
 
+                    <?php
+                 
+                        foreach ($result as $element) { ?>
 
-                                foreach ($data as $element) {
+                            <p>
 
-
-                                ?>
                             <div class="review_item">
                                 <div class="media">
                                     <div class='media-body'>
@@ -115,18 +113,22 @@ require('../database/create_db.php');
 
 
                             </div>
-                        <?php   } ?>
+                    <?php }
+                   ?>
 
 
-                        </p>
 
-                        </div>
-                    </div>
+
+
+                    </p>
+
                 </div>
             </div>
         </div>
     </div>
-    </div>
+
+    <!-- </div>
+    </div> -->
 
 
     <!--::footer_part end::-->

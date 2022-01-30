@@ -80,8 +80,7 @@ $itemCart = $_SESSION['product'];
                     </a>
                     <a class="dropdown-item" href="checkout.php">product checkout</a>
                     <a class="dropdown-item" href="cart.php">shopping cart</a>
-                    <a class="dropdown-item" href="confirmation.php">confirmation</a>
-                    <a class="dropdown-item" href="elements.php">elements</a>
+                
                   </div>
                 </li>
 
@@ -95,9 +94,6 @@ $itemCart = $_SESSION['product'];
                   </div>
                 </li>
 
-                <li class="nav-item">
-                  <a class="nav-link" href="contact.php">Contact</a>
-                </li>
               </ul>
             </div>
 
