@@ -177,6 +177,9 @@
                                 <li>
                                     <a href="./category/index.php">Categories Dashboard</a>
                                 </li>
+                                <li>
+                                    <a href="./orders/index.php">Orders Dashboard</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="has-sub">
@@ -223,7 +226,7 @@
                                                 <i class="zmdi zmdi-account-o"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>10368</h2>
+                                                <h2>10</h2>
                                                 <span>members online</span>
                                             </div>
                                         </div>
@@ -241,7 +244,7 @@
                                                 <i class="zmdi zmdi-shopping-cart"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>388,688</h2>
+                                                <h2>38</h2>
                                                 <span>items solid</span>
                                             </div>
                                         </div>
@@ -259,7 +262,7 @@
                                                 <i class="zmdi zmdi-calendar-note"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>1,086</h2>
+                                                <h2>15</h2>
                                                 <span>this week</span>
                                             </div>
                                         </div>
@@ -277,7 +280,7 @@
                                                 <i class="zmdi zmdi-money"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>$1,060,386</h2>
+                                                <h2>$100</h2>
                                                 <span>total earnings</span>
                                             </div>
                                         </div>

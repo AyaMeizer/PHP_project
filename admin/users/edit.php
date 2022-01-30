@@ -196,6 +196,9 @@ require("../../database/connection.php");
                                 <li>
                                     <a href="../category/create.php">Create Categories </a>
                                 </li>
+                                <li>
+                                    <a href="../orders/index.php">Orders Dashboard</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

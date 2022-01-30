@@ -176,6 +176,9 @@
                                 <li>
                                     <a href="../category/index.php">Categories Dashboard</a>
                                 </li>
+                                <li>
+                                    <a href="../orders/index.php">Orders Dashboard</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="has-sub">
@@ -191,6 +194,7 @@
                                 <li>
                                     <a href="../category/create.php">Create Categories </a>
                                 </li>
+                                
                             </ul>
                         </li>
 
@@ -283,9 +287,6 @@
 
                                             ?>
 
-                                            <form method='post' action='index.php'>
-                                                <input type="submit" name="reset" value="Reset">
-                                            </form>
                                         </tbody>
                                     </table>
                                 </div>
@@ -296,13 +297,7 @@
                 </div>
             </div>
         </div>
-                                            <?php
-                                            if(isset($_POST['reset'])){
-                                                $sql = $conn->prepare("DROP TABLE products");                                                ;
-                                                $conn->exec($sql);
-                                            }
-                                            
-                                            ?>
+                                           
     </div>
 
     </div>

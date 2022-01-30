@@ -71,6 +71,7 @@
                                 <li>
                                     <a href="index.html">Categories Dashboard</a>
                                 </li>
+                                
                             </ul>
                         </li>
                         <li>
@@ -175,6 +176,9 @@
                                 </li>
                                 <li>
                                     <a href="../category/index.php">Categories Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="../orders/index.php">Orders Dashboard</a>
                                 </li>
                             </ul>
                         </li>

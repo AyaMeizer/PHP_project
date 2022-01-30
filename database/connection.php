@@ -3,6 +3,9 @@ $servername = "localhost";
 $password = "";
 $db_user = "root";
 $db_name = "pillowmart";
+// $create_DataBase = "CREATE DATABASE IF NOT EXISTS $db_name";
+// $conn->exec($create_DataBase);
+
 try {
         $conn = new PDO("mysql:host=$servername;dbname=$db_name", $db_user, $password);
         // set the PDO error mode to exception
@@ -11,7 +14,6 @@ try {
 } catch (PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
 }
-
 
 /////////USERS TABLE
 $create_users = "CREATE TABLE IF NOT EXISTS `users` (

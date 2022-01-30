@@ -170,13 +170,16 @@ require("../../database/connection.php");
                                 <i class="fas fa-tachometer-alt"></i>Admin Dashboards</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="index.php">Users Dashboard</a>
+                                    <a href="../users/index.php">Users Dashboard</a>
                                 </li>
                                 <li>
                                     <a href="../products/index.php">Products Dashboard</a>
                                 </li>
                                 <li>
                                     <a href="../category/index.php">Categories Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="../orders/index.php">Orders Dashboard</a>
                                 </li>
                             </ul>
                         </li>
