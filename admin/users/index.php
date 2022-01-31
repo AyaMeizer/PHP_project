@@ -271,9 +271,9 @@
 
                                                     <td>
                                                         <?php
-                                                        if ($item["is_admin"] === 1 && $item["id"] === 1) {
+                                                        if ($item["is_admin"] == 1 && $item["id"] == 1) {
                                                             continue;
-                                                        } ?>
+                                                        }?>
                                                         <div class="table-data-feature">
                                                             <a href='delete.php?id=<? $item["id"] ?>'>
 
