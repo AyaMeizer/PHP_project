@@ -248,48 +248,49 @@
                                             $data->execute();
 
                                             ?>
+
                                             <?php
                                             foreach ($data as $item) {
                                             ?>
                                                 <tr class="table-row">
-                                                    <td><?php echo $item["id"]; ?></td>
-                                                    <td><?php echo $item["username"]; ?></td>
-                                                    <td><?php echo $item["email"]; ?></td>
-                                                    <td><?php echo $item["password"]; ?></td>
-                                                    <td><?php echo $item["phone"]; ?></td>
-                                                    <td><?php
-                                                        if ($item["is_admin"] == 1 && $item["id"] == 1) {
-                                                            echo "Super Admin";
-                                                        }
-                                                        if ($item["is_admin"] == 0) {
-                                                            echo 'User';
-                                                        }
-                                                        if ($item["is_admin"] == 1 && $item["id"] != 1) {
-                                                            echo "Admin";
-                                                        }
-                                                        ?></td>
-
-                                                    <td>
-                                                        <?php
-                                                        if ($item["is_admin"] == 1 && $item["id"] == 1) {
-                                                            continue;
-                                                        }?>
-                                                        <div class="table-data-feature">
-                                                            <a href='delete.php?id=<? $item["id"] ?>'>
-
-                                                                <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                    <i class="zmdi zmdi-delete"></i>
-                                                                </button>
-                                                            </a>
-                                                            <a href='edit.php?id=<?= $item["id"] ?>'> <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                    <i class="zmdi zmdi-edit"></i>
-                                                                </button></a>
-                                                        </div>
-
-
-                                                    </td>
-                                                </tr>
                                                 <tr class="spacer"></tr>
+                                                <td><?php echo $item["id"]; ?></td>
+                                                <td><?php echo $item["username"]; ?></td>
+                                                <td><?php echo $item["email"]; ?></td>
+                                                <td><?php echo $item["password"]; ?></td>
+                                                <td><?php echo $item["phone"]; ?></td>
+                                                <td><?php
+                                                    if ($item["is_admin"] == 1 && $item["id"] == 1) {
+                                                        echo "Super Admin";
+                                                    }
+                                                    if ($item["is_admin"] == 0) {
+                                                        echo 'User';
+                                                    }
+                                                    if ($item["is_admin"] == 1 && $item["id"] != 1) {
+                                                        echo "Admin";
+                                                    }
+                                                    ?></td>
+
+                                                <td>
+                                                    <?php
+                                                    if ($item["is_admin"] == 1 && $item["id"] == 1) {
+                                                        continue;
+                                                    } ?>
+                                                    <div class="table-data-feature">
+                                                        <a href='delete.php?id=<? $item["id"] ?>'>
+
+                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                <i class="zmdi zmdi-delete"></i>
+                                                            </button>
+                                                        </a>
+                                                        <a href='edit.php?id=<?= $item["id"] ?>'> <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                                <i class="zmdi zmdi-edit"></i>
+                                                            </button></a>
+                                                    </div>
+
+                                                </td>
+                                                </tr>
+                                                <!-- <tr class="spacer"></tr> -->
                                             <?php
                                             }
 
