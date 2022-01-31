@@ -1,5 +1,5 @@
 <?php require('../../database/create_db.php');
- ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +72,7 @@
                                 <li>
                                     <a href="index.html">Categories Dashboard</a>
                                 </li>
-                                
+
                             </ul>
                         </li>
                         <li>
@@ -257,20 +257,27 @@
                                                     <td><?php echo $item["email"]; ?></td>
                                                     <td><?php echo $item["password"]; ?></td>
                                                     <td><?php echo $item["phone"]; ?></td>
-                                                    <td><?php 
-                                                    if($item["is_admin"]==1&&$item["id"]==1){echo "Super Admin";} 
-                                                    if($item["is_admin"]==0){echo 'User';} 
-                                                    if($item["is_admin"]==1&&$item["id"]!=1){echo "Admin";} 
-                                                    ?></td>
+                                                    <td><?php
+                                                        if ($item["is_admin"] == 1 && $item["id"] == 1) {
+                                                            echo "Super Admin";
+                                                        }
+                                                        if ($item["is_admin"] == 0) {
+                                                            echo 'User';
+                                                        }
+                                                        if ($item["is_admin"] == 1 && $item["id"] != 1) {
+                                                            echo "Admin";
+                                                        }
+                                                        ?></td>
 
                                                     <td>
                                                         <?php
-                                                    if($item["is_admin"]==1&&$item["id"]==1){
-                                                    continue;}?>
+                                                        if ($item["is_admin"] === 1 && $item["id"] === 1) {
+                                                            continue;
+                                                        } ?>
                                                         <div class="table-data-feature">
-                                                            <a href='delete.php?id=<?$item["id"] ?>'>
-                                                                
-                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                            <a href='delete.php?id=<? $item["id"] ?>'>
+
+                                                                <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                                     <i class="zmdi zmdi-delete"></i>
                                                                 </button>
                                                             </a>
