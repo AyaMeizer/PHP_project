@@ -43,85 +43,9 @@ require('../database/create_db.php');
 
 <body>
     <!--::header part start::-->
-    <header class="main_menu home_menu">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-lg-12">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.php"> <img src="img/logo.png" alt="logo"> </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="menu_icon"><i class="fas fa-bars"></i></span>
-                        </button>
-
-                        <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index.php">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="about.html">about</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        product
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="product_list.php"> product list</a>
-                                        <a class="dropdown-item" href="single-product.php?id=1">product details</a>
-
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        pages
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="login.php">
-                                            login
-
-                                        </a>
-                                        <a class="dropdown-item" href="checkout.php">product checkout</a>
-                                        <a class="dropdown-item" href="cart.php">shopping cart</a>
-                                      
-                                    </div>
-                                </li>
-
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        blog
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="blog.php"> blog</a>
-                                        <a class="dropdown-item" href="single-blog.php">Single blog</a>
-                                    </div>
-                                </li>
-
-                            
-                            </ul>
-                        </div>
-                        <div class="hearer_icon d-flex align-items-center">
-                            <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <a href="cart.php">
-                                <i class="flaticon-shopping-cart-black-shape"></i>
-                            </a>
-                            <!-- <div class="dropdown cart">
-                                <a class="dropdown-toggle" href="cart" id="navbarDropdown3" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="flaticon-shopping-cart-black-shape"></i>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <div class="single_product">
-    
-                                    </div>
-                                </div>
-                            </div> -->
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-
-    </header>
+    <?php
+        include 'nav.php';
+    ?>
     <!-- Header part end-->
 
     <!-- breadcrumb part start-->
@@ -168,7 +92,7 @@ require('../database/create_db.php');
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input class="form-control" name="email" id="" type="text" placeholder='Email' value="<?php echo $result['email'] ?>" >
+                        <input class="form-control" name="email" id="" type="text" placeholder='Email' value="<?php echo $result['email'] ?>" readonly>
                         </div>
                     </div>
                     <div class="col-12">
@@ -186,10 +110,12 @@ require('../database/create_db.php');
                 </div>
                 
             </form>
+
             <div class="form-group mt-3">
-                <?php 
-                include "logout.php";
-                ?>
+            <form method="GET" class="form-group mt-3" action="logout.php">
+            <input type="submit" class="btn_3 button-contactForm" name="logOut" value="LogOut" style='margin: auto;
+            color:#b69abb;'>
+            </form>
             </div>
 
             <?php
@@ -226,9 +152,9 @@ require('../database/create_db.php');
                     <div class="col-lg-12">
                         <div class="order_details_iner">
 
-                            <h3 style='margin:5%  40%;
+                            <!-- <h3 style='margin:5%  40%;
            
-             flex-direction: column'>Order Details</h3>
+             flex-direction: column'>Order Details</h3> -->
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
@@ -336,14 +262,14 @@ require('../database/create_db.php');
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <!-- <div class="col-lg-4">
                         <div class="social_icon">
                             <a href="#"><i class="fab fa-facebook-f"></i></a>
                             <a href="#"><i class="fab fa-instagram"></i></a>
                             <a href="#"><i class="fab fa-google-plus-g"></i></a>
                             <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
