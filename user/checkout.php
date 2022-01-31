@@ -98,7 +98,7 @@ if ($_SESSION['product'] != []) {
                     </a>
                     <a class="dropdown-item" href="checkout.php">product checkout</a>
                     <a class="dropdown-item" href="cart.php">shopping cart</a>
-               
+
                   </div>
                 </li>
 
@@ -114,13 +114,13 @@ if ($_SESSION['product'] != []) {
 
               </ul>
             </div>
-        
 
-  <!-- Cart Icon -->
-  <?php
-                       
-                       require 'cartIcon.php';
-                       ?>
+
+            <!-- Cart Icon -->
+            <?php
+
+            require 'cartIcon.php';
+            ?>
 
 
 
@@ -311,50 +311,55 @@ if ($_SESSION['product'] != []) {
   // print_r($_SESSION['discount']);
   // unset($_SESSION['loggedUser']);
   // $_SESSION['loggedUser'] = [];  // 
+
+
+  // echo "<pre>";
+  // var_dump($_SESSION['product']);
+  // echo "</pre>";
+
+
   if (isset($_POST['checkout'])) {
-    if ($_SESSION['loggedUser'] == []) {
 
-      echo "<script>alert('Please Login')</script>";
-    } else {
-      $userId = $_SESSION['loggedUser'][1];
-      $address = $_POST['address'];
 
-      // echo $per;
-      if ($finleTotal !== 0) {
+  if ($_SESSION['loggedUser'] == []) {
 
-        if ($_SESSION['discount'] != []) {
-          $y = $_SESSION['discount'][0];
-        } else {
-          $y = 0;
-        }
+    echo "<script>alert('Please Login')</script>";
+  } else {
+    $userId = $_SESSION['loggedUser'][1];
+    $address = $_POST['address'];
 
-        $sql = "INSERT INTO `checkout` (`total_price`,`address`,`user_id`,`coupon_discount`) VALUES ('$finleTotal','$address',$userId,$y)";
-        $conn->exec($sql);
-        // unset($_SESSION['product']);
-        $_SESSION['discount'] = [];
-        echo "<script>alert('Payment Completed , Thank You')</script>";
+    // echo $per;
+    if ($finleTotal !== 0) {
+
+      if ($_SESSION['discount'] != []) {
+        $y = $_SESSION['discount'][0];
+      } else {
+        $y = 0;
       }
+
+      $sql = "INSERT INTO `checkout` (`total_price`,`address`,`user_id`,`coupon_discount`) VALUES ('$finleTotal','$address',$userId,$y)";
+      $conn->exec($sql);
+      $last_id = $conn->lastInsertId();
+      // unset($_SESSION['product']);
+      $_SESSION['discount'] = [];
+      // echo "<script>alert('Payment Completed , Thank You')</script>";
     }
-    // echo" <pre>";var_dump($product['id']);
-    $i=0;
-    foreach ($_SESSION['product'] as $product) {
-      $userId = $_SESSION['loggedUser'][1];
-      $data = $conn->prepare("SELECT * from checkout WHERE id = $product[id]");
-      $data->execute();
-      $data2 = $conn->prepare("SELECT id from checkout WHERE user_id = $userId");
-      $result = $data->fetchAll();
-      $data2->execute();
-      $result2 = $data2->fetchAll();
-      $x=$result2[$i]['id'];
-      $i+=1;
-      $sql2 = "INSERT INTO `checkout_products` (`quantity`,`product_id`,`checkout_id`) VALUES ($product[0],$product[id],$x)";
-      $conn->exec($sql2);
-      // echo "<pre>";
-      // var_dump($result2);
-      
-    }
-    $_SESSION['product'] = [];
-    header("Location:checkout.php");
+  }
+  foreach ($_SESSION['product'] as $product) {
+    $userId = $_SESSION['loggedUser'][1];
+    $sql2 = "INSERT INTO checkout_products (quantity,product_id,checkout_id) VALUES ('$product[0]','$product[id]',$last_id)";
+    $conn->exec($sql2);
+  
+  }
+
+  $_SESSION['product'] = [];
+  // header("Location:checkout.php");
+  echo "<script>
+    alert('Payment Completed , Thank You')
+    window.location.href='./checkout.php'
+
+    </script>";
+
   }
 
 
