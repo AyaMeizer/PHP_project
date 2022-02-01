@@ -229,14 +229,6 @@ WHERE checkout.id=checkout_products.checkout_id");
             $ryahnah->execute();
             $resultR = $ryahnah->fetchAll(PDO::FETCH_ASSOC);
 
-            echo "Ahmad";
-            echo "<pre>";
-            print_r($resultR);
-            echo $resultR[0]['date'];
-            echo $resultR[0]['checkout_id'];
-
-            echo "</pre>";
-
             ?>
             <!-- MAIN CONTENT-->
             <div class="main-content">
