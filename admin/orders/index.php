@@ -158,47 +158,58 @@ require('../../database/create_db.php');
 
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
-                <a href="../index.php">
-                    <img src="../images/icon/logo.png" alt="Cool Admin" />
-                </a>
-            </div>
-            <div class="menu-sidebar__content js-scrollbar1">
+            <a href="../index.php" style='margin:15px 50px 0;'>
+                <img src="../../user/img/logo.png" alt="logo" style="width:170px;">
+            </a>
+            <div class="">
                 <nav class="navbar-sidebar">
-                    <ul class="list-unstyled navbar__list">
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Admin Dashboards</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="../users/index.php">Users Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="../products/index.php">Products Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="../category/index.php">Categories Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="../orders/index.php">Orders Dashboard</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Create Dashboards</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="../users/create.php">Create Users </a>
-                                </li>
-                                <li>
-                                    <a href="../products/create.php">Create Products</a>
-                                </li>
-                                <li>
-                                    <a href="../category/create.php">Create Categories </a>
-                                </li>
-                            </ul>
-                        </li>
+                    <!-- <ul class=""> -->
+                    <a style="color: black; margin:5px 0; margin:5px 0; font-weight:bold;" href="#">
+                        <i class="fas fa-tachometer-alt"></i>Admin Dashboards
+                    </a>
+                    <ul class="list-unstyled navbar__unstyled js-unstyled" style="list-style: none;">
+                        <a href="../users/index.php">
+                            <li style="color: black; margin:5px 0;">
+                                Users Dashboard
+                            </li>
+                        </a>
+                        <a href="../products/index.php">
+                            <li style="color: black; margin:5px 0;">
+                                Products Dashboard
+                            </li>
+                        </a>
+                        <a href="../category/index.php">
+                            <li style="color: black; margin:5px 0;">
+                                Categories Dashboard
+                            </li>
+                        </a>
+                        <a href="index.php">
+                            <li style="color: black; margin:5px 0;">
+                                Orders Dashboard
+                            </li>
+                        </a>
+                    </ul>
+                    <a class="js-arrow" style="color: black; margin:50px 0 5px 0; font-weight: bold;" href="#">
+                        <i class="fas fa-tachometer-alt"></i>Create Dashboards</a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <a href="../users/create.php">
+                            <li style="color: black; margin:5px 0;">
+                                Create Users
+
+                            </li>
+                        </a>
+                        <a href="../products/create.php">
+                            <li style="color: black; margin:5px 0;">
+                                Create Products
+                            </li>
+                        </a>
+                        <a href="../category/create.php">
+                            <li style="color: black; margin:5px 0;">
+                                Create Categories
+                            </li>
+                        </a>
+                    </ul>
+                    </li>
 
 
                     </ul>
@@ -207,7 +218,7 @@ require('../../database/create_db.php');
                 </nav>
             </div>
         </aside>
-        <!-- END MENU SIDEBAR-->
+        <!-- END MENU SIDEBAR -->
 
 
 
@@ -220,14 +231,12 @@ require('../../database/create_db.php');
         <!-- PAGE CONTAINER-->
         <div class="page-container">
             <?php
-            $ryahnah = $conn->prepare("SELECT users.id,users.username,checkout_products.quantity,checkout_products.checkout_id,checkout.total_price,products.product_name,products.product_price,checkout.date
-from checkout_products Join products on products.id = checkout_products.product_id join checkout on checkout_products.product_id=products.id join users
-on checkout.user_id=users.id
-WHERE checkout.id=checkout_products.checkout_id");
 
 
-            $ryahnah->execute();
-            $resultR = $ryahnah->fetchAll(PDO::FETCH_ASSOC);
+
+            $aya = $conn->prepare("SELECT * From checkout");
+            $aya->execute();
+            $resultA = $aya->fetchAll(PDO::FETCH_ASSOC);
 
             ?>
             <!-- MAIN CONTENT-->
@@ -242,7 +251,7 @@ WHERE checkout.id=checkout_products.checkout_id");
 
                                         <?php
 
-                                        if ($resultR == []) {
+                                        if ($resultA == []) {
                                             echo "<h1>No Orders Yet </h1>";
                                         } else {
 
@@ -251,11 +260,13 @@ WHERE checkout.id=checkout_products.checkout_id");
                                         ?>
                                             <thead>
                                                 <tr>
-                                                    <th scope="col" colspan="2">ID</th>
-                                                    <th scope="col" colspan="2">Product</th>
-                                                    <th scope="col">Quantity</th>
-                                                    <th scope="col">Total Price</th>
+                                                <th scope="col" colspan="2">Subtotal Price</th>
+                                                    <th scope="col" colspan="2">Total Price</th>
+                                                    <th scope="col" colspan="2">Coupon Discount</th>
+                                                    <th scope="col">Address</th>
+                                                    <th scope="col">Date</th>
                                                     <th scope="col">User Name</th>
+                                                    <th scope="col">Details</th>
                                                     <!-- <th scope="col" colspan="5">Total</th> -->
                                                 </tr>
                                             </thead>
@@ -265,50 +276,34 @@ WHERE checkout.id=checkout_products.checkout_id");
                                             <tr>
                                                 <?php
 
-                                                $loop = 0;
-                                                $total = 0;
+                                             
 
-                                                foreach ($resultR as $item) {
-                                                    if ($item['checkout_id'] !== $resultR[$loop]['checkout_id']) {
-                                                       
+                                                foreach ($resultA as $item) {
+                                                    // if ($item['checkout_id'] !== $resultR[$loop]['checkout_id']) {
 
                                                 ?>
-                                                        <td colspan="2"><span><?php echo $item['checkout_id'] ?></span></td>
-                                                        <td colspan="2"><span><?php echo $item['product_name'] ?></span></td>
-                                                        <td>x<?php echo $item['quantity']; ?></td>
-                                                        <td><?php echo $item['product_price'] * $item['quantity']; ?>$</td>
-                                                        <td> <span><?php echo $item['username']; ?></span></td>
-                                            <tr>
-                                                <td>
-                                                    <h5>
-                                                        <?php
-                                                        $total = $total + ($item['product_price'] * $item['quantity']);
-
-                                                        // if ($resultR[$loop]['date'] == $item['date']&&$item['checkout_id']==$resultR[$loop]['checkout_id']) {
-                                                        // if($item['checkout_id']==$resultR[$loop]['checkout_id']){
-
-
-
-                                                        // echo "Total" . " " . " " .  $total . "$";
-                                                        // }
-                                                        // }
-
-                                                        ?>
-                                                    </h5>
-                                                </td>
-                                            </tr>
+                                                    <td colspan="2"><span><?php echo $item['total_price']." $"?></span></td>
+                                                    <td colspan="2"><span><?php echo $item['coupon_discount']." $"?></span></td>
+                                                    <td colspan="2"><span><?php
+                                                    $subtotal= $item['total_price']-$item['coupon_discount'];
+                                                    echo ($subtotal)." $"?></span></td>
+                                                    <td>x<?php echo $item['address']; ?></td>
+                                                    <td><?php echo $item['date']; ?></td>
+                                                    <td> <span><?php 
+                                                    $ryahnah = $conn->prepare("SELECT * FROM users Where id=$item[user_id]");
+                                                    $ryahnah->execute();
+                                                    $resultR = $ryahnah->fetch(PDO::FETCH_ASSOC);
+                                                    echo $resultR['username']; ?></span></td>
+                                                    <td>
+                                                        <a href="details.php?id=<?php echo $item['id']?>"> view
+                                                        </a>
+                                                    </td>
                                             </tr>
                                         </tbody>
 
-                                <?php
-                                                        if ($resultR[$loop]['date'] !== $item['date']) {
-                                                            $total = 0;
-                                                        }
-                                                    }
-                                                      };
-                                                $loop++;
-
-                                ?>
+                                    <?php
+                                                };
+                                    ?>
                                     </table>
 
                                 </div>

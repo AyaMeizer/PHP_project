@@ -153,47 +153,57 @@
         <!-- END HEADER MOBILE-->
 
         <!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
-                <a href="../index.php">
-                    Pillow Mart
-                </a>
-            </div>
-            <div class="menu-sidebar__content js-scrollbar1">
+<!-- MENU SIDEBAR-->
+<aside class="menu-sidebar d-none d-lg-block">
+            <a href="../index.php" style='margin:15px 50px 0;'>
+        <img src="../../user/img/logo.png" alt="logo" style="width:170px;">
+            </a>
+            <div class="">
                 <nav class="navbar-sidebar">
-                    <ul class="list-unstyled navbar__list">
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Admin Dashboards</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="../users/index.php">Users Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="index.php">Products Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="../category/index.php">Categories Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="../orders/index.php">Orders Dashboard</a>
-                                </li>
+                    <!-- <ul class=""> -->
+                        <a style="color: black; margin:5px 0; margin:5px 0; font-weight:bold;" href="#">
+                                <i class="fas fa-tachometer-alt"></i>Admin Dashboards
+                            </a>
+                                <ul class="list-unstyled navbar__unstyled js-unstyled" style="list-style: none;">
+                            <a href="../users/index.php">
+                                <li style="color: black; margin:5px 0;">
+                                    Users Dashboard
+                                </li></a>
+                                <a  href="index.php">
+                                <li style="color: black; margin:5px 0;">
+                                        Products Dashboard
+                                    </li>
+                                </a>
+                                <a href="../category/index.php">
+                                <li style="color: black; margin:5px 0;">
+                                        Categories Dashboard
+                                    </li>
+                                </a>
+                                <a href="../orders/index.php">
+                                <li style="color: black; margin:5px 0;">
+                                        Orders Dashboard
+                                    </li>
+                                </a>
                             </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" style="color: black; margin:50px 0 5px 0; font-weight: bold;" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Create Dashboards</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="create.php">Create Users </a>
+                                <a href="../users/create.php">
+                                <li style="color: black; margin:5px 0;">
+                                        Create Users 
+                                        
+                                    </li>
+                                </a>
+                                <a href="create.php">
+                                <li style="color: black; margin:5px 0;">
+                                        Create Products
+                                    </li>
+                                </a>
+                                <a href="../category/create.php">
+                                <li style="color: black; margin:5px 0;">
+                                        Create Categories 
                                 </li>
-                                <li>
-                                    <a href="../products/create.php">Create Products</a>
-                                </li>
-                                <li>
-                                    <a href="../category/create.php">Create Categories </a>
-                                </li>
-
+                                    </a>
                             </ul>
                         </li>
 
@@ -204,7 +214,7 @@
                 </nav>
             </div>
         </aside>
-        <!-- END MENU SIDEBAR-->
+        <!-- END MENU SIDEBAR -->
 
         <!-- PAGE CONTAINER-->
         <div class="page-container">
@@ -230,7 +240,6 @@
                                     <table class="table table-data2">
                                         <thead>
                                             <tr></tr>
-                                            <th>ID</th>
                                             <th>Product Name</th>
                                             <th>Product Price </th>
                                             <th>Product Description</th>
@@ -238,7 +247,7 @@
                                             <th>Sale Percentage</th>
                                             <th>Stock</th>
                                             <th>Product Image</th>
-                                            <th>Category Id</th>
+                                            <th>Category Name</th>
 
                                             <th></th>
                                             </tr>
@@ -253,7 +262,6 @@
                                             foreach ($data as $item) {
                                             ?>
                                                 <tr class="table-row">
-                                                    <td><?php echo $item["id"]; ?></td>
                                                     <td><?php echo $item["product_name"]; ?></td>
                                                     <td><?php echo $item["product_price"]; ?></td>
                                                     <td><?php echo $item["product_desc"]; ?></td>
@@ -268,7 +276,13 @@
                                                     <td><?php echo $item["sales_percentage"] . "%"; ?></td>
                                                     <td><?php echo $item["stock"]; ?></td>
                                                     <td><img src=<?php echo $item["product_img"]; ?> /></td>
-                                                    <td><?php echo $item["cat_id"]; ?></td>
+                                                    <td><?php
+                                            $data = $conn->prepare("SELECT * FROM categories WHERE id=$item[cat_id]");
+                                            $data->execute();
+                                            foreach ($data as $e) {
+                                                echo " $e[cat_name]";
+                                            }
+                                            ?></td>
                                                     <td>
                                                         <div class="table-data-feature">
                                                             <a href='delete.php?id=<?= $item["id"] ?>'>

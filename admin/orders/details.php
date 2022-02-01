@@ -1,10 +1,8 @@
 <?php
 ob_start();
-
 require('../../database/create_db.php');
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,19 +63,16 @@ require('../../database/create_db.php');
                     <ul class="navbar-mobile__list list-unstyled">
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <i class="fas fa-tachometer-alt"></i>Admin Dashboards</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="index.html">Dashboard 1</a>
+                                    <a href="index.php">Users Dashboard</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">Dashboard 2</a>
+                                    <a href="index.html">Products Dashboard</a>
                                 </li>
                                 <li>
-                                    <a href="index3.html">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="index4.html">Dashboard 4</a>
+                                    <a href="index.html">Categories Dashboard</a>
                                 </li>
                             </ul>
                         </li>
@@ -161,62 +156,60 @@ require('../../database/create_db.php');
         </header>
         <!-- END HEADER MOBILE-->
 
-
-
-
         <!-- MENU SIDEBAR-->
- <aside class="menu-sidebar d-none d-lg-block">
+        <aside class="menu-sidebar d-none d-lg-block">
             <a href="../index.php" style='margin:15px 50px 0;'>
-        <img src="../../user/img/logo.png" alt="logo" style="width:170px;">
+                <img src="../../user/img/logo.png" alt="logo" style="width:170px;">
             </a>
             <div class="">
                 <nav class="navbar-sidebar">
                     <!-- <ul class=""> -->
-                        <a style="color: black; margin:5px 0; margin:5px 0; font-weight:bold;" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Admin Dashboards
-                            </a>
-                                <ul class="list-unstyled navbar__unstyled js-unstyled" style="list-style: none;">
-                            <a href="../users/index.php">
-                                <li style="color: black; margin:5px 0;">
-                                    Users Dashboard
-                                </li></a>
-                                <a  href="../products/index.php">
-                                <li style="color: black; margin:5px 0;">
-                                        Products Dashboard
-                                    </li>
-                                </a>
-                                <a href="/index.php">
-                                <li style="color: black; margin:5px 0;">
-                                        Categories Dashboard
-                                    </li>
-                                </a>
-                                <a href="../orders/index.php">
-                                <li style="color: black; margin:5px 0;">
-                                        Orders Dashboard
-                                    </li>
-                                </a>
-                            </ul>
-                            <a class="js-arrow" style="color: black; margin:50px 0 5px 0; font-weight: bold;" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Create Dashboards</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <a href="../users/create.php">
-                                <li style="color: black; margin:5px 0;">
-                                        Create Users 
-                                        
-                                    </li>
-                                </a>
-                                <a href="create.php">
-                                <li style="color: black; margin:5px 0;">
-                                        Create Products
-                                    </li>
-                                </a>
-                                <a href="../category/create.php">
-                                <li style="color: black; margin:5px 0;">
-                                        Create Categories 
-                                </li>
-                                    </a>
-                            </ul>
-                        </li>
+                    <a style="color: black; margin:5px 0; margin:5px 0; font-weight:bold;" href="#">
+                        <i class="fas fa-tachometer-alt"></i>Admin Dashboards
+                    </a>
+                    <ul class="list-unstyled navbar__unstyled js-unstyled" style="list-style: none;">
+                        <a href="../users/index.php">
+                            <li style="color: black; margin:5px 0;">
+                                Users Dashboard
+                            </li>
+                        </a>
+                        <a href="../products/index.php">
+                            <li style="color: black; margin:5px 0;">
+                                Products Dashboard
+                            </li>
+                        </a>
+                        <a href="../category/index.php">
+                            <li style="color: black; margin:5px 0;">
+                                Categories Dashboard
+                            </li>
+                        </a>
+                        <a href="index.php">
+                            <li style="color: black; margin:5px 0;">
+                                Orders Dashboard
+                            </li>
+                        </a>
+                    </ul>
+                    <a class="js-arrow" style="color: black; margin:50px 0 5px 0; font-weight: bold;" href="#">
+                        <i class="fas fa-tachometer-alt"></i>Create Dashboards</a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <a href="../users/create.php">
+                            <li style="color: black; margin:5px 0;">
+                                Create Users
+
+                            </li>
+                        </a>
+                        <a href="../products/create.php">
+                            <li style="color: black; margin:5px 0;">
+                                Create Products
+                            </li>
+                        </a>
+                        <a href="../category/create.php">
+                            <li style="color: black; margin:5px 0;">
+                                Create Categories
+                            </li>
+                        </a>
+                    </ul>
+                    </li>
 
 
                     </ul>
@@ -227,88 +220,115 @@ require('../../database/create_db.php');
         </aside>
         <!-- END MENU SIDEBAR -->
 
+
+
+
+
+
+
+
+
         <!-- PAGE CONTAINER-->
         <div class="page-container">
+            <?php
 
+
+            $id=$_GET['id'];
+            $aya = $conn->prepare("SELECT * From checkout_products WHERE checkout_id=$id");
+            $aya->execute();
+            $resultA = $aya->fetchAll(PDO::FETCH_ASSOC);
+
+            ?>
             <!-- MAIN CONTENT-->
-
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong>Categories</strong> Form
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="order_details_iner">
+                                    <h3>Order Details</h3>
+                                    <table class="table table-borderless">
+
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" colspan="2">Products</th>
+                                                    <th scope="col" colspan="2">Price After Sales</th>
+                                                    <th scope="col" colspan="2">Quantity</th>
+                                                    <!-- <th scope="col" colspan="5">Total</th> -->
+                                                </tr>
+                                            </thead>
+
+                                        <tbody>
+                                            <tr>
+                                                <?php
+
+                                             
+
+                                                foreach ($resultA as $item) {
+                                                    // if ($item['checkout_id'] !== $resultR[$loop]['checkout_id']) {
+
+                                                ?>
+                                                    <td colspan="2"><span><?php
+                                                     $ryahnah = $conn->prepare("SELECT * FROM products Where id=$item[product_id]");
+                                                     $ryahnah->execute();
+                                                    $resultR = $ryahnah->fetch(PDO::FETCH_ASSOC);
+                                                    echo $resultR['product_name'] ?></span></td>
+                                                    <td colspan="2"><span><?php echo ($resultR['product_price']-$resultR['product_price']*$resultR['sales_percentage']/100)." $" ?></span></td>
+                                                    <td colspan="2"><span><?php echo $item['quantity'] ?></span></td>
+                                                   
+                                                    </td>
+                                            </tr>
+                                        </tbody>
+
+                                    <?php
+                                                };
+                                    ?>
+                                    </table>
+
+                                </div>
                             </div>
-                            <div class="card-body card-block">
-                                <form method="post" class="">
-                                    <div class="form-group">
-                                        <label for="nf-email" class=" form-control-label">Category Name</label>
-                                        <input type="text" id="nf-email" name="cat_name" class="form-control" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="nf-password" class=" form-control-label">Description</label>
-                                        <input type="text" id="nf-password" name="cat_desc" class="form-control" required>
-                                    </div>
-
-                                    <div class="card-footer">
-
-                                        <input type="submit" class="btn btn-info" value="Save" name="add">
-                                    </div>
-                                </form>
-
-                                <?php
-
-                                if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['add']) {
-
-
-                                    $cat_name = $_POST['cat_name'];
-                                    $cat_desc = $_POST['cat_desc'];
-
-                                    //storing new user in database
-                                    $sql = "INSERT INTO categories (cat_name,cat_desc)
-                                    VALUES ('$cat_name','$cat_desc')";
-                                    // use exec() because no results are returned
-                                    $conn->exec($sql);
-                                    echo "New record created successfully";
-                                    header('location:index.php');
-                                }
-
-
-                                ?>
-
-
-                            </div>
-
                         </div>
-                        <!-- Jquery JS-->
-                        <script src="../vendor/jquery-3.2.1.min.js"></script>
-                        <!-- Bootstrap JS-->
-                        <script src="../vendor/bootstrap-4.1/popper.min.js"></script>
-                        <script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
-                        <!-- Vendor JS       -->
-                        <script src="../vendor/slick/slick.min.js">
-                        </script>
-                        <script src="../vendor/wow/wow.min.js"></script>
-                        <script src="../vendor/animsition/animsition.min.js"></script>
-                        <script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-                        </script>
-                        <script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
-                        <script src="../vendor/counter-up/jquery.counterup.min.js">
-                        </script>
-                        <script src="../vendor/circle-progress/circle-progress.min.js"></script>
-                        <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-                        <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
-                        <script src="../vendor/select2/select2.min.js">
-                        </script>
 
-                        <!-- Main JS-->
-                        <script src="../js/main.js"></script>
+
+
+
+
+
+
 
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="../vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="../vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="../vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="../vendor/slick/slick.min.js">
+    </script>
+    <script src="../vendor/wow/wow.min.js"></script>
+    <script src="../vendor/animsition/animsition.min.js"></script>
+    <script src="../vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="../vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="../vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="../vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="../vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="../vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="../js/main.js"></script>
+
 </body>
 
 </html>
+<!-- end document-->

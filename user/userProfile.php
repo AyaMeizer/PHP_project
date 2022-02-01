@@ -64,20 +64,26 @@
 
 
 
-
-    <div class="row">
-        <div class="col-12">
-
-        </div>
-
-
-
-
-
-        <div class="col-lg-8" style='margin-left: 280px;
+    
+    
+    
+    
+    <div class="col-lg-8" style='margin-left: 280px;
              display: flex;
              align-items: center;
              flex-direction: column'>
+                <div class="row">
+                    <div class="col-12">
+                        
+                                <div class="form-group mt-3" style="width:100%;display:flex; align-items:center">
+                                    <h3 style="width: 100%;">Welcome <?php echo ucfirst($result['username'])?></h3>
+                                        <form method="GET" class="form-group mt-3" action="logout.php" style="width:100%;">
+                                            <input type="submit" class="btn_3 button-contactForm" name="logOut" value="LogOut" style='margin: 0 auto;
+                                    color:white;border:1px solid#b69abb; background:#b83636ad; '>
+                                        </form>
+                                    </div>
+            
+                    </div>
             <form class="form-contact contact_form" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" id="contactForm">
 
                 <div class="row">
@@ -92,7 +98,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input class="form-control" name="email" id="" type="text" placeholder='Email' value="<?php echo $result['email'] ?>" readonly>
+                            <input class="form-control" name="email" id="" type="text" placeholder='Email' value="<?php echo $result['email'] ?>" readonly disabled style="background: #bbbbbb73;">
                         </div>
                     </div>
                     <div class="col-12">
@@ -111,12 +117,7 @@
 
             </form>
 
-            <div class="form-group mt-3">
-                <form method="GET" class="form-group mt-3" action="logout.php">
-                    <input type="submit" class="btn_3 button-contactForm" name="logOut" value="LogOut" style='margin: auto;
-            color:#b69abb;'>
-                </form>
-            </div>
+           
 
             <?php
 
@@ -178,8 +179,8 @@
                             $data4 = $sql4->fetchAll(PDO::FETCH_ASSOC);
                             ?>
 
-<h1>Orders</h1>
-<hr>
+                            <h2 style="text-align: center;">Orders</h2>
+                            <hr>
 
                             <?php
                             // var_dump($data3);
@@ -195,7 +196,7 @@
 
                                             <th scope="col" colspan="2">Product</th>
                                             <th scope="col">Quantity</th>
-                                            <th scope="col">Total</th>
+                                            <th scope="col">Total/unit</th>
 
                                         </tr>
                                     </thead>
@@ -203,21 +204,18 @@
                                         <tr>
 
                                             <?php
-                                            $tot2 = 0;
 
+                                        $tot2=0;
                                             foreach ($sql3 as $item) {
-                                                // if(user.id )
+                                              // if(user.id )
+                                                 $tot2 +=($item['quantity'] * $item['product_price'] - $item['sales_percentage'] * $item['product_price'] / 100) ;
 
-                                                $tot = ($item['quantity'] * $item['product_price'] - $item['sales_percentage'] * $item['product_price'] / 100)
+                                                $tot = ( $item['product_price'] - $item['sales_percentage'] * $item['product_price'] / 100)
                                             ?>
 
                                                 <td colspan="2"><span><?php echo $item['product_name'] ?></span></td>
                                                 <td>x<?php echo $item['quantity']; ?></td>
                                                 <td> <span><?php echo '$ ' . $tot; ?></span></td>
-                                                <td> <span><?php
-                                                            echo $_SESSION['loggedUser'][2];
-                                                            $tot2 += $tot;
-                                                            ?></span></td>
 
                                         </tr>
 
@@ -226,7 +224,8 @@
                                     </tfoot>
                                 <?php } ?>
 
-                                </table>
+                            </table>
+                            <?php } ?>
 
                                 <table class="table table-borderless">
                                     <tr>
@@ -235,12 +234,12 @@
                                         <th scope="col" colspan="2">Total</th>
                                         <th scope="col" colspan="2"></th>
                                         <th scope="col" colspan="2"></th>
+                                        <th scope="col" colspan="2"></th>
                                         <th><?php
 
                                             echo $tot2; ?></th>
 
                                     </tr>
-                                <?php } ?>
                                 </table>
                         </div>
                     </div>

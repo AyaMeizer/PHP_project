@@ -76,7 +76,7 @@ require('../database/create_db.php');
                                     echo "<p><a href='product_list.php' style='margin: auto; color:#5d445a !important;'> All </a></p>";
 
                                     foreach ($data as $result) {
-                                        echo "<p><a href='product_list.php?id=$result[id]' style='margin: auto; color:#5d445a !important;'>$result[cat_name] </a></p>";
+                                      echo "<p><a href='product_list.php?id=$result[id]' style='margin: auto; color:#5d445a !important;'>".ucwords($result['cat_name'])."</a></p>";
                                     }
                                     ?>
                                     <!-- ttttttt -->
@@ -108,7 +108,7 @@ require('../database/create_db.php');
                                 <div class="col-lg-6 col-sm-6">
                                     <div class="single_product_item">
                                         <img src="<?php echo $result['product_img'] ?>" alt="<?php echo $result['product_name'] ?>" class="img-fluid">
-                                        <h3> <a href="single-product.php?id=<?php echo $result['id'] ?>"><?php echo $result['product_name'] ?></a> </h3>
+                                        <h3> <a href="single-product.php?id=<?php echo $result['id'] ?>"><?php echo ucwords($result['product_name']) ?></a> </h3>
                                         <p><?php
 
                                             if($result['on_sales']==0 ){
