@@ -14,6 +14,29 @@ if(!isset($_SESSION))
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+	<!-- --------------- -->
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using bootstrap and php"
+    />
+    <meta name="theme-color" content="#000000" />
+
+    <meta
+      name="description"
+      content="pillowmart is an online platform for buying different pillows and picking different items we provide. You can choose whatever you want in simple steps."
+    />
+
+    <meta
+      name="keywords"
+      content=" pillowmart , pillow , sleep , relaxation , php, mysql"
+    />
+    <meta name="author" content="Pillowmart team" />
+
+<!-- ----------------- -->
+
     <title>pillloMart</title>
     <link rel="icon" href="img/favicon.png">
     <!-- Bootstrap CSS -->
@@ -33,6 +56,7 @@ if(!isset($_SESSION))
     <link rel="stylesheet" href="css/nice-select.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
+	
 </head>
 
 <body>
@@ -54,9 +78,7 @@ if(!isset($_SESSION))
                                 <li class="nav-item">
                                     <a class="nav-link" href="index.php">Home</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="about.php">about</a>
-                                </li>
+                                
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_1"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -74,36 +96,42 @@ if(!isset($_SESSION))
                                         pages
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="login.php"> 
-                                            login
-                                            
-                                        </a>
+                                      
                                         <a class="dropdown-item" href="checkout.php">product checkout</a>
                                         <a class="dropdown-item" href="cart.php">shopping cart</a>
-                                        <a class="dropdown-item" href="confirmation.php">confirmation</a>
-                                        <a class="dropdown-item" href="elements.php">elements</a>
+                                        <a class="dropdown-item" href="about.php">about</a>   
                                     </div>
                                 </li>
-                                
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_2"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        blog
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="blog.php"> blog</a>
-                                        <a class="dropdown-item" href="single-blog.php">Single blog</a>
-                                    </div>
-                                </li>
-                                
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.php">Contact</a>
+								<?php
+								if (isset($_SESSION['loggedUser'])){
+									echo"<li class='nav-item'>
+                                    <a class='nav-link' href='userProfile.php'>Profile</a>
+                                </li>";
+								}else {
+
+									echo "<li class='nav-item'>
+									<a class='nav-link' href='login.php'>Login</a>
+									</li>";
+									
+									echo "<li class='nav-item'>
+									<a class='nav-link' href='register.php'>Register</a>
+									</li>";
+								};
+								?>
+
+								
+
+								
+								<li class="nav-item" style='margin:auto ;'>
+                                    <?php
+					   				require 'cartIcon.php';
+					   				?>
                                 </li>
                             </ul>
                         </div>
 						<?php
                        
-					   require 'cartIcon.php';
+					//    require 'cartIcon.php';
 					   ?>
                     </nav>
                 </div>
@@ -156,7 +184,7 @@ if(!isset($_SESSION))
 	<!-- End Sample Area -->
 
 	<!-- Start Button -->
-	<!-- <section class="button-area">
+	<section class="button-area">
 		<div class="container box_1170 border-top-generic">
 			<h3 class="text-heading">Sample Buttons</h3>
 			<div class="button-group-area">
@@ -256,7 +284,7 @@ if(!isset($_SESSION))
 				<a href="#" class="genric-btn primary-border small">Small</a>
 			</div>
 		</div>
-	</section> -->
+	</section> 
 	<!-- End Button -->
 
 	<!-- Start Align Area -->
