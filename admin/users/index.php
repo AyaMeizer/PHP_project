@@ -277,7 +277,7 @@
                                                         continue;
                                                     } ?>
                                                     <div class="table-data-feature">
-                                                        <a href='delete.php?id=<? $item["id"] ?>'>
+                                                        <a href='delete.php?id=<?= $item["id"] ?>'>
 
                                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                                 <i class="zmdi zmdi-delete"></i>
