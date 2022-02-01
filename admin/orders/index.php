@@ -272,46 +272,7 @@ WHERE checkout.id=checkout_products.checkout_id");
                                         <tbody>
                                             <tr>
                                                 <?php
-<<<<<<< HEAD
-                                                $sql = $conn->prepare("SELECT * FROM checkout_products INNER JOIN products ON checkout_products.product_id = products.id");
-                                                $sql->execute();
-                                                // $data= $sql->fetchAll(PDO::FETCH_ASSOC);
-                                                $sql3 = $conn->prepare("SELECT * FROM checkout INNER JOIN users ON checkout.user_id = users.id");
-                                                $sql3->execute();
-                                                $data3 = $sql3->fetchAll(PDO::FETCH_ASSOC);
 
-                                                $sql4 = $conn->prepare("SELECT * FROM checkout
-                                                --  INNER JOIN checkout_products ON checkout.id = checkout_products.checkout_id
-                                                 ");
-                                                $sql4->execute();
-                                                $data4 = $sql4->fetchAll(PDO::FETCH_ASSOC);
-                                                ?>
-                                                <?php
-                                                $tot2 = 0;
-                                                $i=0;
-                                                $sqll = $conn->prepare("SELECT checkout_id FROM checkout_products INNER JOIN products ON checkout_products.product_id = products.id");
-                                                $sqll->execute();
-                                                $data1= $sqll->fetchAll(PDO::FETCH_ASSOC);
-                                                // echo"<pre>";
-                                                // print_r($data1);
-                                                // echo $data1[0];
-                                                foreach ($sql as $item) {
-                                                    // if($data1[$i]['id']==$data1[$i+=1]['id']){
-                                                    //     echo "rojgkrmgt";
-                                                    //     $i+=1;
-                                                    // }
-                                                    $tot = ($item['quantity'] * $item['product_price'] - $item['sales_percentage'] * $item['product_price'] / 100)
-                                                ?>
-                                                    <td colspan="2"><span><?php echo $item['checkout_id']?></span></td>
-                                                    <td colspan="2"><span><?php echo $item['product_name']?></span></td>
-                                                    <td>x<?php echo $item['quantity']; ?></td>
-                                                    <td> <span><?php echo '$ ' . $tot; ?></span></td>
-                                                    <td> <span><?php
-                                                                echo $data3[$i]['username'];
-                                                                $tot2 += $tot;
-                                                                ?></span></td>
-                                            </tr>
-=======
                                                 $loop = 0;
                                                 $total = 0;
 
@@ -333,10 +294,10 @@ WHERE checkout.id=checkout_products.checkout_id");
 
                                                         // if ($resultR[$loop]['date'] == $item['date']&&$item['checkout_id']==$resultR[$loop]['checkout_id']) {
                                                         // if($item['checkout_id']==$resultR[$loop]['checkout_id']){
->>>>>>> 0156b0414ec821dfa7762c4fe00618c11d933e02
 
 
-                                                        echo "Total" . " " . " " .  $total . "$";
+
+                                                        // echo "Total" . " " . " " .  $total . "$";
                                                         // }
                                                         // }
 
