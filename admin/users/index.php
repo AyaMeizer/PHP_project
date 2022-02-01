@@ -157,11 +157,9 @@
 
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
-                <a href="../index.php">
-                    Pillow Mart
-                </a>
-            </div>
+            <a href="../index.php" style='display:flex; justify-content:center ; align-items:center;'>
+        <img src="../../user/img/logo.png" alt="logo" >
+            </a>
             <div class="">
                 <nav class="navbar-sidebar">
                     <ul class="">
