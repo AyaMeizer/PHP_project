@@ -9,8 +9,8 @@
         $edit = "SELECT * FROM users WHERE id='$userNamaee'";
         $data = $conn->query($edit);
         $result = $data->fetch(PDO::FETCH_ASSOC);
-        echo "<pre >";
-        var_dump($_SESSION['loggedUser']);
+        // echo "<pre >";
+        // var_dump($_SESSION['loggedUser']);
         ?>
 
 <!doctype html>
@@ -158,7 +158,6 @@
              flex-direction: column'>Order Details</h3> -->
                             <?php
                             $userNamaee = $_SESSION['loggedUser'][1];
-
                             $sql = $conn->prepare("SELECT * FROM checkout_products INNER JOIN products ON checkout_products.product_id = products.id");
                             $sql->execute();
                             $data = $sql->fetch(PDO::FETCH_ASSOC);
