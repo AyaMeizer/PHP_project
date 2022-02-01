@@ -3,13 +3,8 @@ if (!isset($_SESSION)) {
   session_start();
 }
 require('../database/create_db.php');
-
-
 $itemCart = $_SESSION['product'];
-// echo "<pre >";
-// print_r($_SESSION['product']);
-// echo $_SESSION['product'][$_GET[4]][0] ;
-// print_r($_SESSION['loggedUser']);
+
 ?>
 <!doctype html>
 <html lang="zxx">
@@ -38,12 +33,18 @@ $itemCart = $_SESSION['product'];
   <link rel="stylesheet" href="css/style.css">
 
 </head>
+<style>
+  .cart_area h2 {
+    text-align: center;
+    font-family: "Poppins", sans-serif
+  }
+</style>
 
 <body>
   <!--::header part start::-->
   <?php
-        include 'nav.php';
-    ?>
+  include 'nav.php';
+  ?>
   <!-- Header part end-->
 
   <!-- breadcrumb part start-->
@@ -61,163 +62,120 @@ $itemCart = $_SESSION['product'];
   <!-- breadcrumb part end-->
 
   <!--================Cart Area =================-->
+
+
+
+
   <section class="cart_area section_padding">
-    <div class="container">
-      <div class="cart_inner">
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Product</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Total</th>
-                <th scope="col">Delete</th>
-
-              </tr>
-            </thead>
-            <tbody>
+    <?php
+    if (!$itemCart) {
+      echo "<h2>Your Cart Is Empty</h2>";
+    } else {
 
 
-              <?php
-              $total = 0;
-              foreach ($itemCart as $i) {
 
-              ?>
+
+
+    ?>
+
+      <div class="container">
+        <div class="cart_inner">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
                 <tr>
-                  <td>
-                    <div class="media">
-                      <div class="d-flex">
-                        <img src="<?php echo $i['product_img']; ?>" alt="<?php echo $i['product_name']; ?>" />
-                      </div>
-                      <div class="media-body">
-                        <p><?php echo $i['product_name']; ?></p>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <h5><?php
-                        if ($i['on_sales'] == 0) {
-                          $pri = $i['product_price'];
-                          echo $pri;
-                        } else if ($i['on_sales'] == 1) {
-                          $pri = (1 - ($i['sales_percentage']) / 100) * $i['product_price'];
-                          echo $pri;
-                        } ?>$</h5>
-                  </td>
-                  <td>
-                    <div class="product_count">
-                      <form method="POST">
-                        <span class="input-number"><a href="./decrement.php?id=<?php echo $i['id'] ?>"> <i class="ti-minus"></i></a></span>
-                        <input style="width: 70px;" neme="total" class="input-number" type="text" value="<?php echo $i['0']; ?>" min="0" max="10">
-                        <span class="input-number"><a href="./increment.php?id=<?php echo $i['id'] ?>"> <i class="ti-plus"></i></a></span>
-                      </form>
-                    </div>
-                  </td>
-                  <td>
-                    <h5>
-                      <?php
-                      echo $pri *  $i['0'];
-                      // echo "gfg";
-
-                      $total = $total + $pri *  $i['0'];
-                      ?> $
-                    </h5>
-                  </td>
-                  <td>
-                    <a href="./delet.php?id=<?php echo $i['id'] ?>"><button style="height: 40px;
-width: 100px;
-background-color: #9e474794;
-color: white;
-border: none;
-border-radius: 7px;
-font-size: 1.05rem;
-cursor: pointer;">Delete</button></a>
-                  </td>
+                  <th scope="col">Product</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Delete</th>
 
                 </tr>
+              </thead>
+              <tbody>
+
+                <?php
+                $total = 0;
+                foreach ($itemCart as $i) {
+
+                ?>
+                  <tr>
 
 
-              <?php } ?>
+                    <td>
+                      <div class="media">
+                        <div class="d-flex">
+                          <img src="<?php echo $i['product_img']; ?>" alt="<?php echo $i['product_name']; ?>" />
+                        </div>
+                        <div class="media-body">
+                          <p><?php echo $i['product_name']; ?></p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <h5><?php
+                          if ($i['on_sales'] == 0) {
+                            $pri = $i['product_price'];
+                            echo $pri;
+                          } else if ($i['on_sales'] == 1) {
+                            $pri = (1 - ($i['sales_percentage']) / 100) * $i['product_price'];
+                            echo $pri;
+                          } ?>$</h5>
+                    </td>
+                    <td>
+                      <div class="product_count">
+                        <form method="POST">
+                          <span class="input-number"><a href="./decrement.php?id=<?php echo $i['id'] ?>"> <i class="ti-minus"></i></a></span>
+                          <input style="width: 70px;" neme="total" class="input-number" type="text" value="<?php echo $i['0']; ?>" min="0" max="10">
+                          <span class="input-number"><a href="./increment.php?id=<?php echo $i['id'] ?>"> <i class="ti-plus"></i></a></span>
+                        </form>
+                      </div>
+                    </td>
+                    <td>
+                      <h5>
+                        <?php
+                        echo $pri *  $i['0'];
+                        // echo "gfg";
 
-              <!-- 
-              <tr class="bottom_button">
-                <td>
-                  <a class="btn_1" href="#">Update Cart</a>
-                </td>
-                <td></td>
-                <td></td>
-                <td>
-                  <div class="cupon_text float-right">
-                    <a class="btn_1" href="#">Close Coupon</a>
-                  </div>
-                </td>
-              </tr> -->
-              <tr>
-                <td></td>
-                <td></td>
-                <td>
-                  <h5>Subtotal</h5>
-                </td>
-                <td>
-                  <h5><?php echo $total; ?> $ </h5>
-                </td>
-              </tr>
-              <!-- <tr class="shipping_area">
-                <td></td>
-                <td></td> -->
-              <!-- <td>
-                  <h5>Shipping</h5>
-                </td>
-                
-                <td>
-                  <div class="shipping_box">
-                    <ul class="list">
-                      <li>
-                        Flat Rate: $5.00
-                        <input type="radio" aria-label="Radio button for following text input">
-                      </li>
-                      <li>
-                        Free Shipping
-                        <input type="radio" aria-label="Radio button for following text input">
-                      </li>
-                      <li>
-                        Flat Rate: $10.00
-                        <input type="radio" aria-label="Radio button for following text input">
-                      </li>
-                      <li class="active">
-                        Local Delivery: $2.00
-                        <input type="radio" aria-label="Radio button for following text input">
-                      </li>
-                    </ul>
-                    <h6>
-                      Calculate Shipping
-                      <i class="fa fa-caret-down" aria-hidden="true"></i>
-                    </h6>
-                    <select class="shipping_select">
-                      <option value="1">Bangladesh</option>
-                      <option value="2">India</option>
-                      <option value="4">Pakistan</option>
-                    </select>
-                    <select class="shipping_select section_bg">
-                      <option value="1">Select a State</option>
-                      <option value="2">Select a State</option>
-                      <option value="4">Select a State</option>
-                    </select>
-                    <input class="post_code" type="text" placeholder="Postcode/Zipcode" />
-                    <a class="btn_1" href="#">Update Details</a>
-                  </div>
-                </td> -->
-              <!-- </tr> -->
-            </tbody>
-          </table>
-          <div class="checkout_btn_inner float-right">
-            <a class="btn_1" href="product_list.php">Continue Shopping</a>
-            <a class="btn_1 checkout_btn_1" href="checkout.php">Proceed to checkout</a>
+                        $total = $total + $pri *  $i['0'];
+                        ?> $
+                      </h5>
+                    </td>
+                    <td>
+                      <a href="./delet.php?id=<?php echo $i['id'] ?>">
+                        <button style="height: 40px; width: 100px;background-color: #9e474794;color: white;border: none;border-radius: 7px;font-size: 1.05rem;cursor: pointer;">Delete</button>
+                      </a>
+                    </td>
+
+
+
+
+
+
+                  </tr>
+                <?php } ?>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <h5>Subtotal</h5>
+                  </td>
+                  <td>
+                    <h5><?php echo $total; ?> $ </h5>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+            <div class="checkout_btn_inner float-right">
+              <a class="btn_1" href="product_list.php">Continue Shopping</a>
+              <a class="btn_1 checkout_btn_1" href="checkout.php">Proceed to checkout</a>
+            </div>
           </div>
         </div>
-      </div>
+      <?php } ?>
   </section>
+
   <!--================End Cart Area =================-->
   <!--::footer_part start::-->
   <footer class="footer_part">
