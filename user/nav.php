@@ -90,7 +90,7 @@ if(!isset($_SESSION))
                                         
                                     </div>
                                 </li>
-                                <li class="nav-item dropdown">
+                                <!-- <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.php" id="navbarDropdown_3"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         pages
@@ -101,11 +101,22 @@ if(!isset($_SESSION))
                                         <a class="dropdown-item" href="cart.php">shopping cart</a>
                                         <a class="dropdown-item" href="about.php">about</a>   
                                     </div>
-                                </li>
+                                </li>                               -->
+
 								<?php
 								if (isset($_SESSION['loggedUser'])){
-									echo"<li class='nav-item'>
-                                    <a class='nav-link' href='userProfile.php'>Profile</a>
+									echo"<li class='nav-item dropdown'>
+                                    <a class='nav-link dropdown-toggle' href='blog.php' id='navbarDropdown_3'
+                                        role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                        Profile
+                                    </a>
+                                    <div class='dropdown-menu' aria-labelledby='navbarDropdown_2'>
+                                      
+                                        <a class='dropdown-item' href='checkout.php'>product checkout</a>
+                                        <a class='dropdown-item' href='cart.php'>shopping cart</a>
+                                      <a class='dropdown-item' href='userProfile.php'>Profile</a>
+
+                                    </div>
                                 </li>";
 								}else {
 
