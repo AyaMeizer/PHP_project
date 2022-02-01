@@ -1,4 +1,4 @@
-<!-- <?php
+     <?php
         session_start();
         // session_unset();
         // session_destroy();
@@ -337,4 +337,4 @@
     <script src="js/custom.js"></script>
 </body>
 
-</html> -->
+</html> 
