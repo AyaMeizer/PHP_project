@@ -261,8 +261,8 @@ require('../../database/create_db.php');
                                             <thead>
                                                 <tr>
                                                 <th scope="col" colspan="2">Subtotal Price</th>
-                                                    <th scope="col" colspan="2">Total Price</th>
-                                                    <th scope="col" colspan="2">Coupon Discount</th>
+                                                <th scope="col" colspan="2">Coupon Discount</th>
+                                                <th scope="col" colspan="2">Total Price</th>
                                                     <th scope="col">Address</th>
                                                     <th scope="col">Date</th>
                                                     <th scope="col">User Name</th>
