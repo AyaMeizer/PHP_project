@@ -35,7 +35,11 @@ require('../database/create_db.php');
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-
+<?php
+if(isset($_SESSION['loggedUser'])){
+    header("location:userProfile.php");
+    die();
+}?>
 <body>
     <!--::header part start::-->
     <?php

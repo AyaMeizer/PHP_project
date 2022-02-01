@@ -5,7 +5,7 @@
 
         require('../database/create_db.php');
 
-        $userNamaee = $_SESSION['loggedUser'][1];
+        $userNamaee = @$_SESSION['loggedUser'][1];
         $edit = "SELECT * FROM users WHERE id='$userNamaee'";
         $data = $conn->query($edit);
         $result = $data->fetch(PDO::FETCH_ASSOC);
@@ -40,8 +40,13 @@
 <!-- style CSS -->
 <link rel="stylesheet" href="css/style.css">
 </head>
-
+<?php
+if(!isset($_SESSION['loggedUser'])){
+    header("location:login.php");
+    die();
+}?>
 <body>
+
     <!--::header part start::-->
     <?php
     include 'nav.php';

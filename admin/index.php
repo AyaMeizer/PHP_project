@@ -1,3 +1,5 @@
+<?php
+session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,8 +36,17 @@
     <link href="css/theme.css" rel="stylesheet" media="all">
 
 </head>
+<?php
+
+
+if (!isset($_SESSION['loggedUser']) || ($_SESSION['loggedUser'][1] != 1)) {
+    header("location:../user/login.php");
+    die();
+}
+?>
 
 <body class="animsition">
+
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
         <header class="header-mobile d-block d-lg-none">
@@ -154,8 +165,8 @@
         </header>
         <!-- END HEADER MOBILE-->
 
-       <!-- MENU SIDEBAR-->
-       <aside class="menu-sidebar d-none d-lg-block">
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
             <a href="../index.php" style='margin:15px 50px 0;'>
                 <img src="../user/img/logo.png" alt="logo" style="width:170px;">
             </a>

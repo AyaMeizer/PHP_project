@@ -56,7 +56,11 @@ if ($_SESSION['product'] != []) {
     color: red;
   }
 </style>
-
+<?php
+if(!$_SESSION['loggedUser']){
+    header("location:login.php");
+    die();
+}?>
 <body>
   <!--::header part start::-->
   <?php
