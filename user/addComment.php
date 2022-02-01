@@ -10,6 +10,17 @@ if(!isset($_SESSION))
 
 
 <?php
+
+if($_SESSION['loggedUser']==[]){
+    echo "<script>
+    alert('Please Login')
+    window.location.href='./login.php'
+
+    </script>";
+
+}else{
+
+
 include "../database/connection.php";
 if (isset($_POST['submitq']) && isset($_POST['message'])) {
     //    echo $_POST['commmenttt'];
@@ -21,5 +32,5 @@ if (isset($_POST['submitq']) && isset($_POST['message'])) {
     $conn->exec($data);
     header("location:single-product.php?id=$idproduct");
 }
-
+}
 ?>

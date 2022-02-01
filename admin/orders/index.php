@@ -1,6 +1,7 @@
 <?php
 ob_start();
 require('../../database/create_db.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -188,7 +189,7 @@ require('../../database/create_db.php');
                                 <i class="fas fa-tachometer-alt"></i>Create Dashboards</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="create.php">Create Users </a>
+                                    <a href="../users/create.php">Create Users </a>
                                 </li>
                                 <li>
                                     <a href="../products/create.php">Create Products</a>
@@ -208,9 +209,27 @@ require('../../database/create_db.php');
         </aside>
         <!-- END MENU SIDEBAR-->
 
+
+
+
+
+
+
+
+
         <!-- PAGE CONTAINER-->
         <div class="page-container">
+            <?php
+            $ryahnah = $conn->prepare("SELECT users.id,users.username,checkout_products.quantity,checkout_products.checkout_id,checkout.total_price,products.product_name,products.product_price,checkout.date
+from checkout_products Join products on products.id = checkout_products.product_id join checkout on checkout_products.product_id=products.id join users
+on checkout.user_id=users.id
+WHERE checkout.id=checkout_products.checkout_id");
 
+
+            $ryahnah->execute();
+            $resultR = $ryahnah->fetchAll(PDO::FETCH_ASSOC);
+
+            ?>
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
@@ -220,67 +239,78 @@ require('../../database/create_db.php');
                                 <div class="order_details_iner">
                                     <h3>Order Details</h3>
                                     <table class="table table-borderless">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" colspan="2">ID</th>
-                                                <th scope="col" colspan="2">Product</th>
-                                                <th scope="col">Quantity</th>
-                                                <th scope="col">Total</th>
-                                                <th scope="col">user</th>
-                                            </tr>
-                                        </thead>
+
+                                        <?php
+
+                                        if ($resultR == []) {
+                                            echo "<h1>No Orders Yet </h1>";
+                                        } else {
+
+
+
+                                        ?>
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" colspan="2">ID</th>
+                                                    <th scope="col" colspan="2">Product</th>
+                                                    <th scope="col">Quantity</th>
+                                                    <th scope="col">Total Price</th>
+                                                    <th scope="col">User Name</th>
+                                                    <!-- <th scope="col" colspan="5">Total</th> -->
+                                                </tr>
+                                            </thead>
+                                        <?php } ?>
+
                                         <tbody>
                                             <tr>
                                                 <?php
-                                                $sql = $conn->prepare("SELECT * FROM checkout_products INNER JOIN products ON checkout_products.product_id = products.id");
-                                                $sql->execute();
-                                                $sql3 = $conn->prepare("SELECT * FROM checkout INNER JOIN users ON checkout.user_id = users.id");
-                                                $sql3->execute();
-                                                $data3 = $sql3->fetch(PDO::FETCH_ASSOC);
 
-                                                $sql4 = $conn->prepare("SELECT * FROM checkout
-                                                --  INNER JOIN checkout_products ON checkout.id = checkout_products.checkout_id
-                                                 ");
-                                                $sql4->execute();
-                                                $data4 = $sql4->fetchAll(PDO::FETCH_ASSOC);
+                                                $loop = 0;
+                                                $total = 0;
+
+                                                foreach ($resultR as $item) {
+                                                    if ($item['checkout_id'] !== $resultR[$loop]['checkout_id']) {
+                                                       
+
                                                 ?>
-                                                <?php
-                                                $tot2 = 0;
-                                                foreach ($sql as $item) {
-                                                    $tot = ($item['quantity'] * $item['product_price'] - $item['sales_percentage'] * $item['product_price'] / 100)
-                                                ?>
-                                                    <td colspan="2"><span><?php echo $item['checkout_id']?></span></td>
-                                                    <td colspan="2"><span><?php echo $item['product_name']?></span></td>
-                                                    <td>x<?php echo $item['quantity']; ?></td>
-                                                    <td> <span><?php echo '$ ' . $tot; ?></span></td>
-                                                    <td> <span><?php
-                                                                echo $data3['username'];
-                                                                $tot2 += $tot;
-                                                                ?></span></td>
+                                                        <td colspan="2"><span><?php echo $item['checkout_id'] ?></span></td>
+                                                        <td colspan="2"><span><?php echo $item['product_name'] ?></span></td>
+                                                        <td>x<?php echo $item['quantity']; ?></td>
+                                                        <td><?php echo $item['product_price'] * $item['quantity']; ?>$</td>
+                                                        <td> <span><?php echo $item['username']; ?></span></td>
+                                            <tr>
+                                                <td>
+                                                    <h5>
+                                                        <?php
+                                                        $total = $total + ($item['product_price'] * $item['quantity']);
+
+                                                        // if ($resultR[$loop]['date'] == $item['date']&&$item['checkout_id']==$resultR[$loop]['checkout_id']) {
+                                                        // if($item['checkout_id']==$resultR[$loop]['checkout_id']){
+
+
+
+                                                        // echo "Total" . " " . " " .  $total . "$";
+                                                        // }
+                                                        // }
+
+                                                        ?>
+                                                    </h5>
+                                                </td>
                                             </tr>
-
+                                            </tr>
                                         </tbody>
-                                        <tfoot>
-                                        </tfoot>
-                                    <?php 
-                            };
-                            ?>
+
+                                <?php
+                                                        if ($resultR[$loop]['date'] !== $item['date']) {
+                                                            $total = 0;
+                                                        }
+                                                    }
+                                                      };
+                                                $loop++;
+
+                                ?>
                                     </table>
-                                    <table class="table table-borderless">
-                                        <tr>
-                                            <hr />
-                                            <th scope="col" colspan="3"></th>
-                                            <th scope="col" colspan="3">Total</th>
-                                            <th scope="col" colspan="3"></th>
-                                            <th scope="col" colspan="3"></th>
-                                            <th><?php
-                                                // $sql2 = $conn->prepare("SELECT * FROM checkout WHERE id = $item[checkout_id]");
-                                                // $sql2->execute();
-                                                // $data = $sql2->fetch(PDO::FETCH_ASSOC);
-                                                echo $tot2; ?></th>
-                                            <!-- <th scope="col">Total</th> -->
-                                        </tr>
-                                    </table>
+
                                 </div>
                             </div>
                         </div>

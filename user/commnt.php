@@ -72,7 +72,14 @@ ob_start();
 
     </div>
     <!-- <h4>05 Comments</h4> -->
+<?php 
 
+// if(){
+
+// }else{
+
+
+?>
     <div class="comment">
         <div>
             <div>
@@ -126,7 +133,7 @@ ob_start();
             </div>
         </div>
     </div>
-
+<?php #}?>
     <!-- </div>
     </div> -->
 
