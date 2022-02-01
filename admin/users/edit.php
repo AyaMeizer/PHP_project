@@ -162,12 +162,12 @@ require('../../database/create_db.php');
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="../index.php">
-                    <img src="../images/icon/logo.png" alt="Cool Admin" />
+                    Pillow Mart
                 </a>
             </div>
-            <div class="menu-sidebar__content js-scrollbar1">
+            <div class="">
                 <nav class="navbar-sidebar">
-                    <ul class="list-unstyled navbar__list">
+                    <ul class="">
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Admin Dashboards</a>

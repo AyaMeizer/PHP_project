@@ -1,4 +1,3 @@
-
 <?php require('../../database/create_db.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,9 +54,9 @@
                     </div>
                 </div>
             </div>
-            <nav class="navbar-mobile">
+            <nav class="">
                 <div class="container-fluid">
-                    <ul class="navbar-mobile__list list-unstyled">
+                    <ul class="">
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Admin Dashboards</a>
@@ -157,7 +156,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="../index.php">
-                    <img src="../images/icon/logo.png" alt="Cool Admin" />
+                    Pillow Mart
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -194,7 +193,7 @@
                                 <li>
                                     <a href="../category/create.php">Create Categories </a>
                                 </li>
-                                
+
                             </ul>
                         </li>
 
@@ -259,10 +258,14 @@
                                                     <td><?php echo $item["product_price"]; ?></td>
                                                     <td><?php echo $item["product_desc"]; ?></td>
                                                     <td><?php
-                                                    if($item["on_sales"]==0){echo 'No';} 
-                                                    if($item["on_sales"]==1){echo "Yes";} 
-                                                     ?></td>
-                                                    <td><?php echo $item["sales_percentage"]."%"; ?></td>
+                                                        if ($item["on_sales"] == 0) {
+                                                            echo 'No';
+                                                        }
+                                                        if ($item["on_sales"] == 1) {
+                                                            echo "Yes";
+                                                        }
+                                                        ?></td>
+                                                    <td><?php echo $item["sales_percentage"] . "%"; ?></td>
                                                     <td><?php echo $item["stock"]; ?></td>
                                                     <td><img src=<?php echo $item["product_img"]; ?> /></td>
                                                     <td><?php echo $item["cat_id"]; ?></td>
@@ -297,7 +300,7 @@
                 </div>
             </div>
         </div>
-                                           
+
     </div>
 
     </div>
