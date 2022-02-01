@@ -1,16 +1,16 @@
 <!-- <?php
-session_start();
-// session_unset();
-// session_destroy();
+        session_start();
+        // session_unset();
+        // session_destroy();
 
-require('../database/create_db.php');
+        require('../database/create_db.php');
 
-        $userNamaee=$_SESSION['loggedUser'][1];
+        $userNamaee = $_SESSION['loggedUser'][1];
         $edit = "SELECT * FROM users WHERE id='$userNamaee'";
         $data = $conn->query($edit);
         $result = $data->fetch(PDO::FETCH_ASSOC);
-            echo "<pre >";
-            var_dump($_SESSION['loggedUser']);
+        echo "<pre >";
+        var_dump($_SESSION['loggedUser']);
         ?>
 
 <!doctype html>
@@ -44,7 +44,7 @@ require('../database/create_db.php');
 <body>
     <!--::header part start::-->
     <?php
-        include 'nav.php';
+    include 'nav.php';
     ?>
     <!-- Header part end-->
 
@@ -79,7 +79,7 @@ require('../database/create_db.php');
              align-items: center;
              flex-direction: column'>
             <form class="form-contact contact_form" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" id="contactForm">
-            
+
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
@@ -92,7 +92,7 @@ require('../database/create_db.php');
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                        <input class="form-control" name="email" id="" type="text" placeholder='Email' value="<?php echo $result['email'] ?>" readonly>
+                            <input class="form-control" name="email" id="" type="text" placeholder='Email' value="<?php echo $result['email'] ?>" readonly>
                         </div>
                     </div>
                     <div class="col-12">
@@ -108,21 +108,21 @@ require('../database/create_db.php');
                 <div class="form-group mt-3">
                     <input type="submit" class="btn_3 button-contactForm" name="update" value="Edit">
                 </div>
-                
+
             </form>
 
             <div class="form-group mt-3">
-            <form method="GET" class="form-group mt-3" action="logout.php">
-            <input type="submit" class="btn_3 button-contactForm" name="logOut" value="LogOut" style='margin: auto;
+                <form method="GET" class="form-group mt-3" action="logout.php">
+                    <input type="submit" class="btn_3 button-contactForm" name="logOut" value="LogOut" style='margin: auto;
             color:#b69abb;'>
-            </form>
+                </form>
             </div>
 
             <?php
 
 
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                $userNamaee=$_SESSION['loggedUser'][1];
+                $userNamaee = $_SESSION['loggedUser'][1];
                 $userName = $_POST['username'];
                 $password = $_POST['password'];
                 $phone = $_POST['phone'];
@@ -155,78 +155,93 @@ require('../database/create_db.php');
                             <!-- <h3 style='margin:5%  40%;
            
              flex-direction: column'>Order Details</h3> -->
-                            <table class="table table-borderless">
-                                <thead>
-                                    <tr>
+                            <?php
+                            $userNamaee = $_SESSION['loggedUser'][1];
 
-                                        <th scope="col" colspan="2">Product</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Total</th>
+                            $sql = $conn->prepare("SELECT * FROM checkout_products INNER JOIN products ON checkout_products.product_id = products.id");
+                            $sql->execute();
+                            $data = $sql->fetch(PDO::FETCH_ASSOC);
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <?php
-                                        $userNamaee=$_SESSION['loggedUser'][1];
-
-                                        $sql = $conn->prepare("SELECT * FROM checkout_products INNER JOIN products ON checkout_products.product_id = products.id");
-                                        $sql->execute();
-                                        $data = $sql->fetch(PDO::FETCH_ASSOC);
-
-                                        // SELECT * FROM `checkout` INNER JOIN users ON users.ID = checkout.user_id
-                                        //  INNER JOIN checkout_products ON checkout_products.checkout_id = checkout.ID WHERE users.id = 3
-                                        $sql3 = $conn->prepare("SELECT * FROM `checkout` INNER JOIN users ON users.ID = checkout.user_id 
+                            // SELECT * FROM `checkout` INNER JOIN users ON users.ID = checkout.user_id
+                            //  INNER JOIN checkout_products ON checkout_products.checkout_id = checkout.ID WHERE users.id = 3
+                            $sql3 = $conn->prepare("SELECT * FROM `checkout` INNER JOIN users ON users.ID = checkout.user_id 
                                         INNER JOIN checkout_products ON checkout_products.checkout_id = checkout.ID  
                                         inner join products on checkout_products.product_id = products.id  where users.id ='$userNamaee'");
-                                        $sql3->execute();
-                                        $data3 = $sql3->fetch(PDO::FETCH_ASSOC);
-                                        // echo "<pre>";
-                                        // var_dump($data);
-                                        $sql4 = $conn->prepare("SELECT * FROM checkout
+                            $sql3->execute();
+                            $data3 = $sql3->fetch(PDO::FETCH_ASSOC);
+                            // echo "<pre>";
+                            // var_dump($data);
+                            $sql4 = $conn->prepare("SELECT * FROM checkout
                                                 --  INNER JOIN checkout_products ON checkout.id = checkout_products.checkout_id
                                                  ");
-                                        $sql4->execute();
-                                        $data4 = $sql4->fetchAll(PDO::FETCH_ASSOC);
-                                        ?>
-                                        <?php
-                                        $tot2 = 0;
-
-                                        foreach ($sql3 as $item) {
-                                            // if(user.id )
-
-                                            $tot = ($item['quantity'] * $item['product_price'] - $item['sales_percentage'] * $item['product_price'] / 100)
-                                        ?>
-
-                                            <td colspan="2"><span><?php echo $item['product_name'] ?></span></td>
-                                            <td>x<?php echo $item['quantity']; ?></td>
-                                            <td> <span><?php echo '$ ' . $tot; ?></span></td>
-                                            <td> <span><?php
-                                                        echo $_SESSION['loggedUser'][2];
-                                                        $tot2 += $tot;
-                                                        ?></span></td>
-                                    </tr>
-
-                                </tbody>
-                                <tfoot>
-                                </tfoot>
-                            <?php
-                                        };
+                            $sql4->execute();
+                            $data4 = $sql4->fetchAll(PDO::FETCH_ASSOC);
                             ?>
-                            </table>
-                            <table class="table table-borderless">
-                                <tr>
-                                    <hr />
-                                    <th scope="col" colspan="2"></th>
-                                    <th scope="col" colspan="2">Total</th>
-                                    <th scope="col" colspan="2"></th>
-                                    <th scope="col" colspan="2"></th>
-                                    <th><?php
 
-                                        echo $tot2; ?></th>
+<h1>Orders</h1>
+<hr>
 
-                                </tr>
-                            </table>
+                            <?php
+                            // var_dump($data3);
+                            if ($data3 == []) {
+
+
+                                echo "<h1>No Orders Yet</h1>";
+                            } else {
+                            ?>
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr>
+
+                                            <th scope="col" colspan="2">Product</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Total</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+
+                                            <?php
+                                            $tot2 = 0;
+
+                                            foreach ($sql3 as $item) {
+                                                // if(user.id )
+
+                                                $tot = ($item['quantity'] * $item['product_price'] - $item['sales_percentage'] * $item['product_price'] / 100)
+                                            ?>
+
+                                                <td colspan="2"><span><?php echo $item['product_name'] ?></span></td>
+                                                <td>x<?php echo $item['quantity']; ?></td>
+                                                <td> <span><?php echo '$ ' . $tot; ?></span></td>
+                                                <td> <span><?php
+                                                            echo $_SESSION['loggedUser'][2];
+                                                            $tot2 += $tot;
+                                                            ?></span></td>
+
+                                        </tr>
+
+                                    </tbody>
+                                    <tfoot>
+                                    </tfoot>
+                                <?php } ?>
+
+                                </table>
+
+                                <table class="table table-borderless">
+                                    <tr>
+                                        <hr />
+                                        <th scope="col" colspan="2"></th>
+                                        <th scope="col" colspan="2">Total</th>
+                                        <th scope="col" colspan="2"></th>
+                                        <th scope="col" colspan="2"></th>
+                                        <th><?php
+
+                                            echo $tot2; ?></th>
+
+                                    </tr>
+                                <?php } ?>
+                                </table>
                         </div>
                     </div>
                 </div>
