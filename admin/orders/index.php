@@ -188,7 +188,7 @@ require('../../database/create_db.php');
                                 <i class="fas fa-tachometer-alt"></i>Create Dashboards</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="create.php">Create Users </a>
+                                    <a href="../users/create.php">Create Users </a>
                                 </li>
                                 <li>
                                     <a href="../products/create.php">Create Products</a>
@@ -234,9 +234,10 @@ require('../../database/create_db.php');
                                                 <?php
                                                 $sql = $conn->prepare("SELECT * FROM checkout_products INNER JOIN products ON checkout_products.product_id = products.id");
                                                 $sql->execute();
+                                                // $data= $sql->fetchAll(PDO::FETCH_ASSOC);
                                                 $sql3 = $conn->prepare("SELECT * FROM checkout INNER JOIN users ON checkout.user_id = users.id");
                                                 $sql3->execute();
-                                                $data3 = $sql3->fetch(PDO::FETCH_ASSOC);
+                                                $data3 = $sql3->fetchAll(PDO::FETCH_ASSOC);
 
                                                 $sql4 = $conn->prepare("SELECT * FROM checkout
                                                 --  INNER JOIN checkout_products ON checkout.id = checkout_products.checkout_id
@@ -246,7 +247,18 @@ require('../../database/create_db.php');
                                                 ?>
                                                 <?php
                                                 $tot2 = 0;
+                                                $i=0;
+                                                $sqll = $conn->prepare("SELECT checkout_id FROM checkout_products INNER JOIN products ON checkout_products.product_id = products.id");
+                                                $sqll->execute();
+                                                $data1= $sqll->fetchAll(PDO::FETCH_ASSOC);
+                                                // echo"<pre>";
+                                                // print_r($data1);
+                                                // echo $data1[0];
                                                 foreach ($sql as $item) {
+                                                    // if($data1[$i]['id']==$data1[$i+=1]['id']){
+                                                    //     echo "rojgkrmgt";
+                                                    //     $i+=1;
+                                                    // }
                                                     $tot = ($item['quantity'] * $item['product_price'] - $item['sales_percentage'] * $item['product_price'] / 100)
                                                 ?>
                                                     <td colspan="2"><span><?php echo $item['checkout_id']?></span></td>
@@ -254,7 +266,7 @@ require('../../database/create_db.php');
                                                     <td>x<?php echo $item['quantity']; ?></td>
                                                     <td> <span><?php echo '$ ' . $tot; ?></span></td>
                                                     <td> <span><?php
-                                                                echo $data3['username'];
+                                                                echo $data3[$i]['username'];
                                                                 $tot2 += $tot;
                                                                 ?></span></td>
                                             </tr>
