@@ -86,14 +86,7 @@ ob_start();
 
     ?>
     <div class="comment">
-        <h3>Comments</h3>
-        <hr>
-        <div>
-            <div>
-
-                <div>
-
-                    <?php
+    <?php
                     if (isset($_GET['id'])) {
 
 
@@ -110,6 +103,14 @@ ob_start();
                     }
 
                     ?>
+        <h3>Comments(<?=count($result)?>)</h3>
+        <hr>
+        <div>
+            <div>
+
+                <div>
+
+                
 
                     <?php
 
