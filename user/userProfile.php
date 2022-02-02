@@ -173,9 +173,9 @@ if(!isset($_SESSION['loggedUser'])){
                                         INNER JOIN checkout_products ON checkout_products.checkout_id = checkout.ID  
                                         inner join products on checkout_products.product_id = products.id  where users.id ='$userNamaee'");
                             $sql3->execute();
-                            $data3 = $sql3->fetch(PDO::FETCH_ASSOC);
+                            $data3 = $sql3->fetchAll(PDO::FETCH_ASSOC);
                             // echo "<pre>";
-                            // var_dump($data);
+                            // var_dump($data3);
                             $sql4 = $conn->prepare("SELECT * FROM checkout
                                                 --  INNER JOIN checkout_products ON checkout.id = checkout_products.checkout_id
                                                  ");
@@ -208,7 +208,7 @@ if(!isset($_SESSION['loggedUser'])){
                                             <?php
 
                                             $tot2 = 0;
-                                            foreach ($sql3 as $item) {
+                                            foreach ($data3 as $item) {
                                                 // if(user.id )
                                                 $tot2 += ($item['quantity'] * $item['product_price'] - $item['sales_percentage'] * $item['product_price'] / 100);
 
@@ -217,7 +217,7 @@ if(!isset($_SESSION['loggedUser'])){
 
                                                 <td colspan="2"><span><?php echo $item['product_name'] ?></span></td>
                                                 <td>x<?php echo $item['quantity']; ?></td>
-                                                <td> <span><?php echo '$ ' . $tot; ?></span></td>
+                                                <td> <span><?php echo  $tot . " " .'$ ' ; ?></span></td>
 
                                         </tr>
 
@@ -232,13 +232,13 @@ if(!isset($_SESSION['loggedUser'])){
                                     <tr>
                                         <hr />
                                         <th scope="col" colspan="2"></th>
-                                        <th scope="col" colspan="2">Total</th>
                                         <th scope="col" colspan="2"></th>
                                         <th scope="col" colspan="2"></th>
-                                        <th scope="col" colspan="2"></th>
-                                        <th><?php
-
-                                            echo $tot2; ?></th>
+                                        <th scope="col" colspan="2"></th> 
+                                        <!-- <th scope="col" colspan="2"></th> -->
+                                        <!-- <th scope="col" colspan="2"></th>  -->
+                                        <th scope="col" >Total</th>
+                                        <th><?php echo $tot2; ?>$</th>
 
                                     </tr>
                                 </table>

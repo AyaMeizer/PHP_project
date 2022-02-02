@@ -42,6 +42,7 @@ if (!isset($_SESSION)) {
                             echo "<small>Empty</small>";
                         }
                     } else {
+                        echo "<small>Empty</small>";
                         $_SESSION['product'] = [];
                     }
 
