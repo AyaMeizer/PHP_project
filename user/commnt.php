@@ -42,45 +42,52 @@ ob_start();
 </style>
 
 <body>
-    <div class="comment">
-        <div class="comment-form">
-            <h4>Leave a Comment</h4>
-            <form action="addComment.php" class="form-contact comment_form" id="commentForm" method="POST">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <textarea class="form-control w-100" name="message" id="comment" cols="30" rows="9" placeholder="Write Comment" required></textarea>
+    <?php
+    if (isset($_SESSION['loggedUser'])) {
+
+       
+
+
+    ?>
+        <div class="comment">
+            <div class="comment-form">
+                <h4>Leave a Comment</h4>
+                <form action="addComment.php" class="form-contact comment_form" id="commentForm" method="POST">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <textarea class="form-control w-100" name="message" id="comment" cols="30" rows="9" placeholder="Write Comment" required></textarea>
+                            </div>
                         </div>
+
+
+                    </div>
+                    <input name="commmenttt" type="hidden" value="<?php echo $_GET['id'] ?>" />
+
+
+
+                    <div class="form-group mt-3">
+                        <input type="submit" name="submitq" value="Send Comment" class="btn_3 button-contactForm" />
+
                     </div>
 
+                </form>
 
-                </div>
-                <input name="commmenttt" type="hidden" value="<?php echo $_GET['id'] ?>" />
+            </div>
 
 
-
-                <div class="form-group mt-3">
-                    <input type="submit" name="submitq" value="Send Comment" class="btn_3 button-contactForm" />
-
-                </div>
-
-            </form>
 
         </div>
+       
+    <?php
 
 
+    }
 
-    </div>
-    <!-- <h4>05 Comments</h4> -->
-<?php 
-
-// if(){
-
-// }else{
-
-
-?>
+    ?>
     <div class="comment">
+        <h3>Comments</h3>
+        <hr>
         <div>
             <div>
 
@@ -105,23 +112,24 @@ ob_start();
                     ?>
 
                     <?php
-                 
-                        foreach ($result as $element) { ?>
 
-                            <p>
+                    foreach ($result as $element) { ?>
 
-                            <div class="review_item">
-                                <div class="media">
-                                    <div class='media-body'>
-                                        <h4><?php echo $element['username'] ?></h4>
-                                    </div>
+                        <p>
+
+                        <div class="review_item">
+                            <div class="media">
+                                <div class='media-body'>
+                                    <h4><?php echo $element['username'] ?></h4>
                                 </div>
-                                <p><?php echo $element['comment_desc']; ?></p>
-
-
                             </div>
+                            <p><?php echo $element['comment_desc']; ?></p>
+
+
+                        </div>
+                        <hr>
                     <?php }
-                   ?>
+                    ?>
 
 
 
@@ -133,7 +141,8 @@ ob_start();
             </div>
         </div>
     </div>
-<?php #}?>
+    <?php #}
+    ?>
     <!-- </div>
     </div> -->
 

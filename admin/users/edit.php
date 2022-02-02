@@ -158,49 +158,61 @@ require('../../database/create_db.php');
         </header>
         <!-- END HEADER MOBILE-->
 
-        <!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
-                <a href="../index.php">
-                    <img src="../images/icon/logo.png" alt="Cool Admin" />
-                </a>
-            </div>
-            <div class="menu-sidebar__content js-scrollbar1">
+         <!-- MENU SIDEBAR-->
+         <aside class="menu-sidebar d-none d-lg-block">
+            <a href="../index.php" style='margin:15px 50px 0;'>
+        <img src="../../user/img/logo.png" alt="logo" style="width:170px;">
+            </a>
+            <div class="">
                 <nav class="navbar-sidebar">
-                    <ul class="list-unstyled navbar__list">
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Admin Dashboards</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="index.php">Users Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="../products/index.php">Products Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="../category/index.php">Categories Dashboard</a>
-                                </li>
+                    <!-- <ul class=""> -->
+                        <a  style="color: black; margin:5px 0; margin:5px 0; font-weight:bold;" href="#">
+                                <i class="fas fa-tachometer-alt"></i>Admin Dashboards
+                            </a>
+                                <ul class="list-unstyled navbar__unstyled" style="list-style: none;">
+                            <a href="index.php">
+                                <li style="color: black; margin:5px 0;">
+                                    Users Dashboard
+                                </li></a>
+                                <a href="../products/index.php">
+                                <li style="color: black; margin:5px 0;">
+                                        Products Dashboard
+                                    </li>
+                                </a>
+                                <a href="../category/index.php">
+                                <li style="color: black; margin:5px 0;">
+                                        Categories Dashboard
+                                    </li>
+                                </a>
+                                <a href="../orders/index.php">
+                                <li style="color: black; margin:5px 0;">
+                                        Orders Dashboard
+                                    </li>
+                                </a>
                             </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                            <a style="color: black; margin:50px 0 5px 0; font-weight: bold;" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Create Dashboards</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="create.php">Create Users </a>
+                                <a href="create.php">
+                                <li style="color: black; margin:5px 0;">
+                                        Create Users 
+                                        
+                                    </li>
+                                </a>
+                                <a href="../products/create.php">
+                                <li style="color: black; margin:5px 0;">
+                                        Create Products
+                                    </li>
+                                </a>
+                                <a href="../category/create.php">
+                                <li style="color: black; margin:5px 0;">
+                                        Create Categories 
                                 </li>
-                                <li>
-                                    <a href="../products/create.php">Create Products</a>
-                                </li>
-                                <li>
-                                    <a href="../category/create.php">Create Categories </a>
-                                </li>
-                                <li>
-                                    <a href="../orders/index.php">Orders Dashboard</a>
-                                </li>
+                                    </a>
                             </ul>
                         </li>
+
+
                     </ul>
                     </li>
                     </ul>
@@ -208,6 +220,7 @@ require('../../database/create_db.php');
             </div>
         </aside>
         <!-- END MENU SIDEBAR-->
+        
         <!-- PAGE CONTAINER-->
         <div class="page-container">
 

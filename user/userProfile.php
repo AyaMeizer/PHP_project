@@ -1,16 +1,16 @@
-<!-- <?php
+     <?php
         session_start();
         // session_unset();
         // session_destroy();
 
         require('../database/create_db.php');
 
-        $userNamaee = $_SESSION['loggedUser'][1];
+        $userNamaee = @$_SESSION['loggedUser'][1];
         $edit = "SELECT * FROM users WHERE id='$userNamaee'";
         $data = $conn->query($edit);
         $result = $data->fetch(PDO::FETCH_ASSOC);
-        echo "<pre >";
-        var_dump($_SESSION['loggedUser']);
+        // echo "<pre >";
+        // var_dump($_SESSION['loggedUser']);
         ?>
 
 <!doctype html>
@@ -40,8 +40,13 @@
 <!-- style CSS -->
 <link rel="stylesheet" href="css/style.css">
 </head>
-
+<?php
+if(!isset($_SESSION['loggedUser'])){
+    header("location:login.php");
+    die();
+}?>
 <body>
+
     <!--::header part start::-->
     <?php
     include 'nav.php';
@@ -65,19 +70,25 @@
 
 
 
-    <div class="row">
-        <div class="col-12">
-
-        </div>
 
 
 
-
-
-        <div class="col-lg-8" style='margin-left: 280px;
+    <div class="col-lg-8" style='margin-left: 280px;
              display: flex;
              align-items: center;
              flex-direction: column'>
+        <div class="row">
+            <div class="col-12">
+
+                <div class="form-group mt-3" style="width:100%;display:flex; align-items:center">
+                    <h3 style="width: 100%;">Welcome <?php echo ucfirst($result['username']) ?></h3>
+                    <form method="GET" class="form-group mt-3" action="logout.php" style="width:100%;">
+                        <input type="submit" class="btn_3 button-contactForm" name="logOut" value="LogOut" style='margin: 0 auto;
+                                    color:white;border:1px solid#b69abb; background:#b83636ad; '>
+                    </form>
+                </div>
+
+            </div>
             <form class="form-contact contact_form" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" id="contactForm">
 
                 <div class="row">
@@ -92,7 +103,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input class="form-control" name="email" id="" type="text" placeholder='Email' value="<?php echo $result['email'] ?>" readonly>
+                            <input class="form-control" name="email" id="" type="text" placeholder='Email' value="<?php echo $result['email'] ?>" readonly disabled style="background: #bbbbbb73;">
                         </div>
                     </div>
                     <div class="col-12">
@@ -111,12 +122,7 @@
 
             </form>
 
-            <div class="form-group mt-3">
-                <form method="GET" class="form-group mt-3" action="logout.php">
-                    <input type="submit" class="btn_3 button-contactForm" name="logOut" value="LogOut" style='margin: auto;
-            color:#b69abb;'>
-                </form>
-            </div>
+
 
             <?php
 
@@ -157,7 +163,6 @@
              flex-direction: column'>Order Details</h3> -->
                             <?php
                             $userNamaee = $_SESSION['loggedUser'][1];
-
                             $sql = $conn->prepare("SELECT * FROM checkout_products INNER JOIN products ON checkout_products.product_id = products.id");
                             $sql->execute();
                             $data = $sql->fetch(PDO::FETCH_ASSOC);
@@ -168,9 +173,9 @@
                                         INNER JOIN checkout_products ON checkout_products.checkout_id = checkout.ID  
                                         inner join products on checkout_products.product_id = products.id  where users.id ='$userNamaee'");
                             $sql3->execute();
-                            $data3 = $sql3->fetch(PDO::FETCH_ASSOC);
+                            $data3 = $sql3->fetchAll(PDO::FETCH_ASSOC);
                             // echo "<pre>";
-                            // var_dump($data);
+                            // var_dump($data3);
                             $sql4 = $conn->prepare("SELECT * FROM checkout
                                                 --  INNER JOIN checkout_products ON checkout.id = checkout_products.checkout_id
                                                  ");
@@ -178,15 +183,13 @@
                             $data4 = $sql4->fetchAll(PDO::FETCH_ASSOC);
                             ?>
 
-<h1>Orders</h1>
-<hr>
+                            <h2 style="text-align: center;">Orders</h2>
+                            <hr>
 
                             <?php
                             // var_dump($data3);
                             if ($data3 == []) {
-
-
-                                echo "<h1>No Orders Yet</h1>";
+                                echo "<h1 style=\"text-align:center\">No Orders Yet</h1>";
                             } else {
                             ?>
                                 <table class="table table-borderless">
@@ -195,7 +198,7 @@
 
                                             <th scope="col" colspan="2">Product</th>
                                             <th scope="col">Quantity</th>
-                                            <th scope="col">Total</th>
+                                            <th scope="col">Total/unit</th>
 
                                         </tr>
                                     </thead>
@@ -203,21 +206,18 @@
                                         <tr>
 
                                             <?php
+
                                             $tot2 = 0;
-
-                                            foreach ($sql3 as $item) {
+                                            foreach ($data3 as $item) {
                                                 // if(user.id )
+                                                $tot2 += ($item['quantity'] * $item['product_price'] - $item['sales_percentage'] * $item['product_price'] / 100);
 
-                                                $tot = ($item['quantity'] * $item['product_price'] - $item['sales_percentage'] * $item['product_price'] / 100)
+                                                $tot = ($item['product_price'] - $item['sales_percentage'] * $item['product_price'] / 100)
                                             ?>
 
                                                 <td colspan="2"><span><?php echo $item['product_name'] ?></span></td>
                                                 <td>x<?php echo $item['quantity']; ?></td>
-                                                <td> <span><?php echo '$ ' . $tot; ?></span></td>
-                                                <td> <span><?php
-                                                            echo $_SESSION['loggedUser'][2];
-                                                            $tot2 += $tot;
-                                                            ?></span></td>
+                                                <td> <span><?php echo  $tot . " " .'$ ' ; ?></span></td>
 
                                         </tr>
 
@@ -232,16 +232,17 @@
                                     <tr>
                                         <hr />
                                         <th scope="col" colspan="2"></th>
-                                        <th scope="col" colspan="2">Total</th>
                                         <th scope="col" colspan="2"></th>
                                         <th scope="col" colspan="2"></th>
-                                        <th><?php
-
-                                            echo $tot2; ?></th>
+                                        <th scope="col" colspan="2"></th> 
+                                        <!-- <th scope="col" colspan="2"></th> -->
+                                        <!-- <th scope="col" colspan="2"></th>  -->
+                                        <th scope="col" >Total</th>
+                                        <th><?php echo $tot2; ?>$</th>
 
                                     </tr>
-                                <?php } ?>
                                 </table>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -341,4 +342,4 @@
     <script src="js/custom.js"></script>
 </body>
 
-</html> -->
+</html> 

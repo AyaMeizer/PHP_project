@@ -1,3 +1,5 @@
+<?php
+session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,8 +36,17 @@
     <link href="css/theme.css" rel="stylesheet" media="all">
 
 </head>
+<?php
+
+
+if (!isset($_SESSION['loggedUser']) || ($_SESSION['loggedUser'][1] != 1)) {
+    header("location:../user/login.php");
+    die();
+}
+?>
 
 <body class="animsition">
+
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
         <header class="header-mobile d-block d-lg-none">
@@ -156,47 +167,58 @@
 
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
-                <a href="index.php">
-                    <img src="./images/icon/logo.png" alt="Cool Admin" />
-                </a>
-            </div>
-            <div class="menu-sidebar__content js-scrollbar1">
+            <a href="../index.php" style='margin:15px 50px 0;'>
+                <img src="../user/img/logo.png" alt="logo" style="width:170px;">
+            </a>
+            <div class="">
                 <nav class="navbar-sidebar">
-                    <ul class="list-unstyled navbar__list">
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Admin Dashboards</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="./users/index.php">Users Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="./products/index.php">Products Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="./category/index.php">Categories Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="./orders/index.php">Orders Dashboard</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Create Dashboards</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="./users/create.php">Create Users </a>
-                                </li>
-                                <li>
-                                    <a href="./products/create.php">Create Products</a>
-                                </li>
-                                <li>
-                                    <a href="./category/create.php">Create Categories </a>
-                                </li>
-                            </ul>
-                        </li>
+                    <!-- <ul class=""> -->
+                    <a style="color: black; margin:5px 0; margin:5px 0; font-weight:bold;" href="#">
+                        <i class="fas fa-tachometer-alt"></i>Admin Dashboards
+                    </a>
+                    <ul class="list-unstyled navbar__unstyled js-unstyled" style="list-style: none;">
+                        <a href="./users/index.php">
+                            <li style="color: black; margin:5px 0;">
+                                Users Dashboard
+                            </li>
+                        </a>
+                        <a href="./products/index.php">
+                            <li style="color: black; margin:5px 0;">
+                                Products Dashboard
+                            </li>
+                        </a>
+                        <a href="./category/index.php">
+                            <li style="color: black; margin:5px 0;">
+                                Categories Dashboard
+                            </li>
+                        </a>
+                        <a href="./orders/index.php">
+                            <li style="color: black; margin:5px 0;">
+                                Orders Dashboard
+                            </li>
+                        </a>
+                    </ul>
+                    <a class="js-arrow" style="color: black; margin:50px 0 5px 0; font-weight: bold;" href="#">
+                        <i class="fas fa-tachometer-alt"></i>Create Dashboards</a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <a href="./users/create.php">
+                            <li style="color: black; margin:5px 0;">
+                                Create Users
+
+                            </li>
+                        </a>
+                        <a href="./products/create.php">
+                            <li style="color: black; margin:5px 0;">
+                                Create Products
+                            </li>
+                        </a>
+                        <a href="./category/create.php">
+                            <li style="color: black; margin:5px 0;">
+                                Create Categories
+                            </li>
+                        </a>
+                    </ul>
+                    </li>
 
 
                     </ul>
@@ -205,7 +227,7 @@
                 </nav>
             </div>
         </aside>
-        <!-- END MENU SIDEBAR-->
+        <!-- END MENU SIDEBAR -->
         <!-- PAGE CONTAINER-->
         <div class="page-container">
 

@@ -233,8 +233,8 @@ require('../../database/create_db.php');
             <?php
 
 
-
-            $aya = $conn->prepare("SELECT * From checkout");
+            $id=$_GET['id'];
+            $aya = $conn->prepare("SELECT * From checkout_products WHERE checkout_id=$id");
             $aya->execute();
             $resultA = $aya->fetchAll(PDO::FETCH_ASSOC);
 
@@ -249,28 +249,14 @@ require('../../database/create_db.php');
                                     <h3>Order Details</h3>
                                     <table class="table table-borderless">
 
-                                        <?php
-
-                                        if ($resultA == []) {
-                                            echo "<h1>No Orders Yet </h1>";
-                                        } else {
-
-
-
-                                        ?>
                                             <thead>
                                                 <tr>
-                                                <th scope="col" colspan="2">Subtotal Price</th>
-                                                <th scope="col" colspan="2">Coupon Discount</th>
-                                                <th scope="col" colspan="2">Total Price</th>
-                                                    <th scope="col">Address</th>
-                                                    <th scope="col">Date</th>
-                                                    <th scope="col">User Name</th>
-                                                    <th scope="col">Details</th>
+                                                    <th scope="col" colspan="2">Products</th>
+                                                    <th scope="col" colspan="2">Price After Sales</th>
+                                                    <th scope="col" colspan="2">Quantity</th>
                                                     <!-- <th scope="col" colspan="5">Total</th> -->
                                                 </tr>
                                             </thead>
-                                        <?php } ?>
 
                                         <tbody>
                                             <tr>
@@ -282,21 +268,14 @@ require('../../database/create_db.php');
                                                     // if ($item['checkout_id'] !== $resultR[$loop]['checkout_id']) {
 
                                                 ?>
-                                                    <td colspan="2"><span><?php echo $item['total_price']." $"?></span></td>
-                                                    <td colspan="2"><span><?php echo $item['coupon_discount']." $"?></span></td>
                                                     <td colspan="2"><span><?php
-                                                    $subtotal= $item['total_price']-$item['coupon_discount'];
-                                                    echo ($subtotal)." $"?></span></td>
-                                                    <td>x<?php echo $item['address']; ?></td>
-                                                    <td><?php echo $item['date']; ?></td>
-                                                    <td> <span><?php 
-                                                    $ryahnah = $conn->prepare("SELECT * FROM users Where id=$item[user_id]");
-                                                    $ryahnah->execute();
+                                                     $ryahnah = $conn->prepare("SELECT * FROM products Where id=$item[product_id]");
+                                                     $ryahnah->execute();
                                                     $resultR = $ryahnah->fetch(PDO::FETCH_ASSOC);
-                                                    echo $resultR['username']; ?></span></td>
-                                                    <td>
-                                                        <a href="details.php?id=<?php echo $item['id']?>"> view
-                                                        </a>
+                                                    echo $resultR['product_name'] ?></span></td>
+                                                    <td colspan="2"><span><?php echo ($resultR['product_price']-$resultR['product_price']*$resultR['sales_percentage']/100)." $" ?></span></td>
+                                                    <td colspan="2"><span><?php echo $item['quantity'] ?></span></td>
+                                                   
                                                     </td>
                                             </tr>
                                         </tbody>
