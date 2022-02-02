@@ -1,5 +1,9 @@
 <?php
-session_start() ?>
+session_start();
+require('../database/create_db.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -167,7 +171,7 @@ if (!isset($_SESSION['loggedUser']) || ($_SESSION['loggedUser'][1] != 1)) {
 
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
-            <a href="../index.php" style='margin:15px 50px 0;'>
+            <a href="../user" style='margin:15px 50px 0;'>
                 <img src="../user/img/logo.png" alt="logo" style="width:170px;">
             </a>
             <div class="">
@@ -248,7 +252,14 @@ if (!isset($_SESSION['loggedUser']) || ($_SESSION['loggedUser'][1] != 1)) {
                                                 <i class="zmdi zmdi-account-o"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>10</h2>
+                                                <?php
+                                                $data = $conn->prepare("SELECT * FROM  users ");
+                                                $data->execute();
+                                                $resultA = $data->fetchAll(PDO::FETCH_ASSOC);
+                                                // var_dump($resultA);
+                                                ?>
+                                                <h2><?= count($resultA) ?></h2>
+
                                                 <span>members online</span>
                                             </div>
                                         </div>
@@ -266,7 +277,13 @@ if (!isset($_SESSION['loggedUser']) || ($_SESSION['loggedUser'][1] != 1)) {
                                                 <i class="zmdi zmdi-shopping-cart"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>38</h2>
+                                            <?php
+                                                $product = $conn->prepare("SELECT id FROM  products ");
+                                                $product->execute();
+                                                $resultproduct = $product->fetchAll(PDO::FETCH_ASSOC);
+                                                // var_dump($resultA);
+                                                ?>
+                                                <h2><?= count($resultproduct)?></h2>
                                                 <span>items solid</span>
                                             </div>
                                         </div>
@@ -301,8 +318,17 @@ if (!isset($_SESSION['loggedUser']) || ($_SESSION['loggedUser'][1] != 1)) {
                                             <div class="icon">
                                                 <i class="zmdi zmdi-money"></i>
                                             </div>
+                                            <?php
+                                                $earnings = $conn->prepare("SELECT total_price FROM  checkout ");
+                                                $earnings->execute();
+                                                $TotalEarnings = $earnings->fetchAll(PDO::FETCH_ASSOC);
+                                                $sum=0;
+                                                foreach($TotalEarnings as $value){
+                                                    $sum=$sum + $value['total_price'];
+                                                }
+                                                ?>
                                             <div class="text">
-                                                <h2>$100</h2>
+                                                <h2><?= $sum ?> $</h2>
                                                 <span>total earnings</span>
                                             </div>
                                         </div>
