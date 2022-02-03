@@ -51,10 +51,10 @@ require('../database/create_db.php');
                 <div class="col-md-5">
                     <div class="banner_text">
                         <div class="banner_text_iner">
-                            <h1>Best quality
-                                pillow</h1>
-                            <p>Seamlessly empower fully researched
-                                growth strategies and interoperable internal</p>
+                            <h1 style="padding-left: 10px;" >Best Quality
+                                Pillow</h1>
+                            <p style="padding-left: 15px;">Seamlessly empower fully researched
+                                growth strategies and interoperable internal.</p>
                             <a href="product_list.php" class="btn_1">shop now</a>
                         </div>
                     </div>

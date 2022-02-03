@@ -168,10 +168,9 @@ if (!isset($_SESSION['loggedUser']) || ($_SESSION['loggedUser'][1] != 1)) {
             </nav>
         </header>
         <!-- END HEADER MOBILE-->
-
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
-            <a href="../user" style='margin:15px 50px 0;'>
+            <a target="_blank" href="../user" style='margin:15px 50px 0;'>
                 <img src="../user/img/logo.png" alt="logo" style="width:170px;">
             </a>
             <div class="">
@@ -203,7 +202,7 @@ if (!isset($_SESSION['loggedUser']) || ($_SESSION['loggedUser'][1] != 1)) {
                         </a>
                     </ul>
                     <a class="js-arrow" style="color: black; margin:50px 0 5px 0; font-weight: bold;" href="#">
-                        <i class="fas fa-tachometer-alt"></i>Create Dashboards</a>
+                        <i class="fas fa-tachometer-alt"></i>Create</a>
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                         <a href="./users/create.php">
                             <li style="color: black; margin:5px 0;">
